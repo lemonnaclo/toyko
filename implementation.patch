@@ -1,0 +1,255 @@
+diff --git a/README.md b/README.md
+index 417f180..95d591c 100644
+--- a/README.md
++++ b/README.md
+@@ -5,3 +5,47 @@
+ GitHub Pages: Settings → Pages → Deploy from a branch → main / (root).
+ 
+ 캐릭터 이미지의 권리는 원저작자에게 있습니다. 개인 여행 일정 용도입니다.
++
++## Google Sheets 일정 연동
++
++별도 서버·API 키 없이 **공개 일정 전용 탭**을 CSV로 읽습니다. 최초 접속, 열린 탭에서 60초 간격, 탭으로 돌아올 때 확인합니다. Google 게시 캐시 때문에 수 분 지연될 수 있으며 실시간 푸시는 아닙니다. 시트 저장만 하면 이후 일정 변경에는 사이트 재배포가 필요 없습니다.
++
++### 처음 설정하기
++
++1. 새 Google Sheets 파일을 만들고 `schedule-template.csv`를 가져옵니다(파일 → 가져오기 → 업로드). 기존 5일 일정이 모두 들어 있습니다. 구분 기호는 쉼표로 선택하고, 가져오기 창에 숫자·날짜 자동 변환 옵션이 있으면 해제합니다. 날짜와 시간 열은 **일반 텍스트**로 유지하세요.
++2. 아래 열 이름을 첫 행에 그대로 유지하고 한 행에 방문 장소 하나씩 입력합니다. 시트의 행 순서와 관계없이 날짜·시간순으로 표시됩니다. 같은 시각은 시트 행 순서를 유지합니다.
++3. 파일 → 공유 → **웹에 게시**에서 일정 탭만 선택하고 **쉼표로 구분된 값(.csv)** 으로 게시합니다. '변경사항이 있으면 자동으로 다시 게시'를 켭니다. 일반 편집/공유 링크가 아닌 `https://docs.google.com/spreadsheets/d/e/.../pub?gid=...&single=true&output=csv` 형태의 주소를 복사합니다.
++4. `sheets-config.js`의 `window.TOKYO_SHEETS_CSV_URL = '';` 따옴표 안에 주소를 넣습니다.
++5. 변경을 main에 반영합니다. 기존대로 Settings → Pages → Deploy from a branch → main / (root)를 사용합니다. 최초 코드/설정 변경만 배포하면 됩니다. PR 브랜치만으로 운영 사이트가 바뀌지는 않습니다.
++6. 배포 사이트의 날짜 버튼 위에서 '시트 연동'과 확인 시각을 확인합니다. 시트에서 장소 이름을 바꾼 후 게시 지연 + 다음 60초 확인 이후 반영되는지 확인합니다. 새 날짜 추가·삭제, 한 장소만 남은 날짜도 지원합니다.
++
++| 열 | 입력 |
++|---|---|
++| date | `2026-11-26` 형태의 날짜 |
++| title | 하루 제목, 같은 날짜의 모든 행에서 동일 |
++| description | 하루 설명, 같은 날짜에서 동일 |
++| route | `호텔|긴자|이케부쿠로`처럼 동선을 `|`로 구분, 같은 날짜에서 동일 |
++| id | `day1-stop1` 등 전체 시트에서 고유한 영문·숫자·밑줄·하이픈 ID(최대 80자). 장소를 옮겨도 유지하고 삭제한 ID를 다른 장소에 재사용하지 마세요 |
++| time | `09:50` 형태의 24시간 시각 |
++| name | 장소/일정 이름, 필수 |
++| tag | 예약 완료, 항공 정보 등 표시 문구 |
++| detail | 상세 일정. 셀 내 줄바꿈·쉼표·따옴표 지원 |
++| place | Google 지도에서 검색할 장소명 또는 주소, 필수 |
++| transfer | 이동·환승 설명 |
++
++데이터는 1~1000행까지 허용하며 빈 행은 무시합니다. 필수 열 누락, 중복 ID, 날짜·시간 오류, 날짜별 정보 불일치가 있으면 변경 전체를 거부하고 현재 화면의 마지막 정상 일정을 유지합니다. 새 접속에서는 기본 일정부터 표시합니다. 연결 오류도 날짜 위에 표시하며 다음 확인 때 재시도합니다. URL을 비우면 기본 일정으로 돌아갑니다.
++
++### 범위와 보안
++
++- **게시한 탭과 웹사이트 일정은 누구나 볼 수 있습니다.** 여권, 예약번호, 연락처 등은 별도 비공개 파일에 보관하세요. 파일 전체를 공유할 필요 없이 일정 탭만 게시하세요. 게시 주소는 비밀키가 아닙니다.
++- HTML을 실행하지 않고 텍스트로 표시하며 지도 주소는 검색어를 인코딩해서 생성합니다. 데이터 요청은 게시된 Google CSV 주소만 허용합니다. 인증키나 서비스 계정 키를 저장소에 넣지 않습니다.
++- 메모·방문 체크·추가 상점은 기존처럼 이 브라우저에만 저장하며 시트로 전송하지 않습니다. 시트 일정은 날짜/장소 ID로 별도 저장하므로 기존 기본 일정의 위치 기반 메모/체크를 자동 이전하지 않습니다. 새로고침 후에도 다시 시트가 로드되면 복구됩니다.
++- 상단 항공·호텔 요약, 하단 여행 기간, 준비물, 예약 안내는 기존 고정 내용입니다. 시트는 날짜별 제목·동선·타임라인·지도만 제어합니다. 여행 자체를 바꿀 때는 고정 안내도 함께 수정하세요.
++- 비공개 일정이 필요하면 GitHub Pages만으로 보호할 수 없습니다. 로그인 및 서버 측 Google Sheets API 연동을 별도로 구성해야 합니다. 이 구현은 공개 가능한 일정에 맞춘 방식입니다.
++
++### 검증
++
++Node.js 18 이상에서 `node --test sheets.test.cjs` 및 `node --check app.js`.
++실제 시트 URL은 아직 설정되지 않았으므로 실제 Google 게시 응답과 운영 배포는 설정 후 확인해야 합니다.
++
++공식 안내: [Google Sheets 웹 게시](https://support.google.com/docs/answer/183965).
+diff --git a/app.js b/app.js
+index d01cb65..7ebbe40 100644
+--- a/app.js
++++ b/app.js
+@@ -2,7 +2,7 @@ const mapURL=q=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComp
+ const dirURL=(a,b)=>'https://www.google.com/maps/dir/?api=1&origin='+encodeURIComponent(a)+'&destination='+encodeURIComponent(b)+'&travelmode=transit';
+ const hotel='Hotel Grand City, 1-30-7 Higashiikebukuro, Tokyo';
+ // Times are planning estimates, not live transit schedules. Confirmed entry is user-provided.
+-const days=[
++let days=[
+  {date:'11.26',dow:'목',title:'짐은 이케부쿠로에, 첫 모험은 닛포리',desc:'나리타 → 이케부쿠로 호텔 짐 보관 → 닛포리 → 이케부쿠로',route:['나리타 공항','호텔 · 짐 보관','닛포리 TOMATO','이케부쿠로'],stops:[
+  ['09:50','인천 → 나리타','항공 정보','12:15 나리타 도착. 입국·수하물 수령 후 이케부쿠로 호텔로 먼저 이동합니다.','Narita Airport','입국·수하물 수령 60–90분 여유'],
+  ['13:45','나리타 → 이케부쿠로','호텔 먼저','스카이라이너로 닛포리까지 이동한 뒤 JR 야마노테선으로 이케부쿠로 환승 후보. 닛포리 관광은 짐을 맡긴 이후에 합니다.','Ikebukuro Station','열차·환승·도보 약 75–100분 가안'],
+@@ -38,10 +38,40 @@ const read=(k,f)=>{try{return JSON.parse(localStorage.getItem(k))??f}catch{retur
+ let done=read('tokyo-done',{}),checks=read('tokyo-checks',{}),shops=read('tokyo-shops',[]);
+ const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ function showMap(q,name){document.querySelector('#map').src='https://maps.google.com/maps?q='+encodeURIComponent(q)+'&output=embed';document.querySelector('#mapname').textContent=name;document.querySelector('#maplink').href=mapURL(q)}
+-function render(){const d=days[selected];localStorage.setItem('tokyo-day',selected);document.querySelector('#days').innerHTML=days.map((x,i)=>`<button class="${i===selected?'active':''}" aria-pressed="${i===selected}" data-day="${i}">DAY ${i+1} <small>${x.date} ${x.dow}요일</small></button>`).join('');document.querySelectorAll('[data-day]').forEach(b=>b.onclick=()=>{selected=+b.dataset.day;render()});document.querySelector('#daynum').textContent=`DAY ${selected+1} · NOVEMBER 2026`;document.querySelector('#daytitle').textContent=d.title;document.querySelector('#daydesc').textContent=d.desc;document.querySelector('#datestamp').textContent=d.date+' '+d.dow;document.querySelector('#route').innerHTML=d.route.map(x=>`<span>${esc(x)}</span>`).join('<b>→</b>');const queries=[...new Set(d.stops.map(x=>x[4]))].filter(x=>x!=='Incheon International Airport');document.querySelector('#dayroute').href='https://www.google.com/maps/dir/?api=1&origin='+encodeURIComponent(queries[0])+'&destination='+encodeURIComponent(queries.at(-1))+'&waypoints='+encodeURIComponent(queries.slice(1,-1).join('|'))+'&travelmode=driving';document.querySelector('#dayroute').title='전체 동선은 도로 경로 미리보기입니다. 구간별 대중교통 버튼을 이용하세요.';document.querySelector('#timeline').innerHTML=d.stops.map((s,i)=>{const key=selected+'-'+i;return `<article class="stop"><span class="time">${s[0]}</span><div class="stop-card ${s[2]==='예약 완료'?'reserved':''}" data-stop="${i}" tabindex="0" role="button" aria-label="${esc(s[1])} 지도 표시"><div class="stop-top"><span class="stop-title">${esc(s[1])}</span><span class="tag">${s[2]}</span></div><p>${esc(s[3])}</p><div class="stop-actions"><a target="_blank" rel="noopener" href="${mapURL(s[4])}">⌖ 지도</a>${i&&s[2]!=='항공 정보'?`<a target="_blank" rel="noopener" href="${dirURL(d.stops[i-1][4],s[4])}">대중교통 ↗</a>`:''}<label><input type="checkbox" data-done="${key}" ${done[key]?'checked':''}> 다녀옴</label></div><div class="transfer">↳ ${esc(s[5])}</div></div></article>`}).join('');document.querySelectorAll('[data-stop]').forEach(b=>{const action=()=>{document.querySelectorAll('.stop-card').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');const s=d.stops[+b.dataset.stop];showMap(s[4],s[1])};b.onclick=e=>{if(!e.target.closest('a,label,input'))action()};b.onkeydown=e=>{if(e.target===b&&(e.key==='Enter'||e.key===' ')){e.preventDefault();action()}}});document.querySelectorAll('[data-done]').forEach(b=>b.onchange=()=>{done[b.dataset.done]=b.checked;localStorage.setItem('tokyo-done',JSON.stringify(done));progress()});document.querySelector('#memo').value=localStorage.getItem('tokyo-memo-'+selected)||'';showMap(d.stops[selected===1?2:0][4],d.stops[selected===1?2:0][1]);renderShops();progress()}
+-function progress(){document.querySelector('#progress').textContent=days[selected].stops.filter((_,i)=>done[selected+'-'+i]).length+' / '+days[selected].stops.length+' 방문'}
+-function renderShops(){document.querySelector('#shops').innerHTML=shops.map((s,i)=>s.day===selected?`<div><a href="${esc(s.url||mapURL(s.name+' Tokyo'))}" target="_blank" rel="noopener">⌖ ${esc(s.name)} ↗</a><button data-remove="${i}" aria-label="${esc(s.name)} 삭제">×</button></div>`:'').join('');document.querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>{shops.splice(+b.dataset.remove,1);localStorage.setItem('tokyo-shops',JSON.stringify(shops));renderShops()})}
+-document.querySelector('#memo').oninput=e=>{localStorage.setItem('tokyo-memo-'+selected,e.target.value);document.querySelector('#saved').textContent='저장했어요 ✓'};
+-document.querySelector('#shopform').onsubmit=e=>{e.preventDefault();const name=document.querySelector('#shopname').value.trim(),url=document.querySelector('#shopurl').value.trim();if(!name)return;if(url&&!/^https?:\/\//i.test(url))return;shops.push({name,url,day:selected});localStorage.setItem('tokyo-shops',JSON.stringify(shops));e.target.reset();renderShops()};
++function render(){const d=days[selected];localStorage.setItem('tokyo-day',selected);document.querySelector('#days').innerHTML=days.map((x,i)=>`<button class="${i===selected?'active':''}" aria-pressed="${i===selected}" data-day="${i}">DAY ${i+1} <small>${esc(x.date)} ${esc(x.dow)}요일</small></button>`).join('');document.querySelectorAll('[data-day]').forEach(b=>b.onclick=()=>{selected=+b.dataset.day;render()});document.querySelector('#daynum').textContent=`DAY ${selected+1} · ${d.id || '2026-' + d.date.replace('.', '-')}`;document.querySelector('#daytitle').textContent=d.title;document.querySelector('#daydesc').textContent=d.desc;document.querySelector('#datestamp').textContent=d.date+' '+d.dow;document.querySelector('#route').innerHTML=d.route.map(x=>`<span>${esc(x)}</span>`).join('<b>→</b>');const queries=[...new Set(d.stops.map(x=>x[4]))].filter(x=>x!=='Incheon International Airport');document.querySelector('#dayroute').href='https://www.google.com/maps/dir/?api=1&origin='+encodeURIComponent(queries[0])+'&destination='+encodeURIComponent(queries.at(-1))+'&waypoints='+encodeURIComponent(queries.slice(1,-1).join('|'))+'&travelmode=driving';document.querySelector('#dayroute').title='전체 동선은 도로 경로 미리보기입니다. 구간별 대중교통 버튼을 이용하세요.';document.querySelector('#timeline').innerHTML=d.stops.map((s,i)=>{const key=stopKey(d,s,i);return `<article class="stop"><span class="time">${esc(s[0])}</span><div class="stop-card ${s[2]==='예약 완료'?'reserved':''}" data-stop="${i}" tabindex="0" role="button" aria-label="${esc(s[1])} 지도 표시"><div class="stop-top"><span class="stop-title">${esc(s[1])}</span><span class="tag">${esc(s[2])}</span></div><p>${esc(s[3])}</p><div class="stop-actions"><a target="_blank" rel="noopener" href="${mapURL(s[4])}">⌖ 지도</a>${i&&s[2]!=='항공 정보'?`<a target="_blank" rel="noopener" href="${dirURL(d.stops[i-1][4],s[4])}">대중교통 ↗</a>`:''}<label><input type="checkbox" data-done="${key}" ${done[key]?'checked':''}> 다녀옴</label></div><div class="transfer">↳ ${esc(s[5])}</div></div></article>`}).join('');document.querySelectorAll('[data-stop]').forEach(b=>{const action=()=>{document.querySelectorAll('.stop-card').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');const s=d.stops[+b.dataset.stop];showMap(s[4],s[1])};b.onclick=e=>{if(!e.target.closest('a,label,input'))action()};b.onkeydown=e=>{if(e.target===b&&(e.key==='Enter'||e.key===' ')){e.preventDefault();action()}}});document.querySelectorAll('[data-done]').forEach(b=>b.onchange=()=>{done[b.dataset.done]=b.checked;localStorage.setItem('tokyo-done',JSON.stringify(done));progress()});document.querySelector('#memo').value=localStorage.getItem('tokyo-memo-'+dayKey())||'';showMap(d.stops[0][4],d.stops[0][1]);renderShops();progress()}
++function progress(){document.querySelector('#progress').textContent=days[selected].stops.filter((_,i)=>done[stopKey(days[selected],days[selected].stops[i],i)]).length+' / '+days[selected].stops.length+' 방문'}
++function renderShops(){document.querySelector('#shops').innerHTML=shops.map((s,i)=>s.day===dayKey()?`<div><a href="${esc(s.url||mapURL(s.name+' Tokyo'))}" target="_blank" rel="noopener">⌖ ${esc(s.name)} ↗</a><button data-remove="${i}" aria-label="${esc(s.name)} 삭제">×</button></div>`:'').join('');document.querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>{shops.splice(+b.dataset.remove,1);localStorage.setItem('tokyo-shops',JSON.stringify(shops));renderShops()})}
++document.querySelector('#memo').oninput=e=>{localStorage.setItem('tokyo-memo-'+dayKey(),e.target.value);document.querySelector('#saved').textContent='저장했어요 ✓'};
++document.querySelector('#shopform').onsubmit=e=>{e.preventDefault();const name=document.querySelector('#shopname').value.trim(),url=document.querySelector('#shopurl').value.trim();if(!name)return;if(url&&!/^https?:\/\//i.test(url))return;shops.push({name,url,day:dayKey()});localStorage.setItem('tokyo-shops',JSON.stringify(shops));e.target.reset();renderShops()};
+ ['여권 & 항공권','파크 예약 티켓','eSIM / 로밍','교통카드 & 엔화','공항 열차·터미널 확인'].forEach((x,i)=>{const l=document.createElement('label');l.innerHTML=`<input type="checkbox" ${checks[i]?'checked':''}> ${x}`;l.querySelector('input').onchange=e=>{checks[i]=e.target.checked;localStorage.setItem('tokyo-checks',JSON.stringify(checks))};document.querySelector('#checklist').append(l)});
+ document.querySelector('#print').onclick=()=>window.print();render();
++
++function dayKey(){return days[selected].id || selected}
++function stopKey(d,s,i){return s[6] ? 'sheet:'+s[6] : selected+'-'+i}
++let syncing=false, signature='';
++async function syncSchedule(){
++  const source=window.TOKYO_SHEETS_CSV_URL;
++  const status=document.querySelector('#sync-status');
++  if(!source || syncing || document.hidden)return;
++  syncing=true;
++  try{
++    const url=TokyoSheets.csvURL(source);
++    url.searchParams.set('_',Date.now());
++    const response=await fetch(url,{cache:'no-store',credentials:'omit',signal:AbortSignal.timeout(15000)});
++    if(!response.ok)throw Error('시트 응답 오류');
++    const text=await response.text();
++    const next=TokyoSheets.parse(text);
++    if(signature!==text){
++      const previous=days[selected].id || '2026-'+days[selected].date.replace('.','-');
++      days=next; selected=Math.max(0,days.findIndex(d=>d.id===previous));
++      signature=text; render();
++    }
++    status.textContent='시트 연동 · '+new Date().toLocaleTimeString('ko-KR')+' 확인';
++  }catch(error){status.textContent='시트 갱신 실패 · 기존 일정 유지 ('+error.message+')';}
++  finally{syncing=false;}
++}
++if(window.TOKYO_SHEETS_CSV_URL){
++  document.querySelector('#sync-status').textContent='시트 일정 불러오는 중…';
++  syncSchedule(); setInterval(syncSchedule,60000);
++  document.addEventListener('visibilitychange',()=>{if(!document.hidden)syncSchedule()});
++}else document.querySelector('#sync-status').textContent='기본 일정';
+diff --git a/index.html b/index.html
+index a8275b9..a9452b7 100644
+--- a/index.html
++++ b/index.html
+@@ -3,6 +3,6 @@
+ <header><a class="brand" href="#">도쿄 ㅣ 치이카와 토벌여행</a><button id="print">일정 인쇄 ↗</button></header>
+ <main><section class="hero hero-image" role="img" aria-label="연못에서 놀고 있는 치이카와 캐릭터 배너"></section>
+ <div class="tripfacts"><div>✈ <strong>가는 날</strong><span>11/26 · ICN 09:50 → NRT 12:15</span></div><div>⌂ <strong>호텔 그랜드 시티</strong><span>히가시이케부쿠로 1-30-7</span></div><div>✓ <strong>치이카와 파크 예약 완료</strong><span>11/27 · 11:40–12:00 입장</span></div></div>
+-<nav id="days" aria-label="여행 날짜"></nav><div class="layout"><section><div class="dayhead"><div><span class="eyebrow" id="daynum"></span><h2 id="daytitle"></h2><p id="daydesc"></p></div><div class="day-decoration"><img src="asset/ec3d5229a19aa61e0489586e3c1a6947_thumb_w400.webp" alt="" aria-hidden="true"><span class="date-stamp" id="datestamp"></span></div></div><div class="routecard"><div class="section-label"><strong>오늘의 동선</strong><a id="dayroute" target="_blank" rel="noopener">전체 동선 지도 ↗</a></div><div id="route"></div><p class="subtle">전체 동선 링크는 도로 경로 미리보기입니다. 실제 환승·운행 시각은 각 구간의 길찾기에서 확인하세요.</p></div><div class="section-label timeline-label"><h3>하루의 작은 기록</h3><span id="progress"></span></div><div id="timeline"></div><section class="panel"><h3 class="decorated-heading">나만의 일정 메모<img src="asset/f3d23003e894747dc3ea7fff06bff3d7.webp" alt="" aria-hidden="true"></h3><textarea id="memo" placeholder="먹고 싶은 것, 꼭 사고 싶은 것… 날짜별로 자동 저장됩니다." aria-label="날짜별 메모"></textarea><small id="saved">이 브라우저에 저장</small></section></section>
++<p id="sync-status" class="subtle" role="status" aria-live="polite"></p><nav id="days" aria-label="여행 날짜"></nav><div class="layout"><section><div class="dayhead"><div><span class="eyebrow" id="daynum"></span><h2 id="daytitle"></h2><p id="daydesc"></p></div><div class="day-decoration"><img src="asset/ec3d5229a19aa61e0489586e3c1a6947_thumb_w400.webp" alt="" aria-hidden="true"><span class="date-stamp" id="datestamp"></span></div></div><div class="routecard"><div class="section-label"><strong>오늘의 동선</strong><a id="dayroute" target="_blank" rel="noopener">전체 동선 지도 ↗</a></div><div id="route"></div><p class="subtle">전체 동선 링크는 도로 경로 미리보기입니다. 실제 환승·운행 시각은 각 구간의 길찾기에서 확인하세요.</p></div><div class="section-label timeline-label"><h3>하루의 작은 기록</h3><span id="progress"></span></div><div id="timeline"></div><section class="panel"><h3 class="decorated-heading">나만의 일정 메모<img src="asset/f3d23003e894747dc3ea7fff06bff3d7.webp" alt="" aria-hidden="true"></h3><textarea id="memo" placeholder="먹고 싶은 것, 꼭 사고 싶은 것… 날짜별로 자동 저장됩니다." aria-label="날짜별 메모"></textarea><small id="saved">이 브라우저에 저장</small></section></section>
+ <aside><section class="panel map-panel"><div class="section-label"><h3>장소 미리보기</h3><span>GOOGLE MAPS</span></div><iframe title="선택한 장소 구글지도" id="map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><strong id="mapname"></strong><a id="maplink" target="_blank" rel="noopener">큰 지도 열기 ↗</a><small>장소 카드를 누르면 지도가 바뀌어요.<br>지도 표시에는 인터넷 연결이 필요합니다.</small></section><section class="panel"><span class="eyebrow">TRAVEL NOTES</span><h3>잊지 말고 챙겨요 <img class="mini-character" src="asset/03usagi.webp" alt="우사기"></h3><div id="checklist"></div></section><section class="panel peach"><h3>예약 & 이동 노트</h3><p>✓ 파크 입장만 예약 완료로 반영<br>항공편·호텔은 제공된 여행 정보이며 결제·예약 여부는 별도 확인</p><p>귀국편 11/30<br><strong>NRT 12:05 → ICN 15:10</strong><br>공항 도착 목표 09:00 / 관광 없음</p><p class="subtle">이동 시간은 대략적인 계획용 여유 시간입니다. 터미널·열차 예약과 실제 시간표는 출발 전 확인하세요.</p></section><section class="panel"><h3 class="decorated-heading">상점 추가하기<img src="asset/RamenPleaseShisa.webp" alt="" aria-hidden="true"></h3><p class="subtle">이전 대화에서 개별 상점·원본 지도 링크를 불러올 수 없었습니다. 확인된 장소만 기본 수록했습니다.</p><form id="shopform"><input id="shopname" placeholder="상점 이름" aria-label="상점 이름" required><input id="shopurl" type="url" placeholder="Google 지도 링크 (선택)" aria-label="상점 지도 링크"><button type="submit">선택한 날짜에 추가 +</button></form><div id="shops"></div></section></aside></div>
+-<footer>도쿄 ㅣ 치이카와 토벌여행 <span>2026.11.26–30 · 도쿄 2인 여행</span></footer></main><script src="app.js"></script></body></html>
++<footer>도쿄 ㅣ 치이카와 토벌여행 <span>2026.11.26–30 · 도쿄 2인 여행</span></footer></main><script src="sheets-config.js"></script><script src="sheets.js"></script><script src="app.js"></script></body></html>
+diff --git a/schedule-template.csv b/schedule-template.csv
+new file mode 100644
+index 0000000..8c1cbda
+--- /dev/null
++++ b/schedule-template.csv
+@@ -0,0 +1,25 @@
++﻿"date","title","description","route","id","time","name","tag","detail","place","transfer"
++"2026-11-26","짐은 이케부쿠로에, 첫 모험은 닛포리","나리타 → 이케부쿠로 호텔 짐 보관 → 닛포리 → 이케부쿠로","나리타 공항|호텔 · 짐 보관|닛포리 TOMATO|이케부쿠로","day1-stop1","09:50","인천 → 나리타","항공 정보","12:15 나리타 도착. 입국·수하물 수령 후 이케부쿠로 호텔로 먼저 이동합니다.","Narita Airport","입국·수하물 수령 60–90분 여유"
++"2026-11-26","짐은 이케부쿠로에, 첫 모험은 닛포리","나리타 → 이케부쿠로 호텔 짐 보관 → 닛포리 → 이케부쿠로","나리타 공항|호텔 · 짐 보관|닛포리 TOMATO|이케부쿠로","day1-stop2","13:45","나리타 → 이케부쿠로","호텔 먼저","스카이라이너로 닛포리까지 이동한 뒤 JR 야마노테선으로 이케부쿠로 환승 후보. 닛포리 관광은 짐을 맡긴 이후에 합니다.","Ikebukuro Station","열차·환승·도보 약 75–100분 가안"
++"2026-11-26","짐은 이케부쿠로에, 첫 모험은 닛포리","나리타 → 이케부쿠로 호텔 짐 보관 → 닛포리 → 이케부쿠로","나리타 공항|호텔 · 짐 보관|닛포리 TOMATO|이케부쿠로","day1-stop3","15:15","호텔 그랜드 시티 · 짐 맡기기","짐 보관 먼저","히가시이케부쿠로 1-30-7. 도착 즉시 짐을 맡기고 가볍게 출발해요. 체크인 전 짐 보관 가능 여부는 호텔에 사전 확인. 체크인이 가능하면 함께 진행합니다.","Hotel Grand City, 1-30-7 Higashiikebukuro, Tokyo","짐 보관 약 15–20분 · 이후 닛포리로"
++"2026-11-26","짐은 이케부쿠로에, 첫 모험은 닛포리","나리타 → 이케부쿠로 호텔 짐 보관 → 닛포리 → 이케부쿠로","나리타 공항|호텔 · 짐 보관|닛포리 TOMATO|이케부쿠로","day1-stop4","16:15","TOMATO · 닛포리 원단 거리","필수 방문","호텔에 짐을 맡긴 뒤 방문. 본관 통상 10:30–18:00, 일요일·공휴일 휴무. 입국·호텔 도착이 늦어지면 무리하지 않고 토요일 오전 일정과 조정하세요.","トマト 本館 東日暮里5-33-25","이케부쿠로 → 닛포리 JR + 도보 · 약 35–45분"
++"2026-11-26","짐은 이케부쿠로에, 첫 모험은 닛포리","나리타 → 이케부쿠로 호텔 짐 보관 → 닛포리 → 이케부쿠로","나리타 공항|호텔 · 짐 보관|닛포리 TOMATO|이케부쿠로","day1-stop5","18:30","이케부쿠로 귀환 & 저녁","저녁 쇼핑","호텔로 돌아와 체크인 마무리 후 저녁. 돈키호테는 식사 후 귀갓길에 필요한 것만 가볍게 쇼핑해요.","ドン・キホーテ 池袋東口駅前店","닛포리 → 이케부쿠로 · 약 35–45분"
++"2026-11-27","치이카와 파크, 그리고 긴자","예약 시간은 여유 있게 · 오후에는 긴자 산책","호텔 그랜드 시티|치이카와 파크|긴자|이케부쿠로","day2-stop1","10:00","이케부쿠로에서 느긋한 아침","여유 일정","숙소 근처에서 아침 식사. 티켓·신분 확인에 필요한 내용을 미리 확인하세요.","Hotel Grand City, 1-30-7 Higashiikebukuro, Tokyo","파크로 도보 이동 · 대기 여유 포함"
++"2026-11-27","치이카와 파크, 그리고 긴자","예약 시간은 여유 있게 · 오후에는 긴자 산책","호텔 그랜드 시티|치이카와 파크|긴자|이케부쿠로","day2-stop2","11:10","치이카와 파크 도착 준비","입장 준비","이케부쿠로 선샤인시티로 이동. 예약 입장 구간 전 현장 도착을 목표로 합니다.","ちいかわパーク サンシャインシティ","현장 티켓 안내 확인"
++"2026-11-27","치이카와 파크, 그리고 긴자","예약 시간은 여유 있게 · 오후에는 긴자 산책","호텔 그랜드 시티|치이카와 파크|긴자|이케부쿠로","day2-stop3","11:40","치이카와 파크","예약 완료","11/27 11:40–12:00 입장 예약 완료 · 2인 여행. 체류 시간은 가안이며 퇴장·쇼핑 상황에 따라 조절하세요.","ちいかわパーク サンシャインシティ","관람 후 점심 · 14:30 전후 출발 가안"
++"2026-11-27","치이카와 파크, 그리고 긴자","예약 시간은 여유 있게 · 오후에는 긴자 산책","호텔 그랜드 시티|치이카와 파크|긴자|이케부쿠로","day2-stop4","15:30","긴자 · 취향 쇼핑 & 카페","필수 지역","긴자 산책과 카페. 개별 상점 목록은 추가 정보를 받으면 교체할 수 있도록 구성했습니다.","Ginza Tokyo","이케부쿠로 → 긴자 · 마루노우치선 등 약 35–45분"
++"2026-11-27","치이카와 파크, 그리고 긴자","예약 시간은 여유 있게 · 오후에는 긴자 산책","호텔 그랜드 시티|치이카와 파크|긴자|이케부쿠로","day2-stop5","18:00","무인양품 긴자 & 저녁","저녁 쇼핑","낮 동선을 마친 뒤 무인양품에 들러요. 구매량이 많으면 이후 일정은 줄이고 호텔로 돌아가세요.","無印良品 銀座","긴자 → 이케부쿠로 · 약 35–45분"
++"2026-11-28","키치조지에서 오모테산도까지","골목 산책, 작은 가게, 히구치 유코의 세계","이케부쿠로|키치조지|보리스 잡화점|이케부쿠로","day3-stop1","09:30","이케부쿠로 → 키치조지","이동 계획","신주쿠에서 JR 주오선 환승 후보. 아침 식사 후 출발합니다.","Kichijoji Station","환승 포함 약 40–55분"
++"2026-11-28","키치조지에서 오모테산도까지","골목 산책, 작은 가게, 히구치 유코의 세계","이케부쿠로|키치조지|보리스 잡화점|이케부쿠로","day3-stop2","10:30","키치조지 골목 산책","필수 지역","잡화 골목을 둘러보고 점심. 여유가 있으면 이노카시라 공원에서 잠깐 쉬어가요.","Kichijoji Tokyo","점심·카페 포함 약 3시간"
++"2026-11-28","키치조지에서 오모테산도까지","골목 산책, 작은 가게, 히구치 유코의 세계","이케부쿠로|키치조지|보리스 잡화점|이케부쿠로","day3-stop3","14:00","키치조지 → 오모테산도","이동 계획","주오선·지하철 환승 경로를 당일 지도에서 선택하세요. 하라주쿠·시부야 관광은 넣지 않았습니다.","Omotesando Station Tokyo","환승·도보 포함 약 50–65분"
++"2026-11-28","키치조지에서 오모테산도까지","골목 산책, 작은 가게, 히구치 유코의 세계","이케부쿠로|키치조지|보리스 잡화점|이케부쿠로","day3-stop4","15:15","보리스 잡화점 · 히구치 유코","필수 상점","ボリス雑貨店 · 진구마에 4-16-2. 공식 안내: 오모테산도 A2 출구 도보 약 8분. 당일 영업·입장 방식은 공식 사이트 확인.","ボリス雑貨店 神宮前4-16-2","오모테산도 역 기준 도보 약 8분"
++"2026-11-28","키치조지에서 오모테산도까지","골목 산책, 작은 가게, 히구치 유코의 세계","이케부쿠로|키치조지|보리스 잡화점|이케부쿠로","day3-stop5","18:00","이케부쿠로 저녁 & 휴식","자유 일정","숙소 근처로 돌아와 저녁 식사. 추가 쇼핑은 체력에 맞춰 선택하세요.","Ikebukuro Station","오모테산도 → 이케부쿠로 · 약 35–50분"
++"2026-11-29","일요일 골동품 시장과 신주쿠","아침의 오래된 물건들 · 마지막 저녁은 편안하게","이케부쿠로|하나조노 신사|신주쿠|이케부쿠로","day4-stop1","08:30","호텔 → 신주쿠","이동 계획","골동품 시장은 오전 방문으로 계획합니다. 개최 공지와 날씨를 전날 다시 확인하세요.","新宿三丁目駅","지하철 후 도보 · 약 30–40분"
++"2026-11-29","일요일 골동품 시장과 신주쿠","아침의 오래된 물건들 · 마지막 저녁은 편안하게","이케부쿠로|하나조노 신사|신주쿠|이케부쿠로","day4-stop2","09:15","하나조노 신사 골동품 시장","개최 확인 필요","일요일 정기 시장 방문 가안. 2026/11/29 개별 개최는 미확정이며 신사 행사·기상에 따라 변경될 수 있습니다. 미개최 시 신사 산책 후 카페로 전환.","花園神社 新宿5-17-3","신주쿠산초메 역에서 도보"
++"2026-11-29","일요일 골동품 시장과 신주쿠","아침의 오래된 물건들 · 마지막 저녁은 편안하게","이케부쿠로|하나조노 신사|신주쿠|이케부쿠로","day4-stop3","11:00","신주쿠 쇼핑 & 점심","필수 지역","백화점·잡화점 중심으로 둘러봐요. 추가 상점은 아래 입력창에 이름과 원본 지도 링크를 저장할 수 있습니다.","Shinjuku Tokyo","지역 내 도보 이동"
++"2026-11-29","일요일 골동품 시장과 신주쿠","아침의 오래된 물건들 · 마지막 저녁은 편안하게","이케부쿠로|하나조노 신사|신주쿠|이케부쿠로","day4-stop4","17:00","이케부쿠로 · 마지막 저녁","저녁 쇼핑","돈키호테·무인양품 추가 쇼핑이 필요하면 귀갓길에. TOMATO는 일요일 일정에서 제외했습니다.","Ikebukuro Station","JR 야마노테선 약 10분 + 도보"
++"2026-11-29","일요일 골동품 시장과 신주쿠","아침의 오래된 물건들 · 마지막 저녁은 편안하게","이케부쿠로|하나조노 신사|신주쿠|이케부쿠로","day4-stop5","20:00","짐 정리 & 공항 이동 점검","출발 준비","여권·기념품·수하물 무게 확인. 항공사 터미널과 다음 날 스카이라이너 시간표·예약을 확인하세요.","Hotel Grand City, 1-30-7 Higashiikebukuro, Tokyo","내일은 공항 이동만 진행"
++"2026-11-30","다시 집으로, 또 만나 도쿄","관광 없이 공항 이동만 · 여유 있게 귀국","호텔 그랜드 시티|닛포리 역|나리타 공항|인천 공항","day5-stop1","06:45","기상 & 체크아웃 준비","준비","여권·전자항공권·휴대품 최종 확인. 이른 체크아웃 방식은 호텔에 미리 문의하세요.","Hotel Grand City, 1-30-7 Higashiikebukuro, Tokyo","07:00–07:15 출발 목표"
++"2026-11-30","다시 집으로, 또 만나 도쿄","관광 없이 공항 이동만 · 여유 있게 귀국","호텔 그랜드 시티|닛포리 역|나리타 공항|인천 공항","day5-stop2","07:15","호텔 → 닛포리 → 나리타","공항 이동","이케부쿠로에서 JR로 닛포리 이동 후 스카이라이너 환승 후보. 공항 09:00 도착 목표에 맞는 실제 열차를 사전 확인하세요.","Narita Airport","전체 약 90–110분 여유 · 열차는 미예약"
++"2026-11-30","다시 집으로, 또 만나 도쿄","관광 없이 공항 이동만 · 여유 있게 귀국","호텔 그랜드 시티|닛포리 역|나리타 공항|인천 공항","day5-stop3","09:00","나리타 공항 도착 목표","탑승 준비","항공사 터미널에서 체크인·수하물 위탁·보안 검색. 국제선 출발 약 3시간 전 도착 목표입니다.","Narita Airport","항공사 마감 시각 우선 확인"
++"2026-11-30","다시 집으로, 또 만나 도쿄","관광 없이 공항 이동만 · 여유 있게 귀국","호텔 그랜드 시티|닛포리 역|나리타 공항|인천 공항","day5-stop4","12:05","나리타 → 인천","항공 정보","12:05 출발 → 15:10 인천 도착. 항공편 번호·터미널은 예약 확인서 기준입니다.","Incheon International Airport","한국·일본 시차 없음"
+diff --git a/sheets-config.js b/sheets-config.js
+new file mode 100644
+index 0000000..b74adb7
+--- /dev/null
++++ b/sheets-config.js
+@@ -0,0 +1,2 @@
++// 공개할 일정 전용 탭을 CSV로 게시한 주소. 비워 두면 기존 일정이 표시됩니다.
++window.TOKYO_SHEETS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vShfYM22QqS0R22qAH4iMgXbeJbG4GNSv8NDmC7L69HZaSBd8jxWisDkL3a3X2bIF9LaWdmH5TVcMsm/pub?gid=0&single=true&output=csv';
+diff --git a/sheets.js b/sheets.js
+new file mode 100644
+index 0000000..18e998e
+--- /dev/null
++++ b/sheets.js
+@@ -0,0 +1,54 @@
++(function (root) {
++  'use strict';
++  const columns = ['date','title','description','route','id','time','name','tag','detail','place','transfer'];
++  function parseCSV(text) {
++    const rows = []; let row = [], field = '', quoted = false;
++    text = text.replace(/^\uFEFF/, '');
++    for (let i = 0; i < text.length; i++) {
++      const c = text[i];
++      if (c === '"') {
++        if (quoted && text[i + 1] === '"') { field += '"'; i++; }
++        else if (quoted || !field) quoted = !quoted;
++        else throw Error('CSV 따옴표 형식을 확인하세요.');
++      } else if (c === ',' && !quoted) { row.push(field); field = ''; }
++      else if ((c === '\n' || c === '\r') && !quoted) {
++        if (c === '\r' && text[i + 1] === '\n') i++;
++        row.push(field); rows.push(row); row = []; field = '';
++      } else field += c;
++    }
++    if (quoted) throw Error('CSV 따옴표가 닫히지 않았습니다.');
++    row.push(field); rows.push(row);
++    return rows.filter(r => r.some(v => v.trim()));
++  }
++  function parse(text) {
++    const rows = parseCSV(text), header = rows.shift()?.map(s => s.trim());
++    if (!header || columns.some(c => !header.includes(c)) || new Set(header).size !== header.length)
++      throw Error('시트의 필수 열 이름을 확인하세요.');
++    const days = new Map(), ids = new Set();
++    for (const [index, row] of rows.entries()) {
++      if (row.length !== header.length) throw Error(`${index + 2}행의 열 개수를 확인하세요.`);
++      const r = Object.fromEntries(header.map((key, i) => [key, row[i].trim()]));
++      if (!/^\d{4}-\d{2}-\d{2}$/.test(r.date) || !/^([01]\d|2[0-3]):[0-5]\d$/.test(r.time) ||
++          !/^[a-zA-Z0-9_-]{1,80}$/.test(r.id) || ids.has(r.id) || !r.name || !r.place || !r.title)
++        throw Error(`${index + 2}행의 날짜·시간·고유 id·필수 값을 확인하세요.`);
++      const date = new Date(r.date + 'T00:00:00Z');
++      if (!Number.isFinite(date.getTime()) || date.toISOString().slice(0,10) !== r.date) throw Error('유효하지 않은 날짜입니다.');
++      ids.add(r.id);
++      if (!days.has(r.date)) days.set(r.date, {id:r.date, date:r.date.slice(5).replace('-','.'), dow:'일월화수목금토'[date.getUTCDay()], title:r.title, desc:r.description, route:r.route.split('|').map(s=>s.trim()).filter(Boolean), stops:[]});
++      const day = days.get(r.date);
++      if (day.title !== r.title || day.desc !== r.description || day.route.join('|') !== r.route.split('|').map(s=>s.trim()).filter(Boolean).join('|')) throw Error('같은 날짜의 제목·설명·동선을 동일하게 입력하세요.');
++      day.stops.push([r.time,r.name,r.tag,r.detail,r.place,r.transfer,r.id]);
++    }
++    if (!days.size || rows.length > 1000) throw Error('일정은 1~1000행이어야 합니다.');
++    return [...days.values()].sort((a,b)=>a.id.localeCompare(b.id)).map(d=>({...d,stops:d.stops.sort((a,b)=>a[0].localeCompare(b[0]))}));
++  }
++  function csvURL(value) {
++    const url = new URL(value);
++    if (url.protocol !== 'https:' || url.hostname !== 'docs.google.com' || !/^\/spreadsheets\/d\/e\/[\w-]+\/pub$/.test(url.pathname) || url.searchParams.get('output') !== 'csv')
++      throw Error('Google Sheets의 게시된 CSV 주소를 설정하세요.');
++    return url;
++  }
++  const api = {parseCSV, parse, csvURL};
++  if (typeof module !== 'undefined') module.exports = api;
++  else root.TokyoSheets = api;
++})(typeof window === 'undefined' ? globalThis : window);
+diff --git a/sheets.test.cjs b/sheets.test.cjs
+new file mode 100644
+index 0000000..91445b6
+--- /dev/null
++++ b/sheets.test.cjs
+@@ -0,0 +1,26 @@
++const {test}=require('node:test');
++const assert=require('node:assert/strict');
++const fs=require('node:fs');
++const {parse,parseCSV,csvURL}=require('./sheets.js');
++const template=fs.readFileSync('schedule-template.csv','utf8');
++test('original itinerary imports with all stops, stable ids and ordering',()=>{
++  const days=parse(template);
++  assert.equal(days.length,5); assert.equal(days[0].stops.length,5);
++  assert.equal(days[4].stops.length,4); assert.equal(days[0].dow,'목');
++  assert.equal(days[0].stops[0][0],'09:50');
++});
++test('quoted commas, newlines, escaped quotes and BOM',()=>{
++  assert.deepEqual(parseCSV('\uFEFFa,b\r\n"one, two","line\n""quoted"""'),[['a','b'],['one, two','line\n"quoted"']]);
++  assert.throws(()=>parseCSV('"unclosed'));
++});
++test('reject malformed or ambiguous schedules',()=>{
++  assert.throws(()=>parse('date,name\n2026-11-26,test'));
++  assert.throws(()=>parse(template.replace('2026-11-26','2026-02-30')));
++  assert.throws(()=>parse(template.replace('09:50','25:50')));
++  const lines=template.trimEnd().split('\n');
++  assert.throws(()=>parse(template+lines[1]+'\n'));
++});
++test('accept only published Google CSV sources',()=>{
++  assert.equal(csvURL('https://docs.google.com/spreadsheets/d/e/2PACX-test/pub?gid=0&output=csv').hostname,'docs.google.com');
++  for(const url of ['javascript:alert(1)','https://evil.test/pub?output=csv','https://docs.google.com/spreadsheets/d/private/edit'])assert.throws(()=>csvURL(url));
++});
