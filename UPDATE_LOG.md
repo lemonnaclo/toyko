@@ -2,6 +2,16 @@
 
 모든 날짜는 한국 시간 기준이다. 완료 사실과 미완료 작업을 구분해서 기록한다.
 
+## 2026-11-16 · 다른 PC용 코드 보관 및 재개 문서
+
+- 사용자 요청에 따라 이 PC의 미커밋 Apps Script 수정본을 `work/google-sheets-handoff` 브랜치에 보관한다. 운영 main 병합/배포는 이번 범위에 포함하지 않는다.
+- 원격 main의 `98805e5`를 내려받아 fast-forward로 반영하고 기존 HANDOFF.md, UPDATE_LOG.md, implementation.patch를 보존했다.
+- 원격 자료의 CSV/60초 구현과 이 PC의 Apps Script JSON/30초 구현이 다름을 확인했다. 기존 시트는 수정하지 않았으며, 현재 브랜치는 endpoint 미설정 상태다.
+- README에 다른 PC에서 복제·전환·실행·검증하는 명령과 코덱스에 전달할 문장을 작성했다. AGENTS.md에 자동 인계 지침, CURRENT_STATE.md에 실제 코드 상태·남은 일·두 구현의 구분을 기록했다.
+- Node 자동 테스트 4개 통과: 원본 5일/24개 일정 보존, 정렬/고유 ID와 선택 항목, 잘못된 입력 거부, Apps Script URL 제한. JavaScript 4개 파일 문법 검사 및 git diff --check 통과.
+- Google 실제 응답, 브라우저 CORS, 시트 수정 후 자동 반영, 화면 배치 및 운영 배포는 이번에 검증하지 않았다. 기존 날짜별 시트를 덮어쓰지 않도록 후속 순서를 명시했다.
+- 이 기록은 커밋 대상 내용이다. 실제 원격 업로드 성공 여부는 GitHub의 `work/google-sheets-handoff` 브랜치와 이번 응답의 커밋 링크로 확인한다.
+
 ## 2026-11-13 · 저장소 조사와 시트 연동 코드
 
 - 기존 사이트는 HTML/CSS/JavaScript로 구성된 정적 페이지였고 일정은 app.js 안에 직접 들어 있었다.

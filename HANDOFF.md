@@ -1,5 +1,7 @@
 # 다른 노트북에서 이어서 작업하기
 
+> 2026-11-16 추가: 이 문서는 기존 CSV/날짜별 시트 작업의 인계 기록입니다. `work/google-sheets-handoff` 브랜치에는 다른 PC의 Apps Script 수정본도 코드로 보관했습니다. 재개 시 `AGENTS.md`와 `CURRENT_STATE.md`를 먼저 읽어 두 구현을 구분하세요. 이 브랜치에 implementation.patch를 바로 적용하거나 기존 시트를 초기화하지 마세요.
+
 작성일: 2026-11-13 (한국 시간)
 
 ## 목표와 사용자 요구
