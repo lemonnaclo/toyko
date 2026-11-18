@@ -724,21 +724,33 @@
     },
     {
       "id": "place-42",
-      "name": "Boris Zakkaten",
+      "name": "Boris Zakkaten · 보리스 잡화점",
       "area": "하라주쿠·오모테산도·아오야마",
       "lat": 35.6688739,
       "lng": 139.7113136,
       "mapURL": "https://www.google.com/maps?cid=10783324310941095014",
-      "address": "",
+      "address": "〒150-0001 東京都渋谷区神宮前4-16-2",
       "verification": {
         "checked": "2026-11-18",
-        "level": "일부 확인",
-        "scope": "히구치 유코의 보리스 잡화점 공식 사이트와 지도 링크를 대조. 지도 주소는 神宮前4-16-2.",
-        "remaining": "공식 실매장 주소·최신 입장 조건 확인 부족. 온라인 배송 휴무를 실매장 휴무로 적용하지 않음.",
+        "level": "교차 확인",
+        "scope": "사용자 새 링크의 지도 CID가 기존 place-42와 일치. 공식 갤러리 주소 神宮前4-16-2와 저장 지도 대조. 공식 11월 공지에서 1층 11:00–19:00·수요일 휴무, 전시 RIBBON 9/19–12/22 확인. 매장 안내는 전시·행사 첫날만 예약제, 그 외 영업일 예약 불필요·매장 결제 현금 불가(가챠 제외).",
+        "remaining": "11/29 15:45–16:45는 사용자 희망을 반영한 방문 계획이며 예약 시각이 아님. 2층은 부정기휴무·중간 휴식, 임시변경·재고·대기는 방문 전 확인.",
         "sources": [
           {
-            "label": "공식 안내",
-            "url": "https://higuchiyuko.tokyo/"
+            "label": "공식 매장·입장 안내",
+            "url": "https://gallery.higuchiyuko.tokyo/"
+          },
+          {
+            "label": "공식 2026년 11월 일정",
+            "url": "https://gallery.higuchiyuko.tokyo/news/2026_11_schedule/"
+          },
+          {
+            "label": "공식 현금 없는 결제 안내",
+            "url": "https://gallery.higuchiyuko.tokyo/news/cashless/"
+          },
+          {
+            "label": "작가 공식 사이트",
+            "url": "https://higuchiyuko.com/"
           }
         ]
       }

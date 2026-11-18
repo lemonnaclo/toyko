@@ -5,10 +5,10 @@ const data = require('./trip-data');
 function summaryCSV(days = data.days) {
   return days.flatMap(d => [[d.date + ' ' + d.dow, d.region, '하루'], ['오전', d.summary.morning], ['오후', d.summary.afternoon], ['마무리', d.summary.evening], ['조정', d.summary.adjust], ['', '', '']]).map(row => row.map(v => '"' + v.replace(/"/g, '""') + '"').join(',')).join('\r\n');
 }
-test('the mobile plan preserves five days, 40 ordered cards and the only fixed booking', () => {
+test('the mobile plan preserves five days, 41 ordered cards and the only fixed booking', () => {
   assert.equal(data.days.length, 5);
   const stops = data.days.flatMap(d => d.stops);
-  assert.equal(stops.length, 40); assert.equal(new Set(stops.map(s => s.id)).size, 40);
+  assert.equal(stops.length, 41); assert.equal(new Set(stops.map(s => s.id)).size, 41);
   for (const d of data.days) {
     let previous = '00:00';
     for (const s of d.stops) { assert.ok(s.start >= previous); assert.ok(s.end > s.start); previous = s.end; }
@@ -115,4 +115,21 @@ test('all 60 venues have scoped research records and verified claims link primar
   }
   const market = places.find(p => p.id === 'place-24');
   assert.equal(new Set(market.verification.sources.map(s => new URL(s.url).hostname)).size, 2);
+});
+
+
+test('Boris is a required Sunday visit after Kichijoji, separate from a booked ticket', () => {
+  const sunday = data.days.find(d => d.id === '2026-11-29');
+  const boris = data.places.find(p => p.id === 'place-42');
+  const visits = sunday.stops.filter(s => s.required);
+  assert.equal(visits.length, 1);
+  assert.equal(visits[0].start, '15:45'); assert.equal(visits[0].end, '16:45');
+  assert.equal(visits[0].reserved, false);
+  assert.equal(visits[0].url, boris.url); assert.equal(boris.required, true);
+  assert.equal(sunday.stops.find(s => s.name.startsWith('추가 잡화')).end, '14:30');
+  assert.ok(sunday.stops.find(s => s.start === '14:30' && s.end === '15:45'));
+  assert.match(sunday.summaryOverride.afternoon, /보리스/);
+  assert.match(boris.address, /神宮前4-16-2/);
+  assert.equal(data.places.length, 55);
+  assert.ok(!data.venueGroups.harajuku.placeIds.includes('place-42'));
 });
