@@ -1,5 +1,5 @@
 globalThis.TOKYO_TRIP_DATA = {
-  "updated": "2026-11-18 · 보리스 잡화점 필수 방문 반영",
+  "updated": "2026-11-18 · 니나가와 미카전 일정 반영",
   "sheetURL": "https://docs.google.com/spreadsheets/d/1S_EChUSGHmsXd0v90_FIPwIPon9KxXUxQNMkaunEnfA/edit#gid=1828076283",
   "summaryCSV": "https://docs.google.com/spreadsheets/d/1S_EChUSGHmsXd0v90_FIPwIPon9KxXUxQNMkaunEnfA/export?format=csv&gid=1828076283",
   "days": [
@@ -110,18 +110,19 @@ globalThis.TOKYO_TRIP_DATA = {
       "id": "2026-11-27",
       "date": "11.27",
       "dow": "금",
-      "region": "파크·긴자",
-      "title": "치이카와 파크, 그리고 긴자",
+      "region": "파크·니나가와 미카전",
+      "title": "치이카와 파크, 그리고 니나가와 미카전",
       "summary": {
         "morning": "11:40–12:00 파크 입장 예약",
-        "afternoon": "관람·점심 → 긴자 2곳 정도",
-        "evening": "식사 → 숙소",
-        "adjust": "파크가 늦어지면 긴자 축소"
+        "afternoon": "파크·점심 → 가와구치 16:00–18:00 니나가와 미카전",
+        "evening": "18시 학예사 해설(선택) → 저녁 → 숙소",
+        "adjust": "긴자 쇼핑 대신 전시. 파크 지연 시 전시 도착을 늦추고 선택 해설을 생략. 전시 관람권 미구매"
       },
       "route": [
         "이케부쿠로",
         "치이카와 파크",
-        "긴자",
+        "가와구치 미술관",
+        "저녁",
         "숙소"
       ],
       "stops": [
@@ -182,53 +183,76 @@ globalThis.TOKYO_TRIP_DATA = {
           "reserved": false
         },
         {
-          "id": "2026-11-27-1500-449c4134",
+          "id": "2026-11-27-1500-to-ninagawa",
           "start": "15:00",
           "end": "16:00",
           "kind": "이동",
-          "name": "이케부쿠로 → 긴자",
-          "detail": "마루노우치선 긴자 직통 후보 + 도보",
-          "adjust": "열차·도보 약 40~55분 가안. 지치면 이케부쿠로 잔류",
-          "url": "https://www.google.com/maps/search/?api=1&query=Ginza+Station",
+          "name": "이케부쿠로 → 가와구치 시립미술관",
+          "detail": "JR 사이쿄선 등으로 아카바네 → 게이힌토호쿠선 가와구치역 → 서쪽 출구 도보2분 후보. 선샤인시티에서 역 이동·환승을 포함해 1시간 확보.",
+          "adjust": "실제 열차 시각은 당일 조회. 파크가 늦어지면 도착을 뒤로 조정. 공식 11/27 개관은 20시까지, 입장은 폐관30분 전 마감.",
+          "url": "https://www.google.com/maps?cid=2173577227246203552",
           "reserved": false
         },
         {
-          "id": "2026-11-27-1600-b36184a4",
+          "id": "2026-11-27-1600-ninagawa",
           "start": "16:00",
-          "end": "17:30",
-          "kind": "선택",
-          "name": "긴자 이토야·무인양품·로프트 중 2곳",
-          "detail": "아래 매장 중 2곳 정도를 골라요. 교바시까지 갈 때는 긴자 안의 매장을 줄여요.",
-          "adjust": "몽벨 교바시·Feiler를 고르면 다른 매장과 교체",
-          "url": "https://www.google.com/maps/search/?api=1&query=Ginza+Itoya",
+          "end": "18:00",
+          "kind": "꼭 방문",
+          "name": "니나가와 미카전 「시작의 빛」",
+          "detail": "가와구치 시립미술관에서 사진·자화상·가족과 기억을 다룬 전시 관람. 2시간 확보, 일반 온라인1,800엔/현장2,000엔. 관람권 미구매이며 방문 시각은 가안.",
+          "adjust": "사용자 요청으로 일정에 추가. 관람권 미구매, 예약 시각이 아닌 방문 계획. 공식 티켓에서 구매 조건·잔여분 확인. 굿즈 품목과 재고는 미확인.",
+          "url": "https://www.google.com/maps?cid=2173577227246203552",
           "reserved": false,
+          "required": true,
           "candidateGroups": [
-            "ginza"
-          ]
+            "ninagawa"
+          ],
+          "officialURL": "https://kawaguchi-moa.jp/exhibitions/1202/",
+          "ticketURL": "https://kawaguchi-moa.axess.shop/ja/Products/Tickets/"
         },
         {
-          "id": "2026-11-27-1730-d960d099",
-          "start": "17:30",
-          "end": "18:30",
+          "id": "2026-11-27-1800-curator",
+          "start": "18:00",
+          "end": "18:45",
+          "kind": "선택",
+          "name": "학예사 해설 또는 관람 연장·휴식",
+          "detail": "18:00 담당 학예사 해설은 당일 관람권 소지자 15명 선착순, 사전신청 불필요. 참여하려면 2층 아트리움에서 현장 안내 확인.",
+          "adjust": "18:45 종료는 일정상 가안이며 공식 종료시각은 미확인. 작가 본인 참석 행사가 아닌 담당 학예사 해설. 만석·불참이면 관람을 더 하거나 먼저 식사하고, 길어지면 저녁·귀환을 늦추기.",
+          "url": "https://www.google.com/maps?cid=2173577227246203552",
+          "reserved": false,
+          "officialURL": "https://kawaguchi-moa.jp/news/1516/"
+        },
+        {
+          "id": "2026-11-27-1845-kawaguchi-dinner",
+          "start": "18:45",
+          "end": "19:30",
           "kind": "식사",
-          "name": "긴자 카페·저녁",
-          "detail": "쇼핑한 권역에서 선택",
-          "adjust": "도쿄역 캐릭터 쇼핑은 이 구간 일부와 교체, 포켓몬 제외",
-          "url": "https://www.google.com/maps/search/?api=1&query=Ginza+Tokyo",
+          "name": "가와구치역 주변 저녁",
+          "detail": "관람을 마친 뒤 역 주변에서 영업 중인 식당 선택. 특정 식당 예약 없음.",
+          "adjust": "해설이 길어지면 식사·귀환을 뒤로 조정. 피곤하면 이케부쿠로 귀환 후 숙소 근처에서 식사.",
+          "url": "https://www.google.com/maps/search/?api=1&query=Kawaguchi+Station",
           "reserved": false
         },
         {
-          "id": "2026-11-27-1830-e9dbdc9d",
-          "start": "18:30",
-          "end": "19:30",
+          "id": "2026-11-27-1930-return-ikebukuro",
+          "start": "19:30",
+          "end": "20:15",
           "kind": "이동",
-          "name": "숙소 복귀",
-          "detail": "마루노우치선 이케부쿠로 방향 + 도보",
-          "adjust": "짐이 많으면 다른 지역 추가 방문 생략",
+          "name": "가와구치 → 이케부쿠로 숙소",
+          "detail": "게이힌토호쿠선 아카바네 환승 → 사이쿄선 이케부쿠로 등. 역·숙소 도보 포함 45분 가안.",
+          "adjust": "실제 열차·숙소 거리 확인. 미술관 추가 관람이나 식사가 길어지면 이 시간도 함께 늦추기.",
           "url": "https://www.google.com/maps/search/?api=1&query=Ikebukuro+Station",
           "reserved": false
         }
-      ]
+      ],
+      "alert": "파크 예약은 그대로. 15:00 전후 가와구치로 이동 → 16:00–18:00 니나가와 미카전. 11/27은 20시까지 개관. 관람권은 아직 미구매이며 긴자 쇼핑은 기본안에서 뺐어요.",
+      "regionOverride": "파크·니나가와 미카전",
+      "summaryOverride": {
+        "morning": "11:40–12:00 파크 입장 예약",
+        "afternoon": "파크·점심 → 가와구치 16:00–18:00 니나가와 미카전",
+        "evening": "18시 학예사 해설(선택) → 저녁 → 숙소",
+        "adjust": "긴자 쇼핑 대신 전시. 파크 지연 시 전시 도착을 늦추고 선택 해설을 생략. 전시 관람권 미구매"
+      }
     },
     {
       "id": "2026-11-28",
@@ -778,9 +802,9 @@ globalThis.TOKYO_TRIP_DATA = {
       "url": "https://www.google.com/maps?cid=18111296058751286170",
       "lat": 35.6756552,
       "lng": 139.7690568,
-      "when": "11/27 금 오후",
-      "status": "기본 코스 후보",
-      "note": "파크 후 긴자·교바시. 5곳 완주가 아니라 취향에 따라 2~3곳 선택. Feiler는 장소명·좌표 기준 긴자 분류, 메모로 다른 매장으로 바꾸지 않음.",
+      "when": "기본안 제외 · 다른 구간과 교체해 별도 재조정",
+      "status": "긴자 별도 재조정 후보",
+      "note": "11/27 오후는 사용자 요청으로 니나가와 미카전으로 변경했습니다. 긴자 매장은 저장 후보로 유지하되 같은 날 기본 일정에 더하지 않습니다.",
       "excluded": false,
       "lowPriority": false,
       "displayName": "몽벨 교바시",
@@ -807,9 +831,9 @@ globalThis.TOKYO_TRIP_DATA = {
       "url": "https://www.google.com/maps?cid=3620508382511668300",
       "lat": 35.6741115,
       "lng": 139.766261,
-      "when": "11/27 금 오후",
-      "status": "기본 코스 후보",
-      "note": "파크 후 긴자·교바시. 5곳 완주가 아니라 취향에 따라 2~3곳 선택. Feiler는 장소명·좌표 기준 긴자 분류, 메모로 다른 매장으로 바꾸지 않음.",
+      "when": "기본안 제외 · 다른 구간과 교체해 별도 재조정",
+      "status": "긴자 별도 재조정 후보",
+      "note": "11/27 오후는 사용자 요청으로 니나가와 미카전으로 변경했습니다. 긴자 매장은 저장 후보로 유지하되 같은 날 기본 일정에 더하지 않습니다.",
       "excluded": false,
       "lowPriority": false,
       "displayName": "긴자 로프트",
@@ -836,9 +860,9 @@ globalThis.TOKYO_TRIP_DATA = {
       "url": "https://www.google.com/maps?cid=771702428473144825",
       "lat": 35.673214,
       "lng": 139.7653677,
-      "when": "11/27 금 오후",
-      "status": "기본 코스 후보",
-      "note": "파크 후 긴자·교바시. 5곳 완주가 아니라 취향에 따라 2~3곳 선택. Feiler는 장소명·좌표 기준 긴자 분류, 메모로 다른 매장으로 바꾸지 않음.",
+      "when": "기본안 제외 · 다른 구간과 교체해 별도 재조정",
+      "status": "긴자 별도 재조정 후보",
+      "note": "11/27 오후는 사용자 요청으로 니나가와 미카전으로 변경했습니다. 긴자 매장은 저장 후보로 유지하되 같은 날 기본 일정에 더하지 않습니다.",
       "excluded": false,
       "lowPriority": false,
       "displayName": "무인양품 긴자",
@@ -860,9 +884,9 @@ globalThis.TOKYO_TRIP_DATA = {
       "url": "https://www.google.com/maps?cid=9979308774657714368",
       "lat": 35.6731273,
       "lng": 139.7672138,
-      "when": "11/27 금 오후",
-      "status": "기본 코스 후보",
-      "note": "파크 후 긴자·교바시. 5곳 완주가 아니라 취향에 따라 2~3곳 선택. Feiler는 장소명·좌표 기준 긴자 분류, 메모로 다른 매장으로 바꾸지 않음.",
+      "when": "기본안 제외 · 다른 구간과 교체해 별도 재조정",
+      "status": "긴자 별도 재조정 후보",
+      "note": "11/27 오후는 사용자 요청으로 니나가와 미카전으로 변경했습니다. 긴자 매장은 저장 후보로 유지하되 같은 날 기본 일정에 더하지 않습니다.",
       "excluded": false,
       "lowPriority": false,
       "displayName": "긴자 이토야",
@@ -889,9 +913,9 @@ globalThis.TOKYO_TRIP_DATA = {
       "url": "https://www.google.com/maps?cid=9295772223182406052",
       "lat": 35.6724604,
       "lng": 139.7651295,
-      "when": "11/27 금 오후",
-      "status": "기본 코스 후보",
-      "note": "파크 후 긴자·교바시. 5곳 완주가 아니라 취향에 따라 2~3곳 선택. Feiler는 장소명·좌표 기준 긴자 분류, 메모로 다른 매장으로 바꾸지 않음.",
+      "when": "기본안 제외 · 다른 구간과 교체해 별도 재조정",
+      "status": "긴자 별도 재조정 후보",
+      "note": "11/27 오후는 사용자 요청으로 니나가와 미카전으로 변경했습니다. 긴자 매장은 저장 후보로 유지하되 같은 날 기본 일정에 더하지 않습니다.",
       "excluded": false,
       "lowPriority": false,
       "displayName": "FEILER 긴자본점",
@@ -2276,13 +2300,14 @@ globalThis.TOKYO_TRIP_DATA = {
     {
       "id": "extra-5",
       "day": "2026-11-27",
-      "name": "도쿄역 캐릭터스트리트·치이카와 랜드",
-      "detail": "11/27 긴자를 일찍 마쳤을 때",
-      "duration": "1~1.5시간",
-      "travel": "긴자·교바시에서 가까운 편. 치이카와 추가 쇼핑을 원할 때만 선택. 포켓몬센터 방문 없음.",
+      "name": "긴자·도쿄역 쇼핑 · 별도 재조정 후보",
+      "detail": "11/27 기본안은 파크 + 니나가와 미카전입니다. 이전 긴자·도쿄역 매장 후보는 기록으로 유지하며 같은 날 더하지 않아요.",
+      "duration": "재조정 때 검토",
+      "travel": "가와구치 미술관과 다른 방향의 도심 쇼핑 구역. 관람 뒤 긴자·도쿄역까지 추가하지 않음.",
       "url": "",
-      "note": "치이카와 전 지점 방문 목표 없음. 개별 매장 마감 확인.",
+      "note": "전시 방문을 유지하려면 별도 날짜·구간을 조정해야 합니다. 랜드 입장 조건은 해당 지점의 공식 공지 확인. 포켓몬 방문 없음.",
       "candidateGroups": [
+        "ginza",
         "tokyo-station"
       ]
     }
@@ -2417,6 +2442,58 @@ globalThis.TOKYO_TRIP_DATA = {
         ],
         "mapChecked": "2026-11-17"
       }
+    },
+    {
+      "id": "extra-ninagawa",
+      "name": "니나가와 미카전 · 가와구치 시립미술관",
+      "displayName": "니나가와 미카전",
+      "area": "가와구치·사이타마",
+      "address": "〒332-0015 埼玉県川口市川口3-1-2",
+      "lat": 35.800920001919515,
+      "lng": 139.7158746173883,
+      "url": "https://www.google.com/maps?cid=2173577227246203552",
+      "tone": "browse",
+      "required": true,
+      "description": "「はじまりの光(시작의 빛)」, 2026/9/12–11/29. 11/27은 10:00–20:00 야간 개관. 사진·자화상·가족과 기억 중심의 전시입니다. 일반 온라인 1,800엔·현장 2,000엔. 관람권은 아직 구매하지 않았어요.",
+      "coordinateSource": "https://kawaguchi-moa.jp/visit/visitor/",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "교차 확인",
+        "scope": "작가·소속 갤러리·미술관이 전시명·가와구치 개최·2026/9/12–11/29를 안내. 미술관 공식 안내: 川口3-1-2·JR川口역 서쪽 출구 도보2분, 11/27 10–20시(입장 마감은 폐관30분 전), 일반 온라인1,800엔/현장2,000엔. 18시 담당 학예사 설명회는 당일 관람권 소지자 15명 선착순·사전신청 불필요.",
+        "remaining": "관람권 미구매. 16–18시는 방문 계획이며 예약 시각 아님. 해설의 종료시각은 미확인으로 이후 시간은 가안. 좌표는 미술관 공식 접근 지도에 표시된 지도 중심 기준점이며 출입구 실측이 아님. 굿즈 품목·재고는 확인 부족.",
+        "sources": [
+          {
+            "label": "작가 공식 전시 안내",
+            "url": "https://mikaninagawa.com/museums/kawaguchi/"
+          },
+          {
+            "label": "소속 갤러리 전시 안내",
+            "url": "https://www.tomiokoyamagallery.com/exhibitions/ninagawa_kawaguchi_2026/"
+          },
+          {
+            "label": "미술관 전시·요금 안내",
+            "url": "https://kawaguchi-moa.jp/exhibitions/1202/"
+          },
+          {
+            "label": "11/27 야간 개관 공지",
+            "url": "https://kawaguchi-moa.jp/news/1370/"
+          },
+          {
+            "label": "공식 접근 지도",
+            "url": "https://kawaguchi-moa.jp/visit/visitor/"
+          },
+          {
+            "label": "학예사 설명회 안내",
+            "url": "https://kawaguchi-moa.jp/news/1516/"
+          }
+        ]
+      },
+      "savedByUser": true,
+      "status": "사용자 지정 전시 방문 · 관람권 미구매",
+      "when": "11/27 금 16:00–18:00 관람 계획",
+      "note": "치이카와 파크 후 긴자 쇼핑 대신 방문. 11/27 20시까지 개관, 18시 학예사 해설은 선택. 굿즈 품목과 재고는 미확인.",
+      "excluded": false,
+      "lowPriority": false
     }
   ],
   "venueGroups": {
@@ -2611,6 +2688,17 @@ globalThis.TOKYO_TRIP_DATA = {
       },
       "placeIds": [
         "place-42"
+      ],
+      "required": true
+    },
+    "ninagawa": {
+      "label": "가와구치 시립미술관 · 꼭 방문",
+      "anchor": {
+        "lat": 35.800920001919515,
+        "lng": 139.7158746173883
+      },
+      "placeIds": [
+        "extra-ninagawa"
       ],
       "required": true
     }

@@ -8,8 +8,8 @@ def csv_summary(days,updated=False):
  import csv,io
  out=io.StringIO();w=csv.writer(out)
  for d in days:
-  w.writerow([d['date']+' '+d['dow'],'기치조지·선택 코스' if d['id']=='2026-11-29' else d['region'],'하루'])
-  for kr,key in [('오전','morning'),('오후','afternoon'),('마무리','evening'),('조정','adjust')]:w.writerow([kr,'새로 확인한 오후 일정' if updated and d['id']=='2026-11-26' and key=='afternoon' else '신주쿠 또는 나카노' if d['id']=='2026-11-29' and key=='afternoon' else d['summary'][key]])
+  w.writerow([d['date']+' '+d['dow'],'기치조지·선택 코스' if d['id']=='2026-11-29' else '파크·긴자' if d['id']=='2026-11-27' else d['region'],'하루'])
+  for kr,key in [('오전','morning'),('오후','afternoon'),('마무리','evening'),('조정','adjust')]:w.writerow([kr,'새로 확인한 오후 일정' if updated and d['id']=='2026-11-26' and key=='afternoon' else '긴자 쇼핑' if d['id']=='2026-11-27' and key=='afternoon' else '신주쿠 또는 나카노' if d['id']=='2026-11-29' and key=='afternoon' else d['summary'][key]])
   w.writerow([])
  return out.getvalue()
 BASE=os.environ.get('TRIP_TEST_URL','http://127.0.0.1:8765/')
@@ -27,10 +27,17 @@ with sync_playwright() as p:
  page.goto(BASE,wait_until='domcontentloaded')
  page.get_by_text('시트 요약 확인됨',exact=True).wait_for()
  assert page.locator('#days button').count()==5
- for i,count in enumerate([7,9,8,11,6]):
+ for i,count in enumerate([7,10,8,11,6]):
   page.locator(f'#days [data-day="{i}"]').click();assert page.locator('.schedule-card').count()==count
   assert page.locator('.reserved').count()==(1 if i==1 else 0)
   if i==1:assert page.locator('.reserved input').is_checked()
+ page.locator('#days [data-day="1"]').click()
+ exhibition=page.locator('[data-card="2026-11-27-1600-ninagawa"]')
+ assert '니나가와' in page.locator('#daydesc').inner_text()
+ assert exhibition.locator('.tag').inner_text()=='꼭 방문'
+ assert 'reserved' not in exhibition.get_attribute('class')
+ assert exhibition.get_by_role('link',name='공식 티켓 ↗').get_attribute('href').startswith('https://kawaguchi-moa.axess.shop/')
+ assert '관람권 미구매' in exhibition.inner_text()
  page.locator('#days [data-day="0"]').click()
  page.locator('[data-view="notes"]').click()
  assert page.locator('#memo').input_value()=='기존 메모'
@@ -47,10 +54,11 @@ with sync_playwright() as p:
  page.locator('[data-view="notes"]').click();assert page.locator('#memo').input_value()=='기치조지 메모'
  page.locator('#days [data-day="0"]').click();assert page.locator('#memo').input_value()=='모바일에서 쓴 메모'
  assert '테스트 상점' in page.locator('#shops').inner_text()
- page.locator('[data-view="places"]').click();assert page.locator('.place-card').count()==52
+ page.locator('[data-view="places"]').click();assert page.locator('.place-card').count()==53
  page.locator('#place-search').fill('Pokémon');assert page.locator('.place-card').count()==0
  page.locator('#include-excluded').check();assert page.locator('.place-card').count()==1
- page.locator('#place-search').fill('');assert page.locator('.place-card').count()==55
+ page.locator('#place-search').fill('니나가와');assert page.locator('.place-card').count()==1
+ page.locator('#place-search').fill('');assert page.locator('.place-card').count()==56
  page.locator('#place-area').select_option('기치조지');assert page.locator('.place-card').count()==7
  page.locator('#days [data-day="3"]').click();page.locator('[data-view="options"]').click()
  assert page.locator('.option-card').count()==12
@@ -83,6 +91,11 @@ with sync_playwright() as p:
    page.locator(f'[data-view="{view}"]').click()
    assert page.locator('[role="tabpanel"]:visible').count()==1
    assert page.evaluate('document.documentElement.scrollWidth <= innerWidth'),(width,view)
+  page.locator('#days [data-day="1"]').click();page.locator('[data-view="schedule"]').click()
+  assert page.evaluate('document.documentElement.scrollWidth <= innerWidth'),(width,'exhibition')
+  if width==390:
+   exhibition.scroll_into_view_if_needed();page.screenshot(path=str(OUT/'mobile-exhibition.png'))
+  page.locator('#days [data-day="3"]').click()
   if width==390:
    page.locator('[data-view="schedule"]').click();page.locator('#content').scroll_into_view_if_needed();page.screenshot(path=str(OUT/'mobile-schedule.png'))
    page.locator('[data-view="options"]').click();page.screenshot(path=str(OUT/'mobile-options.png'))
@@ -96,4 +109,4 @@ with sync_playwright() as p:
  bp=bad.new_page();bp.goto(BASE,wait_until='domcontentloaded');assert bp.locator('.schedule-card').count()==7
  assert '저장할 수 없어요' in bp.locator('#save-status').inner_text()
  b.close()
- print('PASS: five days / 41 cards, single booking, legacy + new notes/checks, shops, 55-place filters, 14 choices, live-summary success/failure, blocked storage; no overflow at 320–1280px; no JS errors.')
+ print('PASS: five days / 42 cards, single booking, legacy + new notes/checks, shops, 56-place filters, 14 choices, live-summary success/failure, blocked storage; no overflow at 320–1280px; no JS errors.')

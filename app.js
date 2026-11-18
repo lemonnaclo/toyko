@@ -33,7 +33,7 @@
   function query(stop) {
     if (!stop.url) return '';
     try {
-      const u = new URL(stop.url), place = data.places.find(p => p.url === stop.url);
+      const u = new URL(stop.url), place = [...data.places, ...(data.extraVenues || [])].find(p => p.url === stop.url);
       return u.searchParams.get('query') || (place ? `${place.lat},${place.lng}` : stop.name);
     } catch { return ''; }
   }
@@ -84,7 +84,7 @@
     $('#day-fact').textContent = d.alert || '';
     $('#timeline').innerHTML = d.stops.map((s, i) => {
       const previous = d.stops.slice(0, i).reverse().find(p => query(p));
-      return `<article class="schedule-card ${s.reserved ? 'reserved' : ''} ${s.required ? 'required-stop' : ''} ${isDone(s) ? 'completed' : ''}" data-card="${esc(s.id)}"><div class="card-top"><time>${esc(s.start)}<span>–${esc(s.end)}</span></time><span class="tag">${esc(s.kind)}</span></div><h3>${esc(s.name)}</h3><p class="card-detail">${esc(s.detail)}</p>${renderCandidates(s.candidateGroups)}<details class="adjust-detail" ${s.reserved ? 'open' : ''}><summary>조정·확인</summary><p>${esc(s.adjust)}</p></details><div class="card-actions">${link(s.url, '지도 열기 ↗')}${previous && query(s) ? link(transitURL(query(previous), query(s)), '이전 장소에서 대중교통 ↗') : ''}${s.url ? `<button class="preview-map" type="button" data-preview="${i}">지도 미리보기</button>` : ''}<label class="done-label"><input type="checkbox" data-done="${esc(s.id)}" ${isDone(s) ? 'checked' : ''}> 완료</label></div></article>`;
+      return `<article class="schedule-card ${s.reserved ? 'reserved' : ''} ${s.required ? 'required-stop' : ''} ${isDone(s) ? 'completed' : ''}" data-card="${esc(s.id)}"><div class="card-top"><time>${esc(s.start)}<span>–${esc(s.end)}</span></time><span class="tag">${esc(s.kind)}</span></div><h3>${esc(s.name)}</h3><p class="card-detail">${esc(s.detail)}</p>${renderCandidates(s.candidateGroups)}<details class="adjust-detail" ${s.reserved ? 'open' : ''}><summary>조정·확인</summary><p>${esc(s.adjust)}</p></details><div class="card-actions">${link(s.url, '지도 열기 ↗')}${link(s.officialURL, '공식 안내 ↗')}${link(s.ticketURL, '공식 티켓 ↗')}${previous && query(s) ? link(transitURL(query(previous), query(s)), '이전 장소에서 대중교통 ↗') : ''}${s.url ? `<button class="preview-map" type="button" data-preview="${i}">지도 미리보기</button>` : ''}<label class="done-label"><input type="checkbox" data-done="${esc(s.id)}" ${isDone(s) ? 'checked' : ''}> 완료</label></div></article>`;
     }).join('');
     document.querySelectorAll('[data-done]').forEach(input => input.onchange = () => {
       done[input.dataset.done] = input.checked;
@@ -109,9 +109,11 @@
     const options = data.options.filter(o => allOptions || o.day === day().id || o.day === 'all');
     $('#option-cards').innerHTML = options.map(o => `<article class="option-card"><span class="option-duration">${esc(o.duration)}</span><h3>${esc(o.name)}</h3><p>${esc(o.detail)}</p><div class="option-travel"><b>이동</b> ${esc(o.travel)}</div>${renderCandidates(o.candidateGroups)}<details><summary>방문 전 확인</summary><p>${esc(o.note)}</p></details>${link(o.url, '지도 열기 ↗', 'option-map')}</article>`).join('');
   }
+  const savedPlaces = () => [...data.places, ...(data.extraVenues || []).filter(p => p.savedByUser)];
   function renderPlaces() {
-    const places = filterPlaces(data.places, { query: $('#place-search').value, area: $('#place-area').value, includeExcluded: $('#include-excluded').checked });
-    $('#place-count').textContent = `전체 ${data.places.length}곳 중 ${places.length}곳 표시`;
+    const catalog = savedPlaces();
+    const places = filterPlaces(catalog, { query: $('#place-search').value, area: $('#place-area').value, includeExcluded: $('#include-excluded').checked });
+    $('#place-count').textContent = `전체 ${catalog.length}곳 중 ${places.length}곳 표시`;
     $('#place-cards').innerHTML = places.length ? places.map(p => `<article class="place-card"><span class="place-area">${esc(p.area)}</span><h3>${esc(p.name)}</h3><span class="place-status">${esc(p.status)}</span><p>${esc(p.address || '정식 주소 미확인 · 지도 좌표로 확인')}</p><small class="place-coordinates">${esc(p.lat.toFixed(6))}, ${esc(p.lng.toFixed(6))}</small><details><summary>어느 날 가면 좋을까?</summary><p>${esc(p.when)}</p><p>${esc(p.note)}</p></details><details class="place-verification"><summary>${esc(p.verification.level)} · 확인한 정보</summary><p>${esc(p.verification.scope)}</p><p>${esc(p.verification.remaining)}</p><a href="audit.html#${esc(p.id)}">공식 출처와 확인 범위 →</a></details>${link(p.url, 'Google 지도 ↗')}</article>`).join('') : '<p class="empty-state">일치하는 장소가 없어요. 이름이나 지역을 바꿔보세요.</p>';
   }
   function renderShops() {
@@ -142,7 +144,7 @@
   });
   $('#show-options').onclick = () => { setView('options'); $('#content').scrollIntoView({ block: 'start' }); };
   $('#all-options').onclick = () => { allOptions = !allOptions; renderOptions(); };
-  $('#place-area').innerHTML += [...new Set(data.places.map(p => p.area))].map(area => `<option value="${esc(area)}">${esc(area)}</option>`).join('');
+  $('#place-area').innerHTML += [...new Set(savedPlaces().map(p => p.area))].map(area => `<option value="${esc(area)}">${esc(area)}</option>`).join('');
   $('#place-search').oninput = renderPlaces; $('#place-area').onchange = renderPlaces; $('#include-excluded').onchange = renderPlaces;
   $('#memo').oninput = event => { $('#saved').textContent = write('tokyo-memo-' + day().id, event.target.value) ? '저장했어요 ✓' : '저장되지 않았어요. 따로 보관해주세요.'; };
   $('#shopform').onsubmit = event => {
