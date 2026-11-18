@@ -70,3 +70,8 @@
 - 로컬 feat/mobile-sheet-trip 브랜치에 변경을 커밋했다.
 - git push는 403, GraphQL PR 생성과 REST 브랜치 생성은 Resource not accessible by integration으로 거부됐다. 저장소 조회의 push 권한 표시만으로 앱 토큰의 쓰기 범위를 확인할 수 없었다.
 - 원격 브랜치·PR 생성·main 변경·Pages 재배포는 완료되지 않았다. 저장소 쓰기가 허용된 GitHub 연결이 필요하다.
+
+### 2026-11-18 권한 변경 후 재개
+
+- 사용자가 GitHub 앱의 저장소 접근/권한 설정을 변경한 뒤, feat/mobile-sheet-trip 브랜치 push가 정상 완료됐다. 앞선 403 쓰기 차단은 해소됐다.
+- 모바일 사이트 수정본의 단위·브라우저 검증 결과는 위와 같다. Pages 배포 결과는 GitHub의 실제 빌드 및 공개 사이트 응답을 기준으로 확인한다.
