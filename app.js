@@ -64,10 +64,10 @@
   }
   function renderCandidates(ids) {
     const groups = resolveCandidateGroups(data, ids);
-    return groups.map(group => `<section class="candidate-group" data-candidate-group="${esc(group.id)}"><div class="candidate-group-heading"><h4>${esc(group.label)}</h4><span>${group.candidates.length}곳 중 선택</span></div><p class="candidate-hint">매장 이름은 개별 지도 · 도보 경로는 이 구역의 기준점에서 출발</p><ul class="candidate-list">${group.candidates.map(place => {
+    return groups.map(group => `<section class="candidate-group" data-candidate-group="${esc(group.id)}"><div class="candidate-group-heading"><h4>${esc(group.label)}</h4><span>${group.candidates.length}곳 · 휴무·조건 확인 후 선택</span></div><p class="candidate-hint">매장 이름은 개별 지도 · 도보 경로는 이 구역의 기준점에서 출발</p><ul class="candidate-list">${group.candidates.map(place => {
       const tone = ['craft', 'paper', 'character', 'outdoor', 'browse', 'cafe', 'walk'].includes(place.tone) ? place.tone : 'browse';
       const distance = place.distanceMeters < 30 ? '구역 기준점 부근' : place.distanceMeters >= 1000 ? `기준점에서 직선 약 ${(place.distanceMeters / 1000).toFixed(1)}km` : `기준점에서 직선 약 ${Math.max(25, Math.round(place.distanceMeters / 25) * 25)}m`;
-      return `<li class="candidate-row" data-venue="${esc(place.id)}"><a class="candidate-name tone-${tone}" href="${esc(safeURL(place.url))}" target="_blank" rel="noopener" aria-label="${esc(place.name)} 개별 지도 열기"><span>${esc(place.displayName || place.name)}</span></a><div class="candidate-description"><p>${esc(place.description)}</p><span class="candidate-distance">${esc(distance)}</span><div class="candidate-links">${link(place.url, '매장 지도 ↗')}${link(place.walkingURL, '도보 경로 ↗')}</div></div></li>`;
+      return `<li class="candidate-row" data-venue="${esc(place.id)}"><a class="candidate-name tone-${tone}" href="${esc(safeURL(place.url))}" target="_blank" rel="noopener" aria-label="${esc(place.name)} 개별 지도 열기"><span>${esc(place.displayName || place.name)}</span></a><div class="candidate-description">${place.visitWarning ? `<strong class="visit-warning">${esc(place.visitWarning)}</strong>` : ''}<p>${esc(place.description)}</p><span class="candidate-distance">${esc(distance)}</span><div class="candidate-links">${link(place.url, '매장 지도 ↗')}${link(place.walkingURL, '도보 경로 ↗')}<a href="audit.html#${esc(place.id)}">확인 범위·출처 →</a></div></div></li>`;
     }).join('')}</ul></section>`).join('');
   }
   function renderDay() {
@@ -77,6 +77,8 @@
     $('#daydesc').textContent = d.region + ' · ' + d.summary.afternoon;
     $('#route').innerHTML = d.route.map(p => `<span>${esc(p)}</span>`).join('<b aria-hidden="true">→</b>');
     $('#day-adjust').textContent = d.summary.adjust;
+    $('#day-fact').hidden = !d.alert;
+    $('#day-fact').textContent = d.alert || '';
     $('#timeline').innerHTML = d.stops.map((s, i) => {
       const previous = d.stops.slice(0, i).reverse().find(p => query(p));
       return `<article class="schedule-card ${s.reserved ? 'reserved' : ''} ${isDone(s) ? 'completed' : ''}" data-card="${esc(s.id)}"><div class="card-top"><time>${esc(s.start)}<span>–${esc(s.end)}</span></time><span class="tag">${esc(s.kind)}</span></div><h3>${esc(s.name)}</h3><p class="card-detail">${esc(s.detail)}</p>${renderCandidates(s.candidateGroups)}<details class="adjust-detail" ${s.reserved ? 'open' : ''}><summary>조정·확인</summary><p>${esc(s.adjust)}</p></details><div class="card-actions">${link(s.url, '지도 열기 ↗')}${previous && query(s) ? link(transitURL(query(previous), query(s)), '이전 장소에서 대중교통 ↗') : ''}${s.url ? `<button class="preview-map" type="button" data-preview="${i}">지도 미리보기</button>` : ''}<label class="done-label"><input type="checkbox" data-done="${esc(s.id)}" ${isDone(s) ? 'checked' : ''}> 완료</label></div></article>`;
@@ -107,7 +109,7 @@
   function renderPlaces() {
     const places = filterPlaces(data.places, { query: $('#place-search').value, area: $('#place-area').value, includeExcluded: $('#include-excluded').checked });
     $('#place-count').textContent = `전체 ${data.places.length}곳 중 ${places.length}곳 표시`;
-    $('#place-cards').innerHTML = places.length ? places.map(p => `<article class="place-card"><span class="place-area">${esc(p.area)}</span><h3>${esc(p.name)}</h3><span class="place-status">${esc(p.status)}</span><p>${esc(p.address || '정식 주소 미확인 · 지도 좌표로 확인')}</p><details><summary>어느 날 가면 좋을까?</summary><p>${esc(p.when)}</p><p>${esc(p.note)}</p></details>${link(p.url, 'Google 지도 ↗')}</article>`).join('') : '<p class="empty-state">일치하는 장소가 없어요. 이름이나 지역을 바꿔보세요.</p>';
+    $('#place-cards').innerHTML = places.length ? places.map(p => `<article class="place-card"><span class="place-area">${esc(p.area)}</span><h3>${esc(p.name)}</h3><span class="place-status">${esc(p.status)}</span><p>${esc(p.address || '정식 주소 미확인 · 지도 좌표로 확인')}</p><small class="place-coordinates">${esc(p.lat.toFixed(6))}, ${esc(p.lng.toFixed(6))}</small><details><summary>어느 날 가면 좋을까?</summary><p>${esc(p.when)}</p><p>${esc(p.note)}</p></details><details class="place-verification"><summary>${esc(p.verification.level)} · 확인한 정보</summary><p>${esc(p.verification.scope)}</p><p>${esc(p.verification.remaining)}</p><a href="audit.html#${esc(p.id)}">공식 출처와 확인 범위 →</a></details>${link(p.url, 'Google 지도 ↗')}</article>`).join('') : '<p class="empty-state">일치하는 장소가 없어요. 이름이나 지역을 바꿔보세요.</p>';
   }
   function renderShops() {
     $('#shops').innerHTML = shops.map((s, i) => {

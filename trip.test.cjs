@@ -86,3 +86,33 @@ test('invalid coordinates and excluded candidates never generate an unsafe or mi
   const fixture = {places:[{id:'x',lat:35,lng:139,excluded:true}],venueGroups:{g:{anchor:{lat:35,lng:139},placeIds:['x','missing']}}};
   assert.deepEqual(resolveCandidateGroups(fixture,['g']),[]);
 });
+
+test('the researched opening and closure constraints remain visible in the travel plan', () => {
+  const p = id => data.places.find(p => p.id === id);
+  assert.match(p('place-4').visitWarning, /11\/28.*정기휴무/);
+  assert.match(p('place-12').description, /12:00–19:00/);
+  assert.ok(!data.venueGroups['kichijoji-yarn'].placeIds.includes('place-31'));
+  assert.ok(!data.venueGroups['kichijoji-yarn'].placeIds.includes('place-30'));
+  assert.match(p('place-17').name, /デモ&キッチン/);
+  assert.match(p('place-24').status, /개최 예정 없음/);
+  const airport = data.days[4].stops.find(s => s.start === '09:00');
+  assert.match(airport.name, /^세관 면세 확인 → 수하물 위탁/);
+  assert.match(airport.adjust, /2026\/11\/1/);
+  assert.match(data.days[2].alert, /토요일 정기휴무/);
+});
+test('all 60 venues have scoped research records and verified claims link primary sources', () => {
+  const audit = require('./audit-data.json');
+  const places = [...data.places, ...data.extraVenues];
+  assert.equal(audit.places.length, 60);
+  assert.equal(new Set(audit.places.map(p => p.id)).size, 60);
+  for (const p of places) {
+    const record = audit.places.find(r => r.id === p.id);
+    assert.deepEqual(record.verification, p.verification);
+    assert.equal(record.lat, p.lat); assert.equal(record.lng, p.lng);
+    assert.ok(p.verification.scope && p.verification.remaining);
+    if (p.verification.level === '교차 확인') assert.ok(p.verification.sources.length > 0);
+    for (const source of p.verification.sources) assert.ok(safeURL(source.url));
+  }
+  const market = places.find(p => p.id === 'place-24');
+  assert.equal(new Set(market.verification.sources.map(s => new URL(s.url).hostname)).size, 2);
+});
