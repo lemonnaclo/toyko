@@ -5,10 +5,10 @@ const data = require('./trip-data');
 function summaryCSV(days = data.days) {
   return days.flatMap(d => [[d.date + ' ' + d.dow, d.region, '하루'], ['오전', d.summary.morning], ['오후', d.summary.afternoon], ['마무리', d.summary.evening], ['조정', d.summary.adjust], ['', '', '']]).map(row => row.map(v => '"' + v.replace(/"/g, '""') + '"').join(',')).join('\r\n');
 }
-test('the mobile plan preserves five days, 41 ordered cards and the only fixed booking', () => {
+test('the mobile plan preserves five days, 42 ordered cards and the only fixed booking', () => {
   assert.equal(data.days.length, 5);
   const stops = data.days.flatMap(d => d.stops);
-  assert.equal(stops.length, 41); assert.equal(new Set(stops.map(s => s.id)).size, 41);
+  assert.equal(stops.length, 42); assert.equal(new Set(stops.map(s => s.id)).size, 42);
   for (const d of data.days) {
     let previous = '00:00';
     for (const s of d.stops) { assert.ok(s.start >= previous); assert.ok(s.end > s.start); previous = s.end; }
@@ -100,11 +100,11 @@ test('the researched opening and closure constraints remain visible in the trave
   assert.match(airport.adjust, /2026\/11\/1/);
   assert.match(data.days[2].alert, /토요일 정기휴무/);
 });
-test('all 60 venues have scoped research records and verified claims link primary sources', () => {
+test('all 61 venues have scoped research records and verified claims link primary sources', () => {
   const audit = require('./audit-data.json');
   const places = [...data.places, ...data.extraVenues];
-  assert.equal(audit.places.length, 60);
-  assert.equal(new Set(audit.places.map(p => p.id)).size, 60);
+  assert.equal(audit.places.length, 61);
+  assert.equal(new Set(audit.places.map(p => p.id)).size, 61);
   for (const p of places) {
     const record = audit.places.find(r => r.id === p.id);
     assert.deepEqual(record.verification, p.verification);
@@ -132,4 +132,21 @@ test('Boris is a required Sunday visit after Kichijoji, separate from a booked t
   assert.match(boris.address, /神宮前4-16-2/);
   assert.equal(data.places.length, 55);
   assert.ok(!data.venueGroups.harajuku.placeIds.includes('place-42'));
+});
+
+
+test('the Ninagawa exhibition replaces Ginza on Friday without claiming a purchased ticket', () => {
+  const friday = data.days.find(d => d.id === '2026-11-27');
+  const visit = friday.stops.find(s => s.id === '2026-11-27-1600-ninagawa');
+  const venue = data.extraVenues.find(p => p.id === 'extra-ninagawa');
+  assert.equal(visit.start, '16:00'); assert.equal(visit.end, '18:00');
+  assert.equal(visit.required, true); assert.equal(visit.reserved, false);
+  assert.match(visit.adjust, /관람권 미구매/);
+  assert.equal(new URL(visit.ticketURL).hostname, 'kawaguchi-moa.axess.shop');
+  assert.equal(venue.savedByUser, true); assert.equal(visit.url, venue.url);
+  assert.match(venue.verification.scope, /11\/27 10–20시/);
+  assert.match(friday.summaryOverride.afternoon, /니나가와/);
+  assert.ok(!friday.stops.some(s => s.candidateGroups?.includes('ginza')));
+  assert.ok(data.options.some(o => o.candidateGroups?.includes('ginza')));
+  assert.ok(data.days[3].stops.some(s => s.id === '2026-11-29-1545-boris' && s.required));
 });

@@ -38,10 +38,12 @@ with sync_playwright() as p:
   if width in [390,1280]:
    page.evaluate('document.fonts.ready');group.locator('h4').scroll_into_view_if_needed();group.screenshot(path=str(OUT/f'kappabashi-{width}.png'))
  # Other grouped shopping summaries now expose concrete candidates too.
- for day,groupid,count in [(0,'ikebukuro',4),(1,'ginza',5),(2,'nippori',3),(3,'kichijoji-shops',6)]:
+ for day,groupid,count in [(0,'ikebukuro',4),(1,'ninagawa',1),(2,'nippori',3),(3,'kichijoji-shops',6)]:
   page.locator(f'#days [data-day="{day}"]').click()
   assert page.locator(f'#schedule-view [data-candidate-group="{groupid}"] .candidate-row').count()==count
- page.locator('[data-view="options"]').click()
+ page.locator('#days [data-day="1"]').click();page.locator('[data-view="options"]').click()
+ assert page.locator('#options-view [data-candidate-group="ginza"] .candidate-row').count()==5
+ page.locator('#days [data-day="3"]').click()
  assert page.locator('#options-view [data-candidate-group="kichijoji-paper"] .candidate-row').count()==2
  assert page.locator('#options-view [data-candidate-group="shinjuku"] .candidate-row').count()==4
  assert page.locator('#options-view [data-candidate-group="nakano"] .candidate-row').count()==1

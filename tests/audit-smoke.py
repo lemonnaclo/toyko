@@ -21,7 +21,7 @@ with sync_playwright() as p:
  assert '수하물 위탁·보안검색 전에' in page.locator('#day-fact').inner_text()
  assert '세관 면세 확인 → 수하물 위탁' in page.locator('#timeline').inner_text()
  page.goto(urljoin(BASE,'audit.html'),wait_until='domcontentloaded')
- assert page.locator('.audit-place').count()==60
+ assert page.locator('.audit-place').count()==61
  assert page.locator('#place-24 .audit-sources a').count()==3
  for href in page.locator('a[href^="#"]').evaluate_all('(els)=>els.map(e=>e.getAttribute("href"))'):
   assert page.locator(href).count()==1,href
@@ -36,4 +36,4 @@ with sync_playwright() as p:
  page.screenshot(path=str(OUT/'seven-mobile.png'))
  assert not errors,errors
  b.close()
-print('PASS: research report 60 cards, source and anchor navigation, closure/refund alerts after summary refresh, no overflow at 320–1280px, no JS errors.')
+print('PASS: research report 61 cards, source and anchor navigation, closure/refund alerts after summary refresh, no overflow at 320–1280px, no JS errors.')
