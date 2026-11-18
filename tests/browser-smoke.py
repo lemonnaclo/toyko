@@ -8,8 +8,8 @@ def csv_summary(days,updated=False):
  import csv,io
  out=io.StringIO();w=csv.writer(out)
  for d in days:
-  w.writerow([d['date']+' '+d['dow'],d['region'],'하루'])
-  for kr,key in [('오전','morning'),('오후','afternoon'),('마무리','evening'),('조정','adjust')]:w.writerow([kr,'새로 확인한 오후 일정' if updated and d['id']=='2026-11-29' and key=='afternoon' else d['summary'][key]])
+  w.writerow([d['date']+' '+d['dow'],'기치조지·선택 코스' if d['id']=='2026-11-29' else d['region'],'하루'])
+  for kr,key in [('오전','morning'),('오후','afternoon'),('마무리','evening'),('조정','adjust')]:w.writerow([kr,'새로 확인한 오후 일정' if updated and d['id']=='2026-11-26' and key=='afternoon' else '신주쿠 또는 나카노' if d['id']=='2026-11-29' and key=='afternoon' else d['summary'][key]])
   w.writerow([])
  return out.getvalue()
 BASE=os.environ.get('TRIP_TEST_URL','http://127.0.0.1:8765/')
@@ -27,7 +27,7 @@ with sync_playwright() as p:
  page.goto(BASE,wait_until='domcontentloaded')
  page.get_by_text('시트 요약 확인됨',exact=True).wait_for()
  assert page.locator('#days button').count()==5
- for i,count in enumerate([7,9,8,10,6]):
+ for i,count in enumerate([7,9,8,11,6]):
   page.locator(f'#days [data-day="{i}"]').click();assert page.locator('.schedule-card').count()==count
   assert page.locator('.reserved').count()==(1 if i==1 else 0)
   if i==1:assert page.locator('.reserved input').is_checked()
@@ -55,11 +55,26 @@ with sync_playwright() as p:
  page.locator('#days [data-day="3"]').click();page.locator('[data-view="options"]').click()
  assert page.locator('.option-card').count()==12
  page.locator('#all-options').click();assert page.locator('.option-card').count()==14
+ # The new required destination must appear after Kichijoji even with an older sheet overview.
+ page.locator('[data-view="schedule"]').click()
+ boris=page.locator('[data-card="2026-11-29-1545-boris"]')
+ assert '보리스' in page.locator('#daydesc').inner_text()
+ assert boris.locator('.tag').inner_text()=='꼭 방문'
+ assert 'reserved' not in boris.get_attribute('class')
+ assert boris.locator('.candidate-row').count()==1
+ assert boris.locator('.candidate-name').get_attribute('href')=='https://www.google.com/maps?cid=10783324310941095014'
+ from urllib.parse import urlparse,parse_qs
+ route=boris.get_by_role('link',name='이전 장소에서 대중교통 ↗').get_attribute('href')
+ assert parse_qs(urlparse(route).query)['destination']==['35.6688739,139.7113136']
  # A summary refresh updates its display without resetting notes or visit state.
  response_state['updated']=True;page.locator('#refresh-summary').click();page.get_by_text('시트 요약 확인됨',exact=True).wait_for()
- assert '새로 확인한 오후 일정' in page.locator('#daydesc').inner_text()
+ assert '보리스 잡화점' in page.locator('#daydesc').inner_text()
+ page.wait_for_function("window.TOKYO_TRIP_DATA.days[0].summary.afternoon === '새로 확인한 오후 일정'")
+ assert '새로 확인한 오후 일정' in page.locator('#overview-cards').text_content()
  response_state['fail']=True;page.locator('#refresh-summary').click();page.get_by_text('시트 연결 지연 · 11/18 정리본 유지',exact=True).wait_for()
- assert '새로 확인한 오후 일정' in page.locator('#daydesc').inner_text()
+ assert '보리스 잡화점' in page.locator('#daydesc').inner_text()
+ page.wait_for_function("window.TOKYO_TRIP_DATA.days[0].summary.afternoon === '새로 확인한 오후 일정'")
+ assert '새로 확인한 오후 일정' in page.locator('#overview-cards').text_content()
  page.locator('[data-view="schedule"]').click();assert page.locator(f'[data-done="{marked}"]').is_checked()
  # All screens at narrow phone, tablet and desktop widths must fit the viewport.
  for width in [320,360,390,430,768,1280]:
@@ -71,6 +86,7 @@ with sync_playwright() as p:
   if width==390:
    page.locator('[data-view="schedule"]').click();page.locator('#content').scroll_into_view_if_needed();page.screenshot(path=str(OUT/'mobile-schedule.png'))
    page.locator('[data-view="options"]').click();page.screenshot(path=str(OUT/'mobile-options.png'))
+   page.locator('[data-view="schedule"]').click();boris.scroll_into_view_if_needed();page.screenshot(path=str(OUT/'mobile-boris.png'))
   if width==1280:
    page.locator('[data-view="schedule"]').click();page.evaluate('scrollTo(0,0)');page.screenshot(path=str(OUT/'desktop.png'),full_page=True)
  assert not errors,errors
@@ -80,4 +96,4 @@ with sync_playwright() as p:
  bp=bad.new_page();bp.goto(BASE,wait_until='domcontentloaded');assert bp.locator('.schedule-card').count()==7
  assert '저장할 수 없어요' in bp.locator('#save-status').inner_text()
  b.close()
- print('PASS: five days / 40 cards, single booking, legacy + new notes/checks, shops, 55-place filters, 14 choices, live-summary success/failure, blocked storage; no overflow at 320–1280px; no JS errors.')
+ print('PASS: five days / 41 cards, single booking, legacy + new notes/checks, shops, 55-place filters, 14 choices, live-summary success/failure, blocked storage; no overflow at 320–1280px; no JS errors.')

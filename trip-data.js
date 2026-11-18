@@ -1,5 +1,5 @@
 globalThis.TOKYO_TRIP_DATA = {
-  "updated": "2026-11-18 · 공식 자료·지도 교차 점검",
+  "updated": "2026-11-18 · 보리스 잡화점 필수 방문 반영",
   "sheetURL": "https://docs.google.com/spreadsheets/d/1S_EChUSGHmsXd0v90_FIPwIPon9KxXUxQNMkaunEnfA/edit#gid=1828076283",
   "summaryCSV": "https://docs.google.com/spreadsheets/d/1S_EChUSGHmsXd0v90_FIPwIPon9KxXUxQNMkaunEnfA/export?format=csv&gid=1828076283",
   "days": [
@@ -350,18 +350,19 @@ globalThis.TOKYO_TRIP_DATA = {
       "id": "2026-11-29",
       "date": "11.29",
       "dow": "일",
-      "region": "기치조지 필수",
-      "title": "기치조지에서 마음 가는 대로",
+      "region": "기치조지·보리스 잡화점",
+      "title": "기치조지에서 보리스 잡화점까지",
       "summary": {
-        "morning": "북쪽 잡화 골목",
-        "afternoon": "점심·추가 매장·카페 → 잔류/신주쿠/나카노 중 하나",
-        "evening": "귀환·짐 정리",
-        "adjust": "공원 선택. 포켓몬 제외·소우소우 후순위"
+        "morning": "11시 페이퍼메세지·서쪽 골목 → 12시 이후 사브로",
+        "afternoon": "14:30 기치조지 출발 → 15:45–16:45 보리스 잡화점 (꼭 방문)",
+        "evening": "주변 선택 쇼핑 → 이케부쿠로 귀환·짐 정리",
+        "adjust": "보리스 방문 우선. 지연 시 기치조지 추가 카페·하라주쿠 선택 매장을 줄이기"
       },
       "route": [
         "이케부쿠로",
         "기치조지",
-        "선택 코스 한 곳",
+        "보리스 잡화점",
+        "주변 선택 쇼핑",
         "숙소"
       ],
       "stops": [
@@ -418,11 +419,11 @@ globalThis.TOKYO_TRIP_DATA = {
         {
           "id": "2026-11-29-1330-a781b635",
           "start": "13:30",
-          "end": "15:00",
+          "end": "14:30",
           "kind": "선택",
           "name": "추가 잡화 쇼핑 또는 카페",
           "detail": "잡화 골목을 더 보거나 카페에서 쉬는 코스로 바꿔도 좋아요.",
-          "adjust": "공원·HATTIFNATT는 동선과 대기에 따라 교체",
+          "adjust": "14:30 보리스로 출발. 쇼핑이 길어지면 추가 카페를 줄이고, 사브로는 12시 이후에 방문.",
           "url": "https://www.google.com/maps/search/?api=1&query=Kichijoji+Petit+Mura",
           "reserved": false,
           "candidateGroups": [
@@ -430,29 +431,43 @@ globalThis.TOKYO_TRIP_DATA = {
           ]
         },
         {
-          "id": "2026-11-29-1500-35f59be6",
-          "start": "15:00",
-          "end": "15:15",
-          "kind": "판단",
-          "name": "오늘 남은 코스 하나 선택",
-          "detail": "① 기치조지 잔류 ② 신주쿠 ③ 나카노",
-          "adjust": "신주쿠+나카노 둘 다 추가하지 않기",
-          "url": "https://www.google.com/maps/search/?api=1&query=Kichijoji+Station",
+          "id": "2026-11-29-1430-to-boris",
+          "start": "14:30",
+          "end": "15:45",
+          "kind": "이동",
+          "name": "기치조지 → 보리스 잡화점",
+          "detail": "JR 주오선 신주쿠 환승 → 야마노테선 하라주쿠 → 매장까지 도보 후보. 역·환승·도보를 포함해 75분 확보.",
+          "adjust": "실제 열차 시각·보행 경로는 당일 지도 조회. 15:45 도착 목표로 기치조지에서 14:30 출발.",
+          "url": "https://www.google.com/maps?cid=10783324310941095014",
           "reserved": false
         },
         {
-          "id": "2026-11-29-1515-5f2947d8",
-          "start": "15:15",
+          "id": "2026-11-29-1545-boris",
+          "start": "15:45",
+          "end": "16:45",
+          "kind": "꼭 방문",
+          "name": "보리스 잡화점 · 히구치 유코",
+          "detail": "1층 갤러리·상품 구경에 1시간 확보. 공식 안내 11:00–19:00, 수요일 휴무. 현금 없이 결제할 수단을 챙겨요.",
+          "adjust": "사용자 지정 필수 방문, 예약 시간은 아님. 공식상 전시·행사 첫날만 예약제이며 그 외 영업일은 예약 불필요. 2층은 부정기휴무·중간 휴식 가능.",
+          "url": "https://www.google.com/maps?cid=10783324310941095014",
+          "reserved": false,
+          "required": true,
+          "candidateGroups": [
+            "boris"
+          ]
+        },
+        {
+          "id": "2026-11-29-1645-harajuku-extra",
+          "start": "16:45",
           "end": "17:30",
-          "kind": "분기 선택",
-          "name": "선택한 한 코스에서 구경·휴식",
-          "detail": "기치조지에 머물러도 괜찮아요. 다른 지역으로 이동한다면 아래 두 구역 중 한 곳만 골라요.",
-          "adjust": "잔류 시 잡화·카페·선로드·공원 중 선택. 개별 점포 마감 확인",
+          "kind": "선택",
+          "name": "보리스 관람 연장 또는 근처 매장 한 곳",
+          "detail": "관람이 더 필요하면 보리스에 머물러요. 일찍 마치면 Cosmo Space·키디랜드 중 한 곳만 선택.",
+          "adjust": "추가 쇼핑은 필수가 아님. 신주쿠·나카노까지 더하지 않고 17:30 전후 숙소 방향으로 출발.",
           "url": "",
           "reserved": false,
           "candidateGroups": [
-            "shinjuku",
-            "nakano"
+            "harajuku"
           ]
         },
         {
@@ -489,7 +504,14 @@ globalThis.TOKYO_TRIP_DATA = {
           "reserved": false
         }
       ],
-      "alert": "11:00 페이퍼메세지·서쪽 골목 → 12:00 이후 사브로. VENETIAN BAZAAR는 유리 전문점입니다."
+      "alert": "기치조지 + 보리스 잡화점은 꼭 방문. 14:30 기치조지 출발 → 15:45 보리스 목표. 사브로는 12시 이후. 신주쿠·나카노 추가는 생략합니다.",
+      "regionOverride": "기치조지·보리스 잡화점",
+      "summaryOverride": {
+        "morning": "11시 페이퍼메세지·서쪽 골목 → 12시 이후 사브로",
+        "afternoon": "14:30 기치조지 출발 → 15:45–16:45 보리스 잡화점 (꼭 방문)",
+        "evening": "주변 선택 쇼핑 → 이케부쿠로 귀환·짐 정리",
+        "adjust": "보리스 방문 우선. 지연 시 기치조지 추가 카페·하라주쿠 선택 매장을 줄이기"
+      }
     },
     {
       "id": "2026-11-30",
@@ -1554,31 +1576,44 @@ globalThis.TOKYO_TRIP_DATA = {
     {
       "id": "place-42",
       "area": "하라주쿠·오모테산도·아오야마",
-      "name": "Boris Zakkaten",
-      "address": "",
+      "name": "Boris Zakkaten · 보리스 잡화점",
+      "address": "〒150-0001 東京都渋谷区神宮前4-16-2",
       "url": "https://www.google.com/maps?cid=10783324310941095014",
       "lat": 35.6688739,
       "lng": 139.7113136,
-      "when": "다른 일정 일부와 교체",
-      "status": "기치조지 보존, 별도 선택",
-      "note": "기치조지는 대체하지 않음. 원한다면 신주쿠 또는 긴자 구간을 줄여 하라주쿠·오모테산도를 선택. 소우소우를 위한 아오야마 연장은 제외.",
+      "when": "11/29 일 15:45–16:45 · 꼭 방문",
+      "status": "사용자 지정 필수 방문",
+      "note": "기치조지 필수 방문을 유지한 뒤 보리스로 이동. 신주쿠·나카노 선택 구간을 대체. 입장 예약을 확보했다는 뜻은 아님.",
       "excluded": false,
       "lowPriority": false,
-      "displayName": "Boris Zakkaten",
+      "displayName": "보리스 잡화점",
       "tone": "browse",
-      "description": "히구치 유코 관련 잡화를 보고 싶을 때의 후보. 저장된 진구마에 좌표를 기준으로 배치했어요. 최신 영업·입장 조건은 방문 전 확인해요.",
+      "description": "히구치 유코의 갤러리 겸 상품점. 공식 11월 안내는 11:00–19:00, 수요일 휴무입니다. 전시·행사 첫날에만 예약제, 그 외 영업일은 예약 불필요. 매장 결제는 현금 불가(가챠 제외), 2층은 부정기휴무·중간 휴식이 있어 현장 확인해요.",
       "verification": {
         "checked": "2026-11-18",
-        "level": "일부 확인",
-        "scope": "히구치 유코의 보리스 잡화점 공식 사이트와 지도 링크를 대조. 지도 주소는 神宮前4-16-2.",
-        "remaining": "공식 실매장 주소·최신 입장 조건 확인 부족. 온라인 배송 휴무를 실매장 휴무로 적용하지 않음.",
+        "level": "교차 확인",
+        "scope": "사용자 새 링크의 지도 CID가 기존 place-42와 일치. 공식 갤러리 주소 神宮前4-16-2와 저장 지도 대조. 공식 11월 공지에서 1층 11:00–19:00·수요일 휴무, 전시 RIBBON 9/19–12/22 확인. 매장 안내는 전시·행사 첫날만 예약제, 그 외 영업일 예약 불필요·매장 결제 현금 불가(가챠 제외).",
+        "remaining": "11/29 15:45–16:45는 사용자 희망을 반영한 방문 계획이며 예약 시각이 아님. 2층은 부정기휴무·중간 휴식, 임시변경·재고·대기는 방문 전 확인.",
         "sources": [
           {
-            "label": "공식 안내",
-            "url": "https://higuchiyuko.tokyo/"
+            "label": "공식 매장·입장 안내",
+            "url": "https://gallery.higuchiyuko.tokyo/"
+          },
+          {
+            "label": "공식 2026년 11월 일정",
+            "url": "https://gallery.higuchiyuko.tokyo/news/2026_11_schedule/"
+          },
+          {
+            "label": "공식 현금 없는 결제 안내",
+            "url": "https://gallery.higuchiyuko.tokyo/news/cashless/"
+          },
+          {
+            "label": "작가 공식 사이트",
+            "url": "https://higuchiyuko.com/"
           }
         ]
-      }
+      },
+      "required": true
     },
     {
       "id": "place-45",
@@ -2181,7 +2216,7 @@ globalThis.TOKYO_TRIP_DATA = {
       "duration": "2~3시간",
       "travel": "주오선 신주쿠 방면 귀환 경로. 역간 대략 15~25분+도보. 나카노를 골랐다면 신주쿠 쇼핑은 덧붙이지 않기.",
       "url": "https://www.google.com/maps/search/?api=1&query=%E4%B8%AD%E9%87%8E%E3%83%96%E3%83%AD%E3%83%BC%E3%83%89%E3%82%A6%E3%82%A7%E3%82%A4",
-      "note": "Maps 쇼핑몰·만화/애니 관련 매장 소개 확인. 점포별 마감은 다름.",
+      "note": "현재 11/29 기본 일정은 기치조지 + 보리스 필수 방문입니다. 이 후보는 기본안에 더하지 않으며, 별도 일정 재조정 때만 검토. Maps 쇼핑몰·만화/애니 관련 매장 소개 확인. 점포별 마감은 다름.",
       "candidateGroups": [
         "nakano"
       ]
@@ -2194,7 +2229,7 @@ globalThis.TOKYO_TRIP_DATA = {
       "duration": "1.5~2.5시간",
       "travel": "주오선으로 신주쿠, 이후 야마노테선 이케부쿠로. 역간 대략 20~30분+도보. 동쪽 매장과 남쪽 몽벨을 모두 넣지 않아도 됨.",
       "url": "",
-      "note": "교통 시간은 가안, 실시간·여행일 시간표 미조회.",
+      "note": "현재 11/29 기본 일정은 기치조지 + 보리스 필수 방문입니다. 이 후보는 기본안에 더하지 않으며, 별도 일정 재조정 때만 검토. 교통 시간은 가안, 실시간·여행일 시간표 미조회.",
       "candidateGroups": [
         "shinjuku"
       ]
@@ -2202,12 +2237,12 @@ globalThis.TOKYO_TRIP_DATA = {
     {
       "id": "extra-2",
       "day": "2026-11-29",
-      "name": "하라주쿠·오모테산도: Boris·Cosmo Space·키디랜드 중 1~2곳",
-      "detail": "기치조지를 이르게 마쳤을 때",
-      "duration": "3~4시간",
-      "travel": "신주쿠 경유 하라주쿠 등으로 이동. 문전 이동 약 45~65분 여유. 소우소우 때문에 아오야마까지 연장하지 않음.",
+      "name": "보리스 방문 후: Cosmo Space·키디랜드 중 한 곳",
+      "detail": "11/29 보리스는 기본 일정의 꼭 방문 장소로 이동했습니다. 이 후보는 보리스 관람 뒤 여유가 남을 때만 선택.",
+      "duration": "0~45분",
+      "travel": "보리스에서 주변 매장으로 도보. 추가 쇼핑 후 하라주쿠역 등에서 이케부쿠로 방향으로 귀환.",
       "url": "",
-      "note": "개별 매장 마감 전 도착 가능할 때 선택. 귀환·저녁 시간 별도 확보.",
+      "note": "보리스 관람이 길어지면 모두 생략. 소우소우 방문이나 신주쿠·나카노 추가는 넣지 않음.",
       "candidateGroups": [
         "harajuku"
       ]
@@ -2535,13 +2570,12 @@ globalThis.TOKYO_TRIP_DATA = {
       ]
     },
     "harajuku": {
-      "label": "하라주쿠·오모테산도",
+      "label": "보리스 방문 후 주변 선택",
       "anchor": {
         "lat": 35.6688739,
         "lng": 139.7113136
       },
       "placeIds": [
-        "place-42",
         "place-8",
         "place-45"
       ]
@@ -2568,6 +2602,17 @@ globalThis.TOKYO_TRIP_DATA = {
         "place-52",
         "place-51"
       ]
+    },
+    "boris": {
+      "label": "보리스 잡화점 · 꼭 방문",
+      "anchor": {
+        "lat": 35.6688739,
+        "lng": 139.7113136
+      },
+      "placeIds": [
+        "place-42"
+      ],
+      "required": true
     }
   }
 };

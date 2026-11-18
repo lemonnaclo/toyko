@@ -32,7 +32,10 @@
   const isDone = stop => Object.hasOwn(done, stop.id) ? !!done[stop.id] : !!(stop.legacyKey && legacyDone[stop.legacyKey]);
   function query(stop) {
     if (!stop.url) return '';
-    try { const u = new URL(stop.url); return u.searchParams.get('query') || stop.name; } catch { return ''; }
+    try {
+      const u = new URL(stop.url), place = data.places.find(p => p.url === stop.url);
+      return u.searchParams.get('query') || (place ? `${place.lat},${place.lng}` : stop.name);
+    } catch { return ''; }
   }
   function setDay(index, scroll = false) {
     if (!data.days[index]) return;
@@ -64,7 +67,7 @@
   }
   function renderCandidates(ids) {
     const groups = resolveCandidateGroups(data, ids);
-    return groups.map(group => `<section class="candidate-group" data-candidate-group="${esc(group.id)}"><div class="candidate-group-heading"><h4>${esc(group.label)}</h4><span>${group.candidates.length}곳 · 휴무·조건 확인 후 선택</span></div><p class="candidate-hint">매장 이름은 개별 지도 · 도보 경로는 이 구역의 기준점에서 출발</p><ul class="candidate-list">${group.candidates.map(place => {
+    return groups.map(group => `<section class="candidate-group" data-candidate-group="${esc(group.id)}"><div class="candidate-group-heading"><h4>${esc(group.label)}</h4><span>${group.required ? '꼭 방문' : group.candidates.length + '곳 · 휴무·조건 확인 후 선택'}</span></div><p class="candidate-hint">매장 이름은 개별 지도 · 도보 경로는 이 구역의 기준점에서 출발</p><ul class="candidate-list">${group.candidates.map(place => {
       const tone = ['craft', 'paper', 'character', 'outdoor', 'browse', 'cafe', 'walk'].includes(place.tone) ? place.tone : 'browse';
       const distance = place.distanceMeters < 30 ? '구역 기준점 부근' : place.distanceMeters >= 1000 ? `기준점에서 직선 약 ${(place.distanceMeters / 1000).toFixed(1)}km` : `기준점에서 직선 약 ${Math.max(25, Math.round(place.distanceMeters / 25) * 25)}m`;
       return `<li class="candidate-row" data-venue="${esc(place.id)}"><a class="candidate-name tone-${tone}" href="${esc(safeURL(place.url))}" target="_blank" rel="noopener" aria-label="${esc(place.name)} 개별 지도 열기"><span>${esc(place.displayName || place.name)}</span></a><div class="candidate-description">${place.visitWarning ? `<strong class="visit-warning">${esc(place.visitWarning)}</strong>` : ''}<p>${esc(place.description)}</p><span class="candidate-distance">${esc(distance)}</span><div class="candidate-links">${link(place.url, '매장 지도 ↗')}${link(place.walkingURL, '도보 경로 ↗')}<a href="audit.html#${esc(place.id)}">확인 범위·출처 →</a></div></div></li>`;
@@ -81,7 +84,7 @@
     $('#day-fact').textContent = d.alert || '';
     $('#timeline').innerHTML = d.stops.map((s, i) => {
       const previous = d.stops.slice(0, i).reverse().find(p => query(p));
-      return `<article class="schedule-card ${s.reserved ? 'reserved' : ''} ${isDone(s) ? 'completed' : ''}" data-card="${esc(s.id)}"><div class="card-top"><time>${esc(s.start)}<span>–${esc(s.end)}</span></time><span class="tag">${esc(s.kind)}</span></div><h3>${esc(s.name)}</h3><p class="card-detail">${esc(s.detail)}</p>${renderCandidates(s.candidateGroups)}<details class="adjust-detail" ${s.reserved ? 'open' : ''}><summary>조정·확인</summary><p>${esc(s.adjust)}</p></details><div class="card-actions">${link(s.url, '지도 열기 ↗')}${previous && query(s) ? link(transitURL(query(previous), query(s)), '이전 장소에서 대중교통 ↗') : ''}${s.url ? `<button class="preview-map" type="button" data-preview="${i}">지도 미리보기</button>` : ''}<label class="done-label"><input type="checkbox" data-done="${esc(s.id)}" ${isDone(s) ? 'checked' : ''}> 완료</label></div></article>`;
+      return `<article class="schedule-card ${s.reserved ? 'reserved' : ''} ${s.required ? 'required-stop' : ''} ${isDone(s) ? 'completed' : ''}" data-card="${esc(s.id)}"><div class="card-top"><time>${esc(s.start)}<span>–${esc(s.end)}</span></time><span class="tag">${esc(s.kind)}</span></div><h3>${esc(s.name)}</h3><p class="card-detail">${esc(s.detail)}</p>${renderCandidates(s.candidateGroups)}<details class="adjust-detail" ${s.reserved ? 'open' : ''}><summary>조정·확인</summary><p>${esc(s.adjust)}</p></details><div class="card-actions">${link(s.url, '지도 열기 ↗')}${previous && query(s) ? link(transitURL(query(previous), query(s)), '이전 장소에서 대중교통 ↗') : ''}${s.url ? `<button class="preview-map" type="button" data-preview="${i}">지도 미리보기</button>` : ''}<label class="done-label"><input type="checkbox" data-done="${esc(s.id)}" ${isDone(s) ? 'checked' : ''}> 완료</label></div></article>`;
     }).join('');
     document.querySelectorAll('[data-done]').forEach(input => input.onchange = () => {
       done[input.dataset.done] = input.checked;
@@ -164,7 +167,10 @@
       const response = await fetch(data.summaryCSV, { credentials: 'omit', cache: 'no-store', signal: AbortSignal.timeout(12000) });
       if (!response.ok) throw Error('시트 응답 오류');
       const next = parseSummary(await response.text(), data.days.map(d => d.id));
-      for (const d of data.days) { d.region = next[d.id].region; d.summary = next[d.id].summary; }
+      for (const d of data.days) {
+        d.region = d.regionOverride || next[d.id].region;
+        d.summary = { ...next[d.id].summary, ...d.summaryOverride };
+      }
       renderOverview();
       // Summary updates must not replace a card list or lose in-progress note edits.
       $('#daydesc').textContent = day().region + ' · ' + day().summary.afternoon;
