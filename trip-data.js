@@ -1,6 +1,5 @@
-// Summary checked against the live Google Sheet; details and choices from the prepared trip workbook.
 globalThis.TOKYO_TRIP_DATA = {
-  "updated": "2026-11-18",
+  "updated": "2026-11-18 · 공식 자료·지도 교차 점검",
   "sheetURL": "https://docs.google.com/spreadsheets/d/1S_EChUSGHmsXd0v90_FIPwIPon9KxXUxQNMkaunEnfA/edit#gid=1828076283",
   "summaryCSV": "https://docs.google.com/spreadsheets/d/1S_EChUSGHmsXd0v90_FIPwIPon9KxXUxQNMkaunEnfA/export?format=csv&gid=1828076283",
   "days": [
@@ -167,7 +166,7 @@ globalThis.TOKYO_TRIP_DATA = {
           "name": "치이카와 파크 관람·쇼핑",
           "legacyKey": "1-2",
           "detail": "예약 입장 구간 11:40–12:00",
-          "adjust": "14:00은 예상 퇴장 시각이며 체류 제한 아님. 늦어지면 오후 축소",
+          "adjust": "11:40–12:00는 사용자 제공 예약 정보이며 티켓 화면 재확인. 14:00은 예상 퇴장 시각. 현금 불가·재입장 원칙적 불가·큰 짐 보관함 없음.",
           "url": "https://www.google.com/maps/search/?api=1&query=%E3%81%A1%E3%81%84%E3%81%8B%E3%82%8F%E3%83%91%E3%83%BC%E3%82%AF+%E3%82%B5%E3%83%B3%E3%82%B7%E3%83%A3%E3%82%A4%E3%83%B3%E3%82%B7%E3%83%86%E3%82%A3",
           "reserved": true
         },
@@ -239,7 +238,7 @@ globalThis.TOKYO_TRIP_DATA = {
       "title": "원단과 그릇을 만나는 날",
       "summary": {
         "morning": "원단·TOMATO 쇼핑",
-        "afternoon": "그릇·유리·앞치마 쇼핑",
+        "afternoon": "그릇·유리 쇼핑 (Seven Uniform 토요일 휴무)",
         "evening": "숙소권 휴식",
         "adjust": "비즈 우선이면 아사쿠사바시와 한 구역 교체"
       },
@@ -313,9 +312,9 @@ globalThis.TOKYO_TRIP_DATA = {
           "start": "13:45",
           "end": "16:15",
           "kind": "선택",
-          "name": "갓파바시 그릇·유리·앞치마 쇼핑",
-          "detail": "아래 후보 중 관심 있는 2~3곳을 골라요. 이름 없는 핀은 골목 구경에 포함해요.",
-          "adjust": "상호 없는 그릇가게는 Takenokodo 주변 골목 구경에 포함",
+          "name": "갓파바시 그릇·유리 쇼핑",
+          "detail": "TSUCHI-YA 등 그릇·유리 후보를 골라요. Seven Uniform은 토요일 휴무로 방문 제외.",
+          "adjust": "조합 기준점은 개별 매장이 아니며, TAKASO 저장 핀은 조리기기 시연점. 관심 매장 2~3곳만 선택.",
           "url": "https://www.google.com/maps/search/?api=1&query=Kappabashi+Dougu+Street",
           "reserved": false,
           "candidateGroups": [
@@ -344,7 +343,8 @@ globalThis.TOKYO_TRIP_DATA = {
           "url": "https://www.google.com/maps/search/?api=1&query=Ikebukuro+Station",
           "reserved": false
         }
-      ]
+      ],
+      "alert": "Seven Uniform은 토요일 정기휴무입니다. 11/28에는 제외하고 그릇·유리 매장 위주로 골라요."
     },
     {
       "id": "2026-11-29",
@@ -392,9 +392,9 @@ globalThis.TOKYO_TRIP_DATA = {
           "start": "11:00",
           "end": "12:30",
           "kind": "선택",
-          "name": "문구·종이 또는 실·뜨개 쇼핑",
-          "detail": "문구·종이 또는 실·뜨개 중 취향에 맞는 곳을 골라요.",
-          "adjust": "모든 후보 완주 대신 취향에 맞는 1~2곳",
+          "name": "문구·유리·잡화 중 선택",
+          "detail": "11:00 페이퍼메세지 또는 유리 매장 → 12:00 이후 사브로. 모두 방문하는 일정은 아니에요.",
+          "adjust": "사브로 개점은 12:00. 먼저 들를 가게를 1곳 고르고 이동 여유 10~15분 확보. 늦어지면 사브로를 점심 후로 옮기기.",
           "url": "https://www.google.com/maps/search/?api=1&query=36+Sublo+Kichijoji",
           "reserved": false,
           "candidateGroups": [
@@ -488,7 +488,8 @@ globalThis.TOKYO_TRIP_DATA = {
           "url": "",
           "reserved": false
         }
-      ]
+      ],
+      "alert": "11:00 페이퍼메세지·서쪽 골목 → 12:00 이후 사브로. VENETIAN BAZAAR는 유리 전문점입니다."
     },
     {
       "id": "2026-11-30",
@@ -547,9 +548,9 @@ globalThis.TOKYO_TRIP_DATA = {
           "start": "09:00",
           "end": "11:00",
           "kind": "항공정보",
-          "name": "공항 도착·체크인·수하물·보안",
-          "detail": "항공사 지정 터미널·카운터",
-          "adjust": "면세 물품 관련 출국 절차는 공식 확인 후 반영 필요",
+          "name": "세관 면세 확인 → 수하물 위탁·보안검색",
+          "detail": "면세 구매 시 여권·물품 전부를 소지해 먼저 세관 확인. 이후 항공사 수하물 위탁·보안검색·출국심사.",
+          "adjust": "2026/11/1 구매분부터 세금 포함 결제 후 환급 방식. 위탁 후 물품을 꺼내 세관 확인할 수 없음. 항공사 마감 우선, 공항 09:00 도착은 가안.",
           "url": "https://www.google.com/maps/search/?api=1&query=Narita+Airport",
           "reserved": false
         },
@@ -576,7 +577,8 @@ globalThis.TOKYO_TRIP_DATA = {
           "reserved": false,
           "legacyKey": "4-3"
         }
-      ]
+      ],
+      "alert": "면세 환급: 여권·구매 물품 전부를 소지해 세관 확인부터. 수하물 위탁·보안검색 전에 끝내야 합니다."
     }
   ],
   "places": [
@@ -595,7 +597,14 @@ globalThis.TOKYO_TRIP_DATA = {
       "lowPriority": false,
       "displayName": "에반게리온 스토어",
       "tone": "character",
-      "description": "에반게리온 관련 상품을 보고 싶을 때의 후보. 저장된 위치는 이케부쿠로 PARCO 본관 6층으로, 파르코를 들를 때 함께 확인하기 좋아요."
+      "description": "에반게리온 관련 상품을 보고 싶을 때의 후보. 저장된 위치는 이케부쿠로 PARCO 본관 6층으로, 파르코를 들를 때 함께 확인하기 좋아요.",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "공식 확인 필요",
+        "scope": "현재 지도는 이케부쿠로 PARCO 본관6F의 エヴァンゲリオンストアトウキョウ-01로 응답.",
+        "remaining": "시도한 브랜드 지점 URL은 404로 반환돼 현행 공식 지점 안내 확인 부족. 404만으로 폐업을 뜻하지 않음.",
+        "sources": []
+      }
     },
     {
       "id": "place-7",
@@ -612,7 +621,14 @@ globalThis.TOKYO_TRIP_DATA = {
       "lowPriority": false,
       "displayName": "유니클로",
       "tone": "outdoor",
-      "description": "히가시이케부쿠로 1-21-4에 저장한 지점. 여행 중 필요한 옷을 살 때만 선택하고, 이미 준비가 됐다면 생략해도 돼요."
+      "description": "히가시이케부쿠로 1-21-4에 저장한 지점. 여행 중 필요한 옷을 살 때만 선택하고, 이미 준비가 됐다면 생략해도 돼요.",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "공식 확인 필요",
+        "scope": "지도는 東池袋1-21-4의 유니클로 지점으로 응답. 공식 Store Locator 페이지까지 확인.",
+        "remaining": "공식 페이지 응답에서 해당 지점 주소·영업 상세를 읽지 못해 운영시간 확인 필요.",
+        "sources": []
+      }
     },
     {
       "id": "place-47",
@@ -629,7 +645,19 @@ globalThis.TOKYO_TRIP_DATA = {
       "lowPriority": false,
       "displayName": "KIDDY LAND",
       "tone": "character",
-      "description": "선샤인시티 알파 2층에 저장한 캐릭터 상품 매장. 파르코 쪽과는 다른 권역이니 원하는 상품이 있는 쪽을 골라요. 치이카와 관련 입장 공지는 별도 확인이 필요해요."
+      "description": "선샤인시티 알파 2층에 저장한 캐릭터 상품 매장. 파르코 쪽과는 다른 권역이니 원하는 상품이 있는 쪽을 골라요. 치이카와 관련 입장 공지는 별도 확인이 필요해요.",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "교차 확인",
+        "scope": "선샤인시티 アルパ2F 東池袋3-1-2, 10:00–20:00. 공식 주소와 지도 일치.",
+        "remaining": "치이카와 랜드 입장·정리권은 일반 키디랜드 운영과 별개로 확인.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://www.kiddyland.co.jp/shoplist/ikebukuro_sunshine/"
+          }
+        ]
+      }
     },
     {
       "id": "place-49",
@@ -646,7 +674,19 @@ globalThis.TOKYO_TRIP_DATA = {
       "lowPriority": false,
       "displayName": "이케부쿠로 PARCO",
       "tone": "character",
-      "description": "역 동쪽의 파르코 쇼핑 후보. 에반게리온 스토어와 같은 건물로 저장돼 있어 묶기 좋아요. 특정 캐릭터 매장의 현재 층·입장 방식은 방문 전 확인해요."
+      "description": "역 동쪽의 파르코 쇼핑 후보. 에반게리온 스토어와 같은 건물로 저장돼 있어 묶기 좋아요. 특정 캐릭터 매장의 현재 층·입장 방식은 방문 전 확인해요.",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "일부 확인",
+        "scope": "이케부쿠로PARCO 공식 사이트와 저장 핀을 대조.",
+        "remaining": "개별 매장 층·휴무·행사는 별도 확인.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://ikebukuro.parco.jp/"
+          }
+        ]
+      }
     },
     {
       "id": "place-54",
@@ -660,7 +700,19 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "공항 이동",
       "note": "기존 항공정보: 11/26 12:15 나리타 도착, 11/30 12:05 출발. 이케부쿠로 ↔ JR 닛포리 ↔ 게이세이 스카이라이너 후보. 11/30 09:00 공항 도착 목표, 터미널·열차 시각 별도 확인.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "일부 확인",
+        "scope": "나리타 공식 공항 사이트와 저장 핀을 대조. 2026/11/1 면세 환급 변경은 별도 공식 안내 확인.",
+        "remaining": "항공편·터미널·체크인 마감·공항 열차는 예약 정보와 대조 필요.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://www.narita-airport.jp/ja/"
+          }
+        ]
+      }
     },
     {
       "id": "place-55",
@@ -674,7 +726,27 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "유일한 고정 예약",
       "note": "기존 일정에 기록된 입장 구간. 관람·쇼핑 시간을 넉넉히 잡고 오후 출발은 퇴장 후 결정.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "교차 확인",
+        "scope": "치이카와 파크 공식 주소 東池袋3-3-5 Annex B1·1F와 지도 일치. FAQ·티켓 안내에서 현금 불가, Asoview 판매 확인.",
+        "remaining": "11/27 11:40–12:00 예약은 사용자 제공 일정. 실제 예약 화면은 독립적으로 검증하지 못함.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://chiikawapark-tokyo.jp/"
+          },
+          {
+            "label": "공식 FAQ",
+            "url": "https://chiikawapark-tokyo.jp/faq/"
+          },
+          {
+            "label": "공식 티켓",
+            "url": "https://chiikawapark-tokyo.jp/ticket/"
+          }
+        ]
+      }
     },
     {
       "id": "place-11",
@@ -691,7 +763,19 @@ globalThis.TOKYO_TRIP_DATA = {
       "lowPriority": false,
       "displayName": "몽벨 교바시",
       "tone": "outdoor",
-      "description": "아웃도어 의류·용품을 살펴볼 후보. 저장된 위치는 교바시 도쿄 스퀘어가든 1·2층이에요. 긴자 중심 매장들보다 북동쪽이므로 관심 있을 때 동선을 늘려요."
+      "description": "아웃도어 의류·용품을 살펴볼 후보. 저장된 위치는 교바시 도쿄 스퀘어가든 1·2층이에요. 긴자 중심 매장들보다 북동쪽이므로 관심 있을 때 동선을 늘려요.",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "교차 확인",
+        "scope": "도쿄교바시점 京橋3-1-1 1·2F, 11:00–21:00. 지도와 공식 주소 일치.",
+        "remaining": "방문일 임시휴무·재고는 별도 확인.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://store.montbell.jp/search/shopinfo/?shop_no=678502"
+          }
+        ]
+      }
     },
     {
       "id": "place-33",
@@ -708,7 +792,19 @@ globalThis.TOKYO_TRIP_DATA = {
       "lowPriority": false,
       "displayName": "긴자 로프트",
       "tone": "paper",
-      "description": "문구·생활 잡화 구경 후보. 긴자 2-4-6에 저장돼 있어 이토야·무인양품과 같은 긴자 쇼핑 구간으로 묶을 수 있어요."
+      "description": "문구·생활 잡화 구경 후보. 긴자 2-4-6에 저장돼 있어 이토야·무인양품과 같은 긴자 쇼핑 구간으로 묶을 수 있어요.",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "교차 확인",
+        "scope": "긴자로프트 銀座2-4-6 ベルビア館1–5F. 지도와 공식 지점 주소 일치.",
+        "remaining": "매장·면세 카운터 영업시간은 각각 확인. 환급 방식은 국세청·공항 최신 안내 우선.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://www.loft.co.jp/ginzaloft/"
+          }
+        ]
+      }
     },
     {
       "id": "place-34",
@@ -725,7 +821,14 @@ globalThis.TOKYO_TRIP_DATA = {
       "lowPriority": false,
       "displayName": "무인양품 긴자",
       "tone": "browse",
-      "description": "생활용품·의류·문구를 한 번에 살펴볼 후보. 저장된 위치는 긴자 3-3-5예요. 살 것이 많다면 이후 매장을 줄이고 짐을 숙소에 가져가도 좋아요."
+      "description": "생활용품·의류·문구를 한 번에 살펴볼 후보. 저장된 위치는 긴자 3-3-5예요. 살 것이 많다면 이후 매장을 줄이고 짐을 숙소에 가져가도 좋아요.",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "공식 확인 필요",
+        "scope": "현재 지도는 銀座3-3-5의 무인양품 긴자로 응답.",
+        "remaining": "공식 지점 링크가 점검 안내로 연결되어 지점 영업·휴무 검증 부족. 사이트 점검은 매장 휴업을 의미하지 않음.",
+        "sources": []
+      }
     },
     {
       "id": "place-35",
@@ -742,13 +845,25 @@ globalThis.TOKYO_TRIP_DATA = {
       "lowPriority": false,
       "displayName": "긴자 이토야",
       "tone": "paper",
-      "description": "문구·종이 제품을 보고 싶을 때 우선 살펴볼 후보. 긴자 2-7-15에 저장돼 있어 긴자 로프트와 같은 구역에서 비교해보기 좋아요."
+      "description": "문구·종이 제품을 보고 싶을 때 우선 살펴볼 후보. 긴자 2-7-15에 저장돼 있어 긴자 로프트와 같은 구역에서 비교해보기 좋아요.",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "교차 확인",
+        "scope": "긴자 이토야 銀座2-7-15. 지도와 공식 지점 주소 일치.",
+        "remaining": "방문일 임시휴무·재고는 별도 확인.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://www.ito-ya.co.jp/ginza/"
+          }
+        ]
+      }
     },
     {
       "id": "place-39",
       "area": "긴자·교바시·유라쿠초",
       "name": "Feiler Ginza",
-      "address": "",
+      "address": "東京都中央区銀座4-4-1 1F",
       "url": "https://www.google.com/maps?cid=9295772223182406052",
       "lat": 35.6724604,
       "lng": 139.7651295,
@@ -757,9 +872,21 @@ globalThis.TOKYO_TRIP_DATA = {
       "note": "파크 후 긴자·교바시. 5곳 완주가 아니라 취향에 따라 2~3곳 선택. Feiler는 장소명·좌표 기준 긴자 분류, 메모로 다른 매장으로 바꾸지 않음.",
       "excluded": false,
       "lowPriority": false,
-      "displayName": "Feiler Ginza",
+      "displayName": "FEILER 긴자본점",
       "tone": "browse",
-      "description": "손수건·패브릭 소품을 살펴볼 긴자 후보. 이름과 좌표가 긴자이므로 이곳에 배치했어요. 기존 오모테산도 관련 메모와는 구분해요."
+      "description": "공식 주소를 확인한 페이러 긴자본점(긴자 4-4-1 1층). 손수건·패브릭 소품 후보이며, 히구치 유코의 보리스 잡화점과는 다른 매장입니다.",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "교차 확인",
+        "scope": "フェイラー銀座本店 銀座4-4-1 1F. 누락 주소를 공식 매장 목록과 지도로 대조해 보완.",
+        "remaining": "방문일 임시휴무·재고는 별도 확인.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://www.feiler-jp.com/shoplist/"
+          }
+        ]
+      }
     },
     {
       "id": "place-6",
@@ -773,7 +900,19 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "방문하지 않음",
       "note": "사용자 관심 없음: Pokémon Center DX 제외. 니혼바시를 포켓몬 목적으로 방문하지 않음.",
       "excluded": true,
-      "lowPriority": false
+      "lowPriority": false,
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "교차 확인",
+        "scope": "포켓몬센터 도쿄DX 지점 안내 확인. 사용자 요청에 따라 여행 코스에서는 제외.",
+        "remaining": "방문 제외 상태 유지.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://shop.pokemon.co.jp/ja/shop/pokemoncenter-tokyodx/"
+          }
+        ]
+      }
     },
     {
       "id": "place-51",
@@ -790,7 +929,19 @@ globalThis.TOKYO_TRIP_DATA = {
       "lowPriority": false,
       "displayName": "치이카와 랜드 도쿄역",
       "tone": "character",
-      "description": "도쿄역 안에 저장한 치이카와 상품 매장. 캐릭터스트리트와 같은 구역이므로 추가 쇼핑이 필요할 때만 선택해요. 예약·정리권 여부는 해당 날짜의 공식 공지를 확인해야 해요."
+      "description": "도쿄역 안에 저장한 치이카와 상품 매장. 캐릭터스트리트와 같은 구역이므로 추가 쇼핑이 필요할 때만 선택해요. 예약·정리권 여부는 해당 날짜의 공식 공지를 확인해야 해요.",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "일부 확인",
+        "scope": "치이카와 공식 TOKYO Station 페이지에서 해당 지점 예약 경로 확인. 파크와 별도의 상품점.",
+        "remaining": "11/26–30 실제 날짜별 예약·정리권 여부는 미확인. 예약은 상품 재고 확보가 아님.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://chiikawa-info.jp/chiikawaland/tokyo/"
+          }
+        ]
+      }
     },
     {
       "id": "place-52",
@@ -807,7 +958,19 @@ globalThis.TOKYO_TRIP_DATA = {
       "lowPriority": false,
       "displayName": "도쿄 캐릭터스트리트",
       "tone": "character",
-      "description": "도쿄역 이치방가이 지하 1층에 저장한 캐릭터 쇼핑 구역. 개별 매장 하나가 아니라 여러 매장을 구경하는 후보예요. 치이카와 랜드와 중복 왕복하지 않아도 돼요."
+      "description": "도쿄역 이치방가이 지하 1층에 저장한 캐릭터 쇼핑 구역. 개별 매장 하나가 아니라 여러 매장을 구경하는 후보예요. 치이카와 랜드와 중복 왕복하지 않아도 돼요.",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "일부 확인",
+        "scope": "도쿄역 캐릭터스트리트 공식 온라인플라자 확인. 저장 지도는 이치방가이 B1 쇼핑 구역.",
+        "remaining": "온라인플라자 안내만으로 모든 오프라인 매장 운영을 보장하지 않음.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://e-shop.tokyoeki-1bangai.co.jp/shop/default.aspx"
+          }
+        ]
+      }
     },
     {
       "id": "place-24",
@@ -817,11 +980,27 @@ globalThis.TOKYO_TRIP_DATA = {
       "url": "https://www.google.com/maps?cid=9543162483212471229",
       "lat": 35.6773272,
       "lng": 139.7645021,
-      "when": "11/27 금 오후 또는 다른 날",
-      "status": "개최 확인 후 교체",
-      "note": "좌표상 유라쿠초·도쿄국제포럼 주변. 방문일 개최가 확인될 때만 긴자 일정 일부와 교체. 상설 시장으로 간주하지 않음.",
+      "when": "11/26–30 방문 후보 제외",
+      "status": "여행 기간 개최 예정 없음",
+      "note": "주최자·도쿄국제포럼 공식 일정 교차 확인: 11월 남은 개최일 11/23, 다음 12/12·20. 이번 여행 기간에는 개최 예정이 없어 시장 방문 후보에서 제외.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "일정 불일치",
+        "scope": "주최자와 개최장 모두 2026년 11월 남은 일정은 11/23, 다음은 12/12·20으로 안내. 11/26–30 개최 예정 없음.",
+        "remaining": "2026/11/18 게시 일정 기준. 변경 시 공식 일정 재확인.",
+        "sources": [
+          {
+            "label": "주최자 일정",
+            "url": "https://www.antique-market.jp/english/"
+          },
+          {
+            "label": "도쿄국제포럼 일정",
+            "url": "https://www.t-i-forum.co.jp/visitors/antique/"
+          }
+        ]
+      }
     },
     {
       "id": "place-21",
@@ -838,7 +1017,19 @@ globalThis.TOKYO_TRIP_DATA = {
       "lowPriority": false,
       "displayName": "West Five",
       "tone": "craft",
-      "description": "목록에 체인·마감 장식 등 부자재 관심 장소로 저장한 곳. 아사쿠사바시 1-23-1에 있어 역 주변 부자재 쇼핑 코스로 묶어요."
+      "description": "목록에 체인·마감 장식 등 부자재 관심 장소로 저장한 곳. 아사쿠사바시 1-23-1에 있어 역 주변 부자재 쇼핑 코스로 묶어요.",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "교차 확인",
+        "scope": "WEST5 浅草橋1-23-1. 평일·토 10:00–18:30, 일·공휴일 10:00–18:00. 공식 주소와 지도 일치.",
+        "remaining": "방문일 임시휴무·재고는 별도 확인.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://www.toho-shoji.com/west5-%e6%b5%85%e8%8d%89%e6%a9%8b%e5%ba%97/"
+          }
+        ]
+      }
     },
     {
       "id": "place-22",
@@ -855,7 +1046,19 @@ globalThis.TOKYO_TRIP_DATA = {
       "lowPriority": false,
       "displayName": "기와제작소 본점",
       "tone": "craft",
-      "description": "비즈·펜던트를 살펴볼 후보. 저장된 위치는 아사쿠사바시 2-1-10, 기와제작소 본점 건물이에요. Parts Club과 함께 비교할 곳으로 골라볼 수 있어요."
+      "description": "비즈·펜던트를 살펴볼 후보. 저장된 위치는 아사쿠사바시 2-1-10, 기와제작소 본점 건물이에요. Parts Club과 함께 비교할 곳으로 골라볼 수 있어요.",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "교차 확인",
+        "scope": "기와제작소 본점 浅草橋2-1-10 1–4F. 월–토 09:30–18:30, 일·공휴일 10:00–18:00.",
+        "remaining": "방문일 임시휴무·재고는 별도 확인.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://kiwaseisakujo.com/store/honten/"
+          }
+        ]
+      }
     },
     {
       "id": "place-23",
@@ -872,7 +1075,14 @@ globalThis.TOKYO_TRIP_DATA = {
       "lowPriority": false,
       "displayName": "PARTS CLUB 본점",
       "tone": "craft",
-      "description": "비즈·펜던트 쇼핑 후보. 야나기바시 1-20-1에 저장돼 있어 아사쿠사바시 부자재 구역에서 함께 살펴보기 좋아요."
+      "description": "비즈·펜던트 쇼핑 후보. 야나기바시 1-20-1에 저장돼 있어 아사쿠사바시 부자재 구역에서 함께 살펴보기 좋아요.",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "공식 확인 필요",
+        "scope": "현재 지도는 柳橋1-20-1의 Parts Club 본점으로 응답.",
+        "remaining": "공식 지점 URL이 HTTP403으로 접근 제한되어 현행 영업을 검증하지 못함. 폐업으로 단정하지 않음.",
+        "sources": []
+      }
     },
     {
       "id": "place-50",
@@ -886,7 +1096,19 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "추가 치이카와 매장 선택",
       "note": "치이카와 랜드 전 지점 방문 불필요. 이케부쿠로에서 원하는 쇼핑을 했으면 생략. 도쿄역은 긴자와 조합할 때만, 스카이트리는 동쪽 코스를 바꿀 만큼 가고 싶을 때만 고려. 방문 지점 수를 목표로 삼지 않음.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "일부 확인",
+        "scope": "치이카와 공식 소라마치 지점 페이지 확인. 상품점으로 파크와 별도이며 지점별 입장 안내 확인 경로가 있음.",
+        "remaining": "11/26–30 실제 날짜별 정리권·예약 필요 여부는 미확인. 무예약·현장 정리권을 보장하지 않음.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://chiikawa-info.jp/chiikawaland/solamachi/"
+          }
+        ]
+      }
     },
     {
       "id": "place-53",
@@ -900,7 +1122,14 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "우에노 산책",
       "note": "장소명이 우에노인 넓은 지역 항목. 환승 때 짧은 식사·산책 후보이며 별도 관광지로 강제 배정하지 않음.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "공식 확인 필요",
+        "scope": "우에노는 넓은 지역 단위 저장 항목. 갓파바시로 이동하는 경유 지역으로만 활용.",
+        "remaining": "특정 매장·미술관·시장으로 확정된 핀이 아니므로 개별 입장·영업시간을 붙이지 않음.",
+        "sources": []
+      }
     },
     {
       "id": "place-27",
@@ -917,7 +1146,19 @@ globalThis.TOKYO_TRIP_DATA = {
       "lowPriority": false,
       "displayName": "TOMATO Select-kan",
       "tone": "craft",
-      "description": "원단거리 쇼핑 중 선택할 저장 항목. 히가시닛포리 5-33-8의 2층으로 저장돼 있어 아래 Notions-kan과 같은 건물의 층별 후보로 묶어요. 현재 취급품목은 현장에서 확인해요."
+      "description": "지도에 히가시닛포리 5-33-8 노션관 2층 Select-kan으로 저장한 핀입니다. 현행 공식 목록에서 Select 명칭·2층 구분은 확인 부족이라 아래 노션관과 같은 건물의 한 쇼핑 구간으로만 잡아요.",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "일부 확인",
+        "scope": "지도에는 ノーション館 2F의 Select-kan으로 표시. 공식 현행 매장 목록에는 노션관을 안내하나 Select 명칭·2층 구분은 확인 부족.",
+        "remaining": "현재 2층 명칭·입장·판매층은 현장 확인. 독립 매장 두 곳으로 계산하지 않음.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://www.nippori-tomato-onlineshop.com/pages/shi-dian-pu-qing-bao-ben-guan-2025-9-1"
+          }
+        ]
+      }
     },
     {
       "id": "place-37",
@@ -934,7 +1175,19 @@ globalThis.TOKYO_TRIP_DATA = {
       "lowPriority": false,
       "displayName": "닛포리 원단거리",
       "tone": "craft",
-      "description": "원단·부자재 가게들을 둘러보는 거리 단위 후보. TOMATO 한 건물에만 머물거나 주변 가게를 더 볼지 구매 목적과 짐의 양에 맞춰 정해요."
+      "description": "원단·부자재 가게들을 둘러보는 거리 단위 후보. TOMATO 한 건물에만 머물거나 주변 가게를 더 볼지 구매 목적과 짐의 양에 맞춰 정해요.",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "교차 확인",
+        "scope": "닛포리 원단거리는 상점가 단위. 공식 조합 안내와 지도를 대조. 단일 상점이나 공통 영업시간으로 취급하지 않음.",
+        "remaining": "각 점포 영업은 별도. 조합 사무실 주소와 저장된 거리 핀 주소는 다름.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://www.nippori-senigai.com/"
+          }
+        ]
+      }
     },
     {
       "id": "place-38",
@@ -951,7 +1204,23 @@ globalThis.TOKYO_TRIP_DATA = {
       "lowPriority": false,
       "displayName": "TOMATO Notions-kan",
       "tone": "craft",
-      "description": "히가시닛포리 5-33-8의 1층으로 저장한 항목. Select-kan과 별도 지역으로 이동하는 일정이 아니라 같은 건물 안에서 비교할 후보예요."
+      "description": "히가시닛포리 5-33-8 노션관. 공식 운영사·상점가가 10:30–18:00, 일·공휴일 휴무로 안내합니다. 실·단추·도구 등 부자재 후보이며 층별 취급은 현장에서 확인해요.",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "교차 확인",
+        "scope": "ノーション館 東日暮里5-33-8. 공식 운영사와 상점가가 모두 10:30–18:00·일/공휴일 휴무를 안내.",
+        "remaining": "1층·2층 세부 판매 구역은 현장에서 확인.",
+        "sources": [
+          {
+            "label": "TOMATO 공식 매장",
+            "url": "https://www.nippori-tomato-onlineshop.com/pages/shi-dian-pu-qing-bao-ben-guan-2025-9-1"
+          },
+          {
+            "label": "닛포리 상점가 지점 안내",
+            "url": "https://www.nippori-senigai.com/shopno/tomato-notion/"
+          }
+        ]
+      }
     },
     {
       "id": "place-4",
@@ -961,14 +1230,27 @@ globalThis.TOKYO_TRIP_DATA = {
       "url": "https://www.google.com/maps?cid=10567520280451807035",
       "lat": 35.7121073,
       "lng": 139.7885986,
-      "when": "11/28 토 오후",
-      "status": "기본 코스 후보",
-      "note": "닛포리 → 우에노 경유 → 갓파바시. 5곳 완주 대신 관심 매장 2~3곳과 골목 산책. 당일 영업·마감 우선 확인.",
+      "when": "11/28 방문 제외 · 평일에만 재검토",
+      "status": "11/28 토 정기휴무",
+      "note": "11/28 토요일 방문 제외. 평일 별도 방문은 파크 예약·기치조지 필수 일정을 해치지 않을 때만 검토.",
       "excluded": false,
       "lowPriority": false,
       "displayName": "Seven Uniform",
       "tone": "craft",
-      "description": "앞치마를 보고 싶어 저장한 후보. 니시아사쿠사 1-5-17의 1층 위치로, 갓파바시 그릇·유리 가게 구경과 함께 들를 수 있어요."
+      "description": "앞치마·업무복 매장. 저장 지점은 니시아사쿠사 1-5-17 1층입니다. 공식 안내상 월–금 10:00–17:30, 토·일·공휴일 휴무라 11/28에는 들를 수 없어요.",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "교차 확인",
+        "scope": "저장 지점은 西浅草1-5-17. 공식 직영점 안내: 월–금 10:00–17:30, 토·일·공휴일 휴무.",
+        "remaining": "11/28(토) 방문 제외. 공식 상점가의 西浅草3-9-3 항목은 다른 주소이므로 혼동하지 않음.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://www.seven-uniform.co.jp/company/shop/"
+          }
+        ]
+      },
+      "visitWarning": "11/28(토) 정기휴무 · 이날 방문 제외"
     },
     {
       "id": "place-16",
@@ -983,26 +1265,55 @@ globalThis.TOKYO_TRIP_DATA = {
       "note": "닛포리 → 우에노 경유 → 갓파바시. 5곳 완주 대신 관심 매장 2~3곳과 골목 산책. 당일 영업·마감 우선 확인.",
       "excluded": false,
       "lowPriority": false,
-      "displayName": "Takenokodo",
+      "displayName": "竹子堂 (Takenokodo)",
       "tone": "browse",
-      "description": "목록에 앤티크숍 관심 장소로 저장한 곳. 마쓰가야 3-17-13에 있고, 이름 없는 그릇가게 핀 바로 근처라 같은 골목으로 묶어 구경해요."
+      "description": "마쓰가야 3-17-13의 골동품·미술품 매입 상담·매매점입니다. 자유 관람형 앤티크 소매점인지 확인되지 않아, 근처 골목을 볼 때 외관·현장 안내만 확인해요.",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "교차 확인",
+        "scope": "松が谷3-17-13. 공식 안내는 골동품·미술품 등의 매입 상담·매매이며 지도명도 買取竹子堂.",
+        "remaining": "자유롭게 구경하는 소매점인지·당일 방문 가능한지는 확인 필요.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://www.takenokohori.com/"
+          }
+        ]
+      }
     },
     {
       "id": "place-17",
       "area": "아사쿠사·갓파바시",
-      "name": "Takahashi Sōhonten",
+      "name": "TAKASO デモ&キッチン (다카하시 총본점)",
       "address": "1 Chome-9-13 Matsugaya, Taito City, Tokyo 111-0036 일본",
       "url": "https://www.google.com/maps?cid=10384531620015108929",
       "lat": 35.711371,
       "lng": 139.7882007,
       "when": "11/28 토 오후",
       "status": "기본 코스 후보",
-      "note": "닛포리 → 우에노 경유 → 갓파바시. 5곳 완주 대신 관심 매장 2~3곳과 골목 산책. 당일 영업·마감 우선 확인.",
+      "note": "원래 지도 핀을 유지. 유리·양식기 부문과 다른 지점이므로 목적에 맞춰 선택.",
       "excluded": false,
       "lowPriority": false,
-      "displayName": "Takahashi Sōhonten",
+      "displayName": "TAKASO 데모·키친",
       "tone": "craft",
-      "description": "유리공예에 관심 있어 저장한 후보. 마쓰가야 1-9-13에 있어 이 후보 목록의 남쪽부터 구경할 때 먼저 확인하기 좋아요."
+      "description": "저장 좌표는 마쓰가야 1-9-13의 조리기기 시연·판매 지점입니다. 유리 식기점으로 안내했던 설명을 정정했어요. 유리·양식기는 별도 지점인 니시아사쿠사 1-4-7입니다.",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "교차 확인",
+        "scope": "松が谷1-9-13은 TAKASO デモ&キッチン. 유리 식기 부문은 별도 주소 西浅草1-4-7.",
+        "remaining": "방문일 임시휴무·재고는 별도 확인.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://www.takaso.jp/shop-2/kitchen/"
+          },
+          {
+            "label": "별도 유리·양식기 지점",
+            "url": "https://www.takaso.jp/shop-2/tableware/"
+          }
+        ]
+      },
+      "originalName": "Takahashi Sōhonten"
     },
     {
       "id": "place-18",
@@ -1017,9 +1328,21 @@ globalThis.TOKYO_TRIP_DATA = {
       "note": "닛포리 → 우에노 경유 → 갓파바시. 5곳 완주 대신 관심 매장 2~3곳과 골목 산책. 당일 영업·마감 우선 확인.",
       "excluded": false,
       "lowPriority": false,
-      "displayName": "TSUCHI-YA",
+      "displayName": "TSUCHI-YA 합파바시점",
       "tone": "craft",
-      "description": "유리 그릇·공예에 관심 있을 때 살펴볼 후보. 저장된 위치는 니시아사쿠사 2-5-4예요. 다른 그릇가게와 취향을 비교하며 2~3곳만 골라도 충분해요."
+      "description": "유리 그릇·공예에 관심 있을 때 살펴볼 후보. 저장된 위치는 니시아사쿠사 2-5-4예요. 다른 그릇가게와 취향을 비교하며 2~3곳만 골라도 충분해요.",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "교차 확인",
+        "scope": "저장 지점은 浅草合羽橋本店 西浅草2-5-4, 10:00–17:30. 긴자점과 구분.",
+        "remaining": "방문일 임시휴무·재고는 별도 확인.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://tsuchi-ya.jp/pages/shop"
+          }
+        ]
+      }
     },
     {
       "id": "place-19",
@@ -1036,7 +1359,14 @@ globalThis.TOKYO_TRIP_DATA = {
       "lowPriority": false,
       "displayName": "그릇가게 주변",
       "tone": "walk",
-      "description": "정식 상호와 주소가 없는 저장 핀이에요. Takenokodo 근처 좌표를 기준으로 골목의 그릇·유리 매대를 둘러보는 후보로 묶었어요. 특정 매장이나 세일을 보장하는 표시는 아니에요."
+      "description": "정식 상호와 주소가 없는 원본 저장 핀이에요. 현재 지도는 Marukatsu·마쓰가야 3초메 17로 응답하지만 공식 상호·전체 주소는 확인 부족입니다. 근처 그릇 골목 구경 기준점으로만 둡니다.",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "공식 확인 필요",
+        "scope": "원본 이름은 ‘그릇가게’. 현재 지도는 Marukatsu·松が谷3丁目17로 응답하나 공식 상호·전체 주소 확인 부족.",
+        "remaining": "공식 자료로 해당 지점의 현재 운영·입장 조건을 확인하지 못했습니다. 지도만으로 영업을 보장하지 않습니다.",
+        "sources": []
+      }
     },
     {
       "id": "place-20",
@@ -1051,9 +1381,21 @@ globalThis.TOKYO_TRIP_DATA = {
       "note": "닛포리 → 우에노 경유 → 갓파바시. 5곳 완주 대신 관심 매장 2~3곳과 골목 산책. 당일 영업·마감 우선 확인.",
       "excluded": false,
       "lowPriority": false,
-      "displayName": "갓파바시 그릇 골목",
+      "displayName": "갓파바시 조합 기준점",
       "tone": "walk",
-      "description": "마쓰가야 3-18-2에 저장한 그릇쇼핑 지점. 한 가게 입장을 확정하기보다 북쪽 골목을 더 둘러볼 때의 기준점으로 활용해요."
+      "description": "마쓰가야 3-18-2는 공식 도구거리 조합 주소입니다. 개별 그릇가게 한 곳의 핀이 아니라 주변 골목을 더 둘러볼 기준점으로 표시했어요.",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "교차 확인",
+        "scope": "松が谷3-18-2는 공식 상점가 조합의 주소. 개별 그릇 매장으로 확정하지 않고 골목 기준점으로 표시.",
+        "remaining": "개별 소매점 입장·판매를 보장하는 핀이 아님.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://www.kappabashi.or.jp/"
+          }
+        ]
+      }
     },
     {
       "id": "place-1",
@@ -1067,7 +1409,19 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "기치조지 보존, 별도 선택",
       "note": "기치조지 필수 방문을 유지한 상태에서 신주쿠 또는 다른 선택 구간 대신 고려. 기치조지·공원 시간을 줄여 무조건 추가하지 않음. 매장 이용 조건 별도 확인.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "교차 확인",
+        "scope": "시모키타자와점 주소 北沢2-26-4, 11:00–19:00·월요일 휴무를 공식 매장 안내와 지도에서 대조.",
+        "remaining": "방문일 임시휴무·재고는 별도 확인.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://www.puppyarn.com/puppyclub/tenpo/shimokitazawa.htm"
+          }
+        ]
+      }
     },
     {
       "id": "place-48",
@@ -1081,7 +1435,19 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "기치조지 보존, 별도 선택",
       "note": "기치조지 필수 방문을 유지한 상태에서 신주쿠 또는 다른 선택 구간 대신 고려. 기치조지·공원 시간을 줄여 무조건 추가하지 않음. 매장 이용 조건 별도 확인.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "일부 확인",
+        "scope": "시부야PARCO B1F. 공식 운영사는 예약 우선제, 혼잡에 따라 예약 없이 입점 가능, 현재 JapanTicket 판매 중단으로 안내.",
+        "remaining": "여행일 빈자리·최신 예약 링크는 공식 안내에서 확인. 무예약 입장 보장 아님.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://cafe.parco.jp/event/chiikawaramenbuta_shibuya?area=029979"
+          }
+        ]
+      }
     },
     {
       "id": "place-32",
@@ -1095,7 +1461,19 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "기치조지 보존, 별도 선택",
       "note": "기치조지 필수 방문을 유지한 상태에서 신주쿠 또는 다른 선택 구간 대신 고려. 기치조지·공원 시간을 줄여 무조건 추가하지 않음. 매장 이용 조건 별도 확인.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "교차 확인",
+        "scope": "DARUMA STORE Tokyo 恵比寿西2-6-1, 10:30–18:00. 지도와 공식 주소 일치.",
+        "remaining": "방문일 임시휴무·재고는 별도 확인.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://daruma-store.jp/?mode=f168"
+          }
+        ]
+      }
     },
     {
       "id": "place-36",
@@ -1109,7 +1487,19 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "기치조지 보존, 별도 선택",
       "note": "기치조지 필수 방문을 유지한 상태에서 신주쿠 또는 다른 선택 구간 대신 고려. 기치조지·공원 시간을 줄여 무조건 추가하지 않음. 매장 이용 조건 별도 확인.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "교차 확인",
+        "scope": "materiaali 猿楽町29-10 C棟1F, 11:00–19:00·수요일 휴무. 지도와 공식 주소 일치.",
+        "remaining": "방문일 임시휴무·재고는 별도 확인.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://www.mina-perhonen.jp/store_information/materiaali/"
+          }
+        ]
+      }
     },
     {
       "id": "place-8",
@@ -1126,7 +1516,19 @@ globalThis.TOKYO_TRIP_DATA = {
       "lowPriority": false,
       "displayName": "Cosmo Space",
       "tone": "craft",
-      "description": "목록에 원석 관심 장소로 저장한 매장. 진구마에 3-22-11에 있어 하라주쿠·오모테산도 코스를 선택했을 때 후보로 확인해요."
+      "description": "목록에 원석 관심 장소로 저장한 매장. 진구마에 3-22-11에 있어 하라주쿠·오모테산도 코스를 선택했을 때 후보로 확인해요.",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "일부 확인",
+        "scope": "공식 사이트에서 원석 전문점·11:00–19:00 안내 확인. 저장 지도는 神宮前3-22-11.",
+        "remaining": "주소의 최신 일치 여부·당일 임시휴무는 추가 확인.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://cosmospace.jp/"
+          }
+        ]
+      }
     },
     {
       "id": "place-9",
@@ -1140,7 +1542,14 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "후순위",
       "note": "사용자 지시: 소우소우는 가지 않아도 됨. 이 매장을 위해 아오야마 동선을 늘리지 않음.",
       "excluded": false,
-      "lowPriority": true
+      "lowPriority": true,
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "공식 확인 필요",
+        "scope": "지도는 南青山5-4-24의 SOU SOU 도쿄아오야마점으로 응답. 사용자 요청대로 후순위 유지.",
+        "remaining": "공식 사이트에서 해당 실매장 운영 조건을 확인하지 못해 예약·영업시간은 단정하지 않음.",
+        "sources": []
+      }
     },
     {
       "id": "place-42",
@@ -1157,7 +1566,19 @@ globalThis.TOKYO_TRIP_DATA = {
       "lowPriority": false,
       "displayName": "Boris Zakkaten",
       "tone": "browse",
-      "description": "히구치 유코 관련 잡화를 보고 싶을 때의 후보. 저장된 진구마에 좌표를 기준으로 배치했어요. 최신 영업·입장 조건은 방문 전 확인해요."
+      "description": "히구치 유코 관련 잡화를 보고 싶을 때의 후보. 저장된 진구마에 좌표를 기준으로 배치했어요. 최신 영업·입장 조건은 방문 전 확인해요.",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "일부 확인",
+        "scope": "히구치 유코의 보리스 잡화점 공식 사이트와 지도 링크를 대조. 지도 주소는 神宮前4-16-2.",
+        "remaining": "공식 실매장 주소·최신 입장 조건 확인 부족. 온라인 배송 휴무를 실매장 휴무로 적용하지 않음.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://higuchiyuko.tokyo/"
+          }
+        ]
+      }
     },
     {
       "id": "place-45",
@@ -1174,7 +1595,19 @@ globalThis.TOKYO_TRIP_DATA = {
       "lowPriority": false,
       "displayName": "키디랜드 하라주쿠",
       "tone": "character",
-      "description": "진구마에 6-1-9에 저장한 캐릭터 상품 매장. 이케부쿠로에서 쇼핑을 마쳤다면 생략하고 Boris·Cosmo Space에 시간을 써도 좋아요."
+      "description": "진구마에 6-1-9에 저장한 캐릭터 상품 매장. 이케부쿠로에서 쇼핑을 마쳤다면 생략하고 Boris·Cosmo Space에 시간을 써도 좋아요.",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "교차 확인",
+        "scope": "하라주쿠점 神宮前6-1-9. 공식 주소와 지도 일치.",
+        "remaining": "랜드 해당 지점 입장 공지는 일반 키디랜드 영업과 별개로 확인.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://www.kiddyland.co.jp/harajuku/"
+          }
+        ]
+      }
     },
     {
       "id": "place-12",
@@ -1191,7 +1624,19 @@ globalThis.TOKYO_TRIP_DATA = {
       "lowPriority": false,
       "displayName": "36 사브로",
       "tone": "paper",
-      "description": "기치조지에서 문구·종이 제품을 구경할 후보. 혼초 2-4-16 건물 2층으로 저장돼 있어 북쪽 잡화 골목 코스에 넣었어요."
+      "description": "문구·종이 제품 매장, 혼초 2-4-16 원빌딩 2층. 공식 안내는 12:00–19:00, 화요일 휴무입니다. 오전 11시에는 아직 열지 않으므로 페이퍼메세지 등을 먼저 보고 12시 이후 방문해요.",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "교차 확인",
+        "scope": "吉祥寺本町2-4-16 原ビル2F, 12:00–19:00·화요일 휴무. 공식 온라인숍 안내와 지도 일치.",
+        "remaining": "방문일 임시휴무·재고는 별도 확인.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://sublo.ocnk.net/"
+          }
+        ]
+      }
     },
     {
       "id": "place-13",
@@ -1208,7 +1653,19 @@ globalThis.TOKYO_TRIP_DATA = {
       "lowPriority": false,
       "displayName": "페이퍼메세지",
       "tone": "paper",
-      "description": "종이용품을 보고 싶을 때 살펴볼 후보. 혼초 4-1-3에 저장돼 있고 프티트 무라·서쪽 잡화 골목과 연결해 구경하기 좋아요."
+      "description": "혼초 4-1-3의 종이용품 매장. 공식 안내는 11:00–19:00, 부정기휴무입니다. 사브로가 12시에 열기 전 먼저 둘러볼 후보예요.",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "교차 확인",
+        "scope": "吉祥寺本町4-1-3, 11:00–19:00·부정기휴무. 공식 사이트와 지도 일치.",
+        "remaining": "방문일 임시휴무·재고는 별도 확인.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://www.papermessage.jp/"
+          }
+        ]
+      }
     },
     {
       "id": "place-14",
@@ -1225,7 +1682,14 @@ globalThis.TOKYO_TRIP_DATA = {
       "lowPriority": false,
       "displayName": "シープメドウ",
       "tone": "craft",
-      "description": "실·뜨개 쇼핑 후보로 묶어둔 곳. 저장된 위치는 혼초 2-27-8로, 북서쪽 다른 저장 매장들과 함께 선택해요. 품목·재고·영업은 방문 전 확인해요."
+      "description": "실·뜨개 쇼핑 후보로 묶어둔 곳. 저장된 위치는 혼초 2-27-8로, 북서쪽 다른 저장 매장들과 함께 선택해요. 품목·재고·영업은 방문 전 확인해요.",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "공식 확인 필요",
+        "scope": "현재 지도는 吉祥寺本町2-27-8의 シープメドウ로 응답.",
+        "remaining": "해당 실매장의 현행 공식 사이트·영업표 확인 부족. 지도만으로 일요일 영업·재고를 보장하지 않음.",
+        "sources": []
+      }
     },
     {
       "id": "place-15",
@@ -1242,7 +1706,19 @@ globalThis.TOKYO_TRIP_DATA = {
       "lowPriority": false,
       "displayName": "Temari no Ouchi",
       "tone": "cafe",
-      "description": "저장해둔 고양이 카페 후보. 혼초 2-13-14 건물 3층에 저장돼 있어 쇼핑 중 실내에서 쉬고 싶을 때 검토해요. 프티트 무라의 다른 고양이 카페와는 구분하고 이용 조건을 확인해요."
+      "description": "저장해둔 고양이 카페 후보. 혼초 2-13-14 건물 3층에 저장돼 있어 쇼핑 중 실내에서 쉬고 싶을 때 검토해요. 프티트 무라의 다른 고양이 카페와는 구분하고 이용 조건을 확인해요.",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "일부 확인",
+        "scope": "브랜드 공식 사이트에서 고양이 카페를 확인. 프티트 무라의 てまりのおしろ와 별도 시설.",
+        "remaining": "해당 지점의 최신 이용 연령·예약·요금·운영시간은 확인 필요.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "http://www.temarinoouchi.com/"
+          }
+        ]
+      }
     },
     {
       "id": "place-29",
@@ -1259,13 +1735,25 @@ globalThis.TOKYO_TRIP_DATA = {
       "lowPriority": false,
       "displayName": "Avril Kichijōji",
       "tone": "craft",
-      "description": "실·뜨개 쇼핑을 우선할 때의 후보. 혼초 3-10-3에 저장돼 있어 북서쪽 매장 중에서도 서쪽으로 더 걸어가는 위치예요. 운영·취급품목은 방문 전 확인해요."
+      "description": "실·뜨개 쇼핑을 우선할 때의 후보. 혼초 3-10-3에 저장돼 있어 북서쪽 매장 중에서도 서쪽으로 더 걸어가는 위치예요. 운영·취급품목은 방문 전 확인해요.",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "일부 확인",
+        "scope": "현재 AVRIL 吉祥寺 공식 사이트에서 실 전문점 운영을 확인. 2024년 교토 AVRIL 폐업 공지는 기치조지 폐업 공지가 아님.",
+        "remaining": "지도의 실매장 주소와 법적 사업자 주소가 다름. 방문 전 실매장 주소·시각 재확인.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://www.avril-kichijoji.com/"
+          }
+        ]
+      }
     },
     {
       "id": "place-30",
       "area": "기치조지",
       "name": "L-musee",
-      "address": "",
+      "address": "東京都武蔵野市吉祥寺本町2-12-2 (지도 주소·공식 미확인)",
       "url": "https://www.google.com/maps?cid=12092496146247976198",
       "lat": 35.7039723,
       "lng": 139.5762898,
@@ -1274,9 +1762,16 @@ globalThis.TOKYO_TRIP_DATA = {
       "note": "기치조지 필수 방문은 유지. 북쪽 잡화 골목에서 취향에 맞는 곳 선택. 공원 산책은 필수가 아니며 쇼핑·카페·공원 중 현장에서 조합. 다른 지역으로 이동하려면 오후 잔여시간 확인.",
       "excluded": false,
       "lowPriority": false,
-      "displayName": "L-musee",
+      "displayName": "L-musee LABO",
       "tone": "browse",
-      "description": "기치조지 북쪽 골목에 저장한 매장. 원본 목록에 주소가 없어 좌표를 기준으로 묶었어요. 정식 상호·취급품목을 확인하면서 주변 골목과 함께 구경하는 후보예요."
+      "description": "현재 지도는 혼초 2-12-2의 エル・ミューゼ中道通りLABO, 비즈점으로 표시합니다. 공식 지점 운영·취급품목은 확인이 부족해 실 전문점 코스에서는 빼고 골목의 선택 후보로 남겼어요.",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "공식 확인 필요",
+        "scope": "현재 지도는 エル・ミューゼ中道通りLABO·吉祥寺本町2-12-2·비즈점으로 응답. 기치조지 지점의 공식 운영 확인은 부족.",
+        "remaining": "공식 자료로 해당 지점의 현재 운영·입장 조건을 확인하지 못했습니다. 지도만으로 영업을 보장하지 않습니다.",
+        "sources": []
+      }
     },
     {
       "id": "place-31",
@@ -1292,8 +1787,20 @@ globalThis.TOKYO_TRIP_DATA = {
       "excluded": false,
       "lowPriority": false,
       "displayName": "VENETIAN BAZAAR",
-      "tone": "browse",
-      "description": "혼초 4-1-1에 저장한 매장으로, 페이퍼메세지와 가까운 같은 골목의 후보예요. 취급품목·영업은 미확인이므로 주변을 구경할 때 함께 확인해요."
+      "tone": "craft",
+      "description": "혼초 4-1-1의 베네치안 유리 전문점입니다. 뜨개 매장으로 묶었던 분류를 정정했어요. 공식 주말 영업은 11:00–18:00, 수요일 휴무이며 페이퍼메세지와 같은 서쪽 구역에서 골라요.",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "교차 확인",
+        "scope": "베네치안 유리 전문점. 吉祥寺本町4-1-1. 평일 12–17시, 토·일·공휴일 11–18시, 수요일 휴무.",
+        "remaining": "방문일 임시휴무·재고는 별도 확인.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://www.venetianbazaar.com/"
+          }
+        ]
+      }
     },
     {
       "id": "place-10",
@@ -1310,7 +1817,19 @@ globalThis.TOKYO_TRIP_DATA = {
       "lowPriority": false,
       "displayName": "몽벨 신주쿠 남쪽출구",
       "tone": "outdoor",
-      "description": "아웃도어 의류·용품 쇼핑 후보. 요요기 2-4-9의 역 남쪽 위치예요. 동쪽 세카이도·키디랜드와 방향이 달라 관심 있는 권역만 선택해요."
+      "description": "아웃도어 의류·용품 쇼핑 후보. 요요기 2-4-9의 역 남쪽 위치예요. 동쪽 세카이도·키디랜드와 방향이 달라 관심 있는 권역만 선택해요.",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "교차 확인",
+        "scope": "신주쿠 남쪽점 代々木2-4-9 1F, 10:00–21:00. 지도와 공식 매장 주소 일치.",
+        "remaining": "방문일 임시휴무·재고는 별도 확인.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://store.montbell.jp/search/shopinfo/?shop_no=618937"
+          }
+        ]
+      }
     },
     {
       "id": "place-26",
@@ -1327,7 +1846,19 @@ globalThis.TOKYO_TRIP_DATA = {
       "lowPriority": false,
       "displayName": "세카이도 신주쿠 본점",
       "tone": "paper",
-      "description": "문구·미술재료에 관심 있을 때의 후보. 신주쿠 3-1-1에 저장돼 있어 신주쿠 동쪽 코스로 묶어요. 남은 시간에 1곳만 골라도 좋아요."
+      "description": "문구·미술재료에 관심 있을 때의 후보. 신주쿠 3-1-1에 저장돼 있어 신주쿠 동쪽 코스로 묶어요. 남은 시간에 1곳만 골라도 좋아요.",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "교차 확인",
+        "scope": "세계당 신주쿠본점 新宿3-1-1 1–5F, 09:30–20:00. 공식 매장 주소와 지도 일치.",
+        "remaining": "방문일 임시휴무·재고는 별도 확인.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://www.sekaido.co.jp/store/77/"
+          }
+        ]
+      }
     },
     {
       "id": "place-40",
@@ -1344,7 +1875,14 @@ globalThis.TOKYO_TRIP_DATA = {
       "lowPriority": false,
       "displayName": "하나조노 신사",
       "tone": "walk",
-      "description": "신주쿠 5초메 쪽 신사 산책 후보. 골동품 시장은 해당 날짜 개최가 확인된 경우에만 함께 구경하고, 시장이 없어도 신사 방문 자체는 별개로 생각해요."
+      "description": "신주쿠 5초메 쪽 신사 산책 후보. 골동품 시장은 해당 날짜 개최가 확인된 경우에만 함께 구경하고, 시장이 없어도 신사 방문 자체는 별개로 생각해요.",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "공식 확인 필요",
+        "scope": "현재 지도는 신주쿠의 하나조노 신사 핀으로 응답. 신사 방문과 골동품시장 개최는 별개.",
+        "remaining": "공식 사이트는 HTTP503으로 읽지 못함. 방문일 시장 개최·운영시간을 단정하지 않음.",
+        "sources": []
+      }
     },
     {
       "id": "place-44",
@@ -1361,7 +1899,19 @@ globalThis.TOKYO_TRIP_DATA = {
       "lowPriority": false,
       "displayName": "키디랜드 신주쿠",
       "tone": "character",
-      "description": "신주쿠 3-23-17에 저장한 캐릭터 상품 매장. 기치조지에서 돌아오는 길에 추가 쇼핑을 원할 때만 선택하고, 다른 지점을 모두 순회할 필요는 없어요."
+      "description": "신주쿠 3-23-17에 저장한 캐릭터 상품 매장. 기치조지에서 돌아오는 길에 추가 쇼핑을 원할 때만 선택하고, 다른 지점을 모두 순회할 필요는 없어요.",
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "교차 확인",
+        "scope": "신주쿠점 新宿3-23-17 オカダヤビル1–4F, 10:30–20:30. 공식 주소와 지도 일치.",
+        "remaining": "방문일 임시휴무·재고는 별도 확인.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://www.kiddyland.co.jp/shoplist/shinjuku/"
+          }
+        ]
+      }
     },
     {
       "id": "place-28",
@@ -1375,7 +1925,19 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "미술관 입장 불필요·공원도 선택",
       "note": "미술관 자체는 미예약 입장을 기본 일정에 넣지 않음. 이노카시라 공원은 산책을 원할 때만 선택. 공원·미술관 근처 산책을 위해 쇼핑 시간을 의무 배정하지 않음.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "일부 확인",
+        "scope": "지브리 미술관 공식 사이트 확인. 나고야권 지브리 파크와 다른 도쿄 미타카 시설.",
+        "remaining": "입장권을 확보한 시설이 아님. 미술관 입장은 기본 코스에 넣지 않음.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://www.ghibli-museum.jp/"
+          }
+        ]
+      }
     },
     {
       "id": "place-25",
@@ -1389,7 +1951,19 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "방문 대상 제외",
       "note": "지도 목록의 더 비 이케부쿠로는 숙박시설. 실제 예약 숙소를 뜻한다고 가정하지 않음. 이동 기준은 이케부쿠로역.",
       "excluded": true,
-      "lowPriority": false
+      "lowPriority": false,
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "일부 확인",
+        "scope": "the b 이케부쿠로의 공식 호텔 페이지 확인. 사용자 실제 예약 호텔로 확인된 것은 아님.",
+        "remaining": "실제 호텔 예약 내역은 미확인. 코스는 이케부쿠로역 기준.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://www.theb-hotels.com/theb/ikebukuro"
+          }
+        ]
+      }
     },
     {
       "id": "place-2",
@@ -1403,7 +1977,19 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "가마타 별도 반나절",
       "note": "이케부쿠로에서 도쿄 남쪽으로 왕복 부담. 유자와야 방문을 우선하면 다른 반나절과 교체; 동쪽/서쪽 기본 코스 끝에 추가하지 않음.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "교차 확인",
+        "scope": "가마타점 西蒲田8-23-5, 10:00–20:00. 2026/10/1 층 리뉴얼 안내 확인.",
+        "remaining": "방문일 임시휴무·재고는 별도 확인.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://www.yuzawaya.co.jp/shop/detail/264.html"
+          }
+        ]
+      }
     },
     {
       "id": "place-46",
@@ -1417,7 +2003,19 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "가와고에 반나절 이상",
       "note": "이케부쿠로 → 도부 도조선 가와고에 방면, 구도심까지 버스/도보 추가. 도쿄 시내 코스와 짧게 묶기보다 반나절 이상을 교체.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "일부 확인",
+        "scope": "모구모구 본포 공식 사이트에서 川越店 운영 관련 최신 공지를 확인.",
+        "remaining": "카와고에 지점의 방문일 예약·주소·영업시간은 별도 확인. 다른 지역 지점 공지를 대신 적용하지 않음.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://www.chiikawamogumogu.jp/"
+          }
+        ]
+      }
     },
     {
       "id": "place-5",
@@ -1431,7 +2029,14 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "도요스 목적 확인 후 교체",
       "note": "저장된 것은 주소 지점. 메모만으로 팀버튼 전시가 현재 그곳에서 열린다고 간주하지 않음. 실제 전시명·기간·입장 조건 확인 시 반나절 교체.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "공식 확인 필요",
+        "scope": "저장 핀은 도요스6-4-25의 주소 지점.",
+        "remaining": "팀버튼 전시의 행사명·실제 장소·운영기간 공식 확인 부족. 해당 전시를 이 위치의 현재 행사로 안내하지 않음.",
+        "sources": []
+      }
     },
     {
       "id": "place-43",
@@ -1445,7 +2050,14 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "마쿠하리 별도 반나절 이상",
       "note": "좌표는 지바 마쿠하리권. 이케부쿠로에서 장거리 이동. 크리스마스마켓 개최를 메모만으로 확정하지 않으며 공항과 같은 지바현이라는 이유로 경유하지 않음.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "공식 확인 필요",
+        "scope": "현재 지도 이름은 幕張海浜公園 Gブロック芝生広場. 저장 핀은 지바 마쿠하리권.",
+        "remaining": "이 좌표에서 여행일 크리스마스마켓이 열린다는 공식 자료는 확인하지 못함. 주소만으로 행사를 확정하지 않음.",
+        "sources": []
+      }
     },
     {
       "id": "place-41",
@@ -1459,7 +2071,19 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "개최 확인 후 반나절 교체",
       "note": "좌표상 오이 경마장 주변. JR 하마마쓰초 → 도쿄 모노레일 오이케이바조마에 등의 경로 후보. 개최일·입구·운영시간 확인 후 별도 반나절.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "일부 확인",
+        "scope": "운영사 공식 일정에 11/28(토) 오이 경마장 TokyoCityFleaMarket 안내 확인. 저장 지도 위치와 대조.",
+        "remaining": "당일 우천취소·입구·운영시간·여행 일정과의 교체 여부 별도 확인. 기본 코스에는 넣지 않음.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://trx.jp/"
+          }
+        ]
+      }
     }
   ],
   "options": [
@@ -1471,7 +2095,7 @@ globalThis.TOKYO_TRIP_DATA = {
       "duration": "1~2시간",
       "travel": "역 북쪽~서쪽 잡화 골목. 가까운 다른 저장 매장과 조합.",
       "url": "",
-      "note": "목록 장소명·주소·좌표 확인, 최신 영업 미확인",
+      "note": "페이퍼메세지 11시, 사브로 12시 개점은 공식 안내 확인. 임시휴무·재고는 재확인.",
       "candidateGroups": [
         "kichijoji-paper"
       ]
@@ -1480,11 +2104,11 @@ globalThis.TOKYO_TRIP_DATA = {
       "id": "kichijoji-1",
       "day": "2026-11-29",
       "name": "실·뜨개 쇼핑",
-      "detail": "Avril Kichijōji + シープメドウ 중 선택. VENETIAN BAZAAR·L-musee는 주변 저장 후보로 유지.",
+      "detail": "AVRIL 기치조지·シープメドウ 중 선택. VENETIAN BAZAAR는 유리, L-musee는 지도상 비즈점으로 별도 잡화 후보.",
       "duration": "1~2시간",
       "travel": "북서쪽에 흩어진 매장들을 지도상 위치로 묶음. 한 골목의 같은 건물은 아님.",
       "url": "",
-      "note": "취급 품목·재고·영업은 방문 전 확인. 미확인 매장의 품목을 단정하지 않음.",
+      "note": "AVRIL 브랜드 운영은 확인. 두 지점의 방문일 영업·재고는 재확인. 유리·비즈 후보를 실 매장으로 계산하지 않음.",
       "candidateGroups": [
         "kichijoji-yarn"
       ]
@@ -1527,7 +2151,7 @@ globalThis.TOKYO_TRIP_DATA = {
       "duration": "30~90분",
       "travel": "기치조지 혼초 2-33-2. 페이퍼메세지·서쪽 잡화 골목과 연결.",
       "url": "https://www.google.com/maps/search/?api=1&query=%E5%90%89%E7%A5%A5%E5%AF%BA%E3%83%97%E3%83%86%E3%82%A3%E3%83%83%E3%83%88%E6%9D%91",
-      "note": "Maps 장소명·주소·소개 확인. 대형 테마파크 방문처럼 긴 시간을 잡지 않음. 시설별 입장·주문 조건 미확인."
+      "note": "공식 FAQ: 마을 자체는 입장 무료·예약 불필요. 중정은 주말·공휴일 10–20시. 내부 카페·가게 요금·예약 조건은 각각 확인."
     },
     {
       "id": "kichijoji-6",
@@ -1537,7 +2161,7 @@ globalThis.TOKYO_TRIP_DATA = {
       "duration": "60~90분+대기",
       "travel": "미나미초 2-22-1. 역 동쪽으로 우회 필요, 북서쪽 잡화 골목 바로 옆은 아님.",
       "url": "https://www.google.com/maps/search/?api=1&query=HATTIFNATT+%E5%90%89%E7%A5%A5%E5%AF%BA%E3%81%AE%E3%81%8A%E3%81%86%E3%81%A1",
-      "note": "Maps 카페 분류·주소·좌표 확인. 메뉴·이용 조건·영업시간 미확인."
+      "note": "공식 기치조지 카페는 11:30–21:00, 월·셋째 화요일 휴무. 동일 주소의 잡화점 영업과 구분. 당일 대기·임시휴무 확인."
     },
     {
       "id": "kichijoji-7",
@@ -1609,7 +2233,7 @@ globalThis.TOKYO_TRIP_DATA = {
       "duration": "1.5~2.5시간",
       "travel": "부자재 쇼핑이 우선일 때. 점포가 닫기 전 시간을 확보해야 하므로 저녁에 남는 시간용으로 무조건 미루지 않음.",
       "url": "",
-      "note": "토요일 영업·마감 미확인. 필요하면 기존 두 지역 중 하나와 교체.",
+      "note": "토요일 공식 영업: 기와 본점 09:30–18:30, WEST5 10:00–18:30. Parts Club 현재 공식 지점 안내는 접근 제한으로 확인 부족. 기존 두 지역 중 하나와 교체.",
       "candidateGroups": [
         "asakusabashi"
       ]
@@ -1640,7 +2264,20 @@ globalThis.TOKYO_TRIP_DATA = {
       "lng": 139.5790815,
       "url": "https://www.google.com/maps/search/?api=1&query=35.7035959,139.5790815",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "일부 확인",
+        "scope": "운영 사이트에서 하모니카 요코초를 확인. 11/17 지도 결과와 구역 명칭 대조.",
+        "remaining": "골목 단위. 개별 식당 예약·영업은 별도.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "http://hamoyoko.jp/hamonika_kichijoji/"
+          }
+        ],
+        "mapChecked": "2026-11-17"
+      }
     },
     {
       "id": "extra-sunroad",
@@ -1653,7 +2290,20 @@ globalThis.TOKYO_TRIP_DATA = {
       "lng": 139.5798441,
       "url": "https://www.google.com/maps/search/?api=1&query=35.7038362,139.5798441",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "일부 확인",
+        "scope": "상점가 공식 사이트에서 吉祥寺サンロード를 확인. 11/17 지도 결과와 명칭 대조.",
+        "remaining": "조합 사무실 주소는 상점가 대표 핀 주소와 다름. 개별 점포 영업 별도.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://sun-road.or.jp/"
+          }
+        ],
+        "mapChecked": "2026-11-17"
+      }
     },
     {
       "id": "extra-petitmura",
@@ -1666,20 +2316,46 @@ globalThis.TOKYO_TRIP_DATA = {
       "lng": 139.5746884,
       "url": "https://www.google.com/maps/search/?api=1&query=35.7045998,139.5746884",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "교차 확인",
+        "scope": "공식 주소 吉祥寺本町2-33-2와 11/17 지도 일치. 공식 FAQ는 마을 입장 무료·예약 불필요, 점포 조건은 별도로 안내.",
+        "remaining": "과거 행사·코로나 휴업 공지는 현재 운영으로 일반화하지 않음. 당일 점포 영업은 별도.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://petitmura.com/"
+          }
+        ],
+        "mapChecked": "2026-11-17"
+      }
     },
     {
       "id": "extra-kichcafe",
       "name": "Hattifnatt",
       "displayName": "HATTIFNATT",
       "tone": "cafe",
-      "description": "기치조지 미나미초 2-22-1에 저장된 카페 후보. 역 동쪽으로 이동해야 하므로 북서쪽 쇼핑 골목 바로 옆으로 생각하지 말고 여유가 있을 때 선택해요.",
+      "description": "미나미초 2-22-1의 카페는 공식 안내상 11:30–21:00, 월·셋째 화요일 휴무입니다. 같은 주소 잡화점과 운영시간이 달라요. 북서쪽 쇼핑 골목에서 동쪽으로 이동하므로 여유가 있을 때만 선택해요.",
       "address": "2 Chome-22-1 Kichijoji Minamicho, Musashino, Tokyo 180-0003, Japan",
       "lat": 35.7032186,
       "lng": 139.5852559,
       "url": "https://www.google.com/maps/search/?api=1&query=35.7032186,139.5852559",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "교차 확인",
+        "scope": "공식 기치조지 카페 주소 南町2-22-1과 11/17 지도 일치. 카페 11:30–21:00, 월·셋째 화요일 휴무.",
+        "remaining": "같은 주소의 잡화점 11:00–19:00와 카페 운영을 구분. 임시휴무·예약·대기 별도.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://www.hattifnatt.jp/blank-1"
+          }
+        ],
+        "mapChecked": "2026-11-17"
+      }
     },
     {
       "id": "extra-nakano",
@@ -1692,7 +2368,20 @@ globalThis.TOKYO_TRIP_DATA = {
       "lng": 139.6656524,
       "url": "https://www.google.com/maps/search/?api=1&query=35.7092475,139.6656524",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "verification": {
+        "checked": "2026-11-18",
+        "level": "일부 확인",
+        "scope": "나카노 브로드웨이 공식 몰과 11/17 지도 명칭을 대조.",
+        "remaining": "각 점포·층별 운영 및 마감은 별도.",
+        "sources": [
+          {
+            "label": "공식 안내",
+            "url": "https://nakano-broadway.com/"
+          }
+        ],
+        "mapChecked": "2026-11-17"
+      }
     }
   ],
   "venueGroups": {
@@ -1767,12 +2456,12 @@ globalThis.TOKYO_TRIP_DATA = {
         "lng": 139.5784638
       },
       "placeIds": [
-        "place-12",
         "place-13",
+        "place-31",
+        "place-12",
         "place-14",
         "place-29",
-        "place-30",
-        "place-31"
+        "place-30"
       ]
     },
     "kichijoji-paper": {
@@ -1782,8 +2471,8 @@ globalThis.TOKYO_TRIP_DATA = {
         "lng": 139.5784638
       },
       "placeIds": [
-        "place-12",
-        "place-13"
+        "place-13",
+        "place-12"
       ]
     },
     "kichijoji-yarn": {
@@ -1794,9 +2483,7 @@ globalThis.TOKYO_TRIP_DATA = {
       },
       "placeIds": [
         "place-14",
-        "place-29",
-        "place-30",
-        "place-31"
+        "place-29"
       ]
     },
     "kichijoji-break": {
@@ -1884,4 +2571,4 @@ globalThis.TOKYO_TRIP_DATA = {
     }
   }
 };
-if (typeof module !== "undefined") module.exports = globalThis.TOKYO_TRIP_DATA;
+if (typeof module !== "undefined" && module.exports) module.exports = globalThis.TOKYO_TRIP_DATA;
