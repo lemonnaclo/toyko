@@ -51,3 +51,38 @@ test('the park is separate from optional park walks and shop branches', () => {
   assert.ok(data.options.some(o => o.name.includes('이노카시라') && o.detail.includes('생략')));
   assert.ok(data.options.some(o => o.name.includes('나카노') && o.travel.includes('신주쿠 쇼핑은 덧붙이지')));
 });
+
+test('shopping blocks resolve real saved coordinates without excluded or low-priority venues', () => {
+  const { resolveCandidateGroups } = require('./trip-core');
+  const groups = resolveCandidateGroups(data, ['kappabashi']);
+  assert.equal(groups.length, 1); assert.equal(groups[0].candidates.length, 6);
+  assert.ok(groups[0].candidates.some(p => p.name === 'Seven Uniform'));
+  assert.ok(groups[0].candidates.some(p => p.id === 'place-19' && p.description.includes('정식 상호와 주소가 없는')));
+  for (const d of data.days) for (const s of d.stops) for (const group of resolveCandidateGroups(data, s.candidateGroups)) {
+    for (const p of group.candidates) {
+      assert.ok(p.description); assert.ok(!p.excluded && !p.lowPriority);
+      assert.ok(Number.isFinite(p.lat) && Number.isFinite(p.lng));
+      assert.ok(p.distanceMeters >= 0);
+      const url = new URL(p.walkingURL); assert.equal(url.searchParams.get('travelmode'), 'walking');
+      assert.equal(url.searchParams.get('destination'), p.lat + ',' + p.lng);
+      assert.equal(url.searchParams.get('origin'), group.anchor.lat + ',' + group.anchor.lng);
+    }
+  }
+});
+test('far-away alternatives have separate group anchors rather than one shared walking origin', () => {
+  const { resolveCandidateGroups } = require('./trip-core');
+  const groups = resolveCandidateGroups(data, ['shinjuku','nakano']);
+  assert.equal(groups.length, 2); assert.notDeepEqual(groups[0].anchor, groups[1].anchor);
+  assert.ok(groups[0].candidates.every(p => p.id !== 'extra-nakano'));
+  assert.equal(groups[1].candidates[0].id, 'extra-nakano');
+});
+test('invalid coordinates and excluded candidates never generate an unsafe or misleading route', () => {
+  const { distanceMeters, walkingURL, resolveCandidateGroups } = require('./trip-core');
+  assert.equal(distanceMeters({lat:0,lng:0},{lat:0,lng:0}),0);
+  assert.ok(Math.abs(distanceMeters({lat:0,lng:0},{lat:1,lng:0}) - 111195) < 5);
+  assert.equal(walkingURL({lat:NaN,lng:0},{lat:35,lng:139}),'');
+  assert.equal(walkingURL({lat:0,lng:0},{lat:91,lng:0}),'');
+  assert.deepEqual(resolveCandidateGroups(data,['missing']),[]);
+  const fixture = {places:[{id:'x',lat:35,lng:139,excluded:true}],venueGroups:{g:{anchor:{lat:35,lng:139},placeIds:['x','missing']}}};
+  assert.deepEqual(resolveCandidateGroups(fixture,['g']),[]);
+});

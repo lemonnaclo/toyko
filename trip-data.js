@@ -61,10 +61,13 @@ globalThis.TOKYO_TRIP_DATA = {
           "end": "17:30",
           "kind": "선택",
           "name": "이케부쿠로 주변 쇼핑 한 권역",
-          "detail": "파르코·에반게리온 또는 선샤인시티 KIDDY LAND",
+          "detail": "역 주변과 선샤인시티 중 관심 있는 권역을 골라요.",
           "adjust": "두 권역 완주 불필요. 치이카와 매장 추가 방문은 선택",
           "url": "https://www.google.com/maps/search/?api=1&query=Ikebukuro+PARCO",
-          "reserved": false
+          "reserved": false,
+          "candidateGroups": [
+            "ikebukuro"
+          ]
         },
         {
           "id": "2026-11-26-1730-21dae001",
@@ -83,10 +86,13 @@ globalThis.TOKYO_TRIP_DATA = {
           "end": "19:30",
           "kind": "여유",
           "name": "필요한 물품 구매 또는 숙소 휴식",
-          "detail": "유니클로 등은 필요할 때만",
+          "detail": "필요한 옷이 있을 때만 들르고, 아니면 숙소에서 쉬어도 좋아요.",
           "adjust": "도착 피로가 크면 쇼핑 생략",
           "url": "https://www.google.com/maps/search/?api=1&query=Ikebukuro+Station",
-          "reserved": false
+          "reserved": false,
+          "candidateGroups": [
+            "ikebukuro-clothes"
+          ]
         },
         {
           "id": "2026-11-26-1930-5a3e9015",
@@ -193,10 +199,13 @@ globalThis.TOKYO_TRIP_DATA = {
           "end": "17:30",
           "kind": "선택",
           "name": "긴자 이토야·무인양품·로프트 중 2곳",
-          "detail": "가까운 매장 순서로 도보 이동",
+          "detail": "아래 매장 중 2곳 정도를 골라요. 교바시까지 갈 때는 긴자 안의 매장을 줄여요.",
           "adjust": "몽벨 교바시·Feiler를 고르면 다른 매장과 교체",
           "url": "https://www.google.com/maps/search/?api=1&query=Ginza+Itoya",
-          "reserved": false
+          "reserved": false,
+          "candidateGroups": [
+            "ginza"
+          ]
         },
         {
           "id": "2026-11-27-1730-d960d099",
@@ -269,10 +278,13 @@ globalThis.TOKYO_TRIP_DATA = {
           "end": "12:00",
           "kind": "선택",
           "name": "TOMATO·원단거리 쇼핑",
-          "detail": "Select-kan·Notions-kan은 같은 건물의 층별 후보",
+          "detail": "원단거리와 같은 건물의 층별 후보를 구분해 살펴봐요.",
           "adjust": "모든 건물 방문 대신 원하는 소재 우선. 운영·재고 미확인",
           "url": "https://www.google.com/maps/search/?api=1&query=TOMATO+Notions-kan+Nippori",
-          "reserved": false
+          "reserved": false,
+          "candidateGroups": [
+            "nippori"
+          ]
         },
         {
           "id": "2026-11-28-1200-13e83134",
@@ -302,10 +314,13 @@ globalThis.TOKYO_TRIP_DATA = {
           "end": "16:15",
           "kind": "선택",
           "name": "갓파바시 그릇·유리·앞치마 쇼핑",
-          "detail": "Seven Uniform·TSUCHI-YA·Takahashi·Takenokodo 중 2~3곳",
+          "detail": "아래 후보 중 관심 있는 2~3곳을 골라요. 이름 없는 핀은 골목 구경에 포함해요.",
           "adjust": "상호 없는 그릇가게는 Takenokodo 주변 골목 구경에 포함",
           "url": "https://www.google.com/maps/search/?api=1&query=Kappabashi+Dougu+Street",
-          "reserved": false
+          "reserved": false,
+          "candidateGroups": [
+            "kappabashi"
+          ]
         },
         {
           "id": "2026-11-28-1615-2dad861c",
@@ -378,10 +393,13 @@ globalThis.TOKYO_TRIP_DATA = {
           "end": "12:30",
           "kind": "선택",
           "name": "문구·종이 또는 실·뜨개 쇼핑",
-          "detail": "36 사브로·페이퍼메세지 / Avril·シープメドウ 중 선택",
+          "detail": "문구·종이 또는 실·뜨개 중 취향에 맞는 곳을 골라요.",
           "adjust": "모든 후보 완주 대신 취향에 맞는 1~2곳",
           "url": "https://www.google.com/maps/search/?api=1&query=36+Sublo+Kichijoji",
-          "reserved": false
+          "reserved": false,
+          "candidateGroups": [
+            "kichijoji-shops"
+          ]
         },
         {
           "id": "2026-11-29-1230-38dea057",
@@ -389,10 +407,13 @@ globalThis.TOKYO_TRIP_DATA = {
           "end": "13:30",
           "kind": "식사",
           "name": "기치조지 점심",
-          "detail": "북쪽 골목 또는 하모니카 요코초",
+          "detail": "북쪽 골목에서 영업 중인 식당을 보며 점심 장소를 골라요.",
           "adjust": "줄이 길면 다른 식당. 특정 식당 예약 없음",
           "url": "https://www.google.com/maps/search/?api=1&query=Harmonica+Yokocho",
-          "reserved": false
+          "reserved": false,
+          "candidateGroups": [
+            "kichijoji-lunch"
+          ]
         },
         {
           "id": "2026-11-29-1330-a781b635",
@@ -400,10 +421,13 @@ globalThis.TOKYO_TRIP_DATA = {
           "end": "15:00",
           "kind": "선택",
           "name": "추가 잡화 쇼핑 또는 카페",
-          "detail": "프티트 무라·Temari no Ouchi 등 중 선택",
+          "detail": "잡화 골목을 더 보거나 카페에서 쉬는 코스로 바꿔도 좋아요.",
           "adjust": "공원·HATTIFNATT는 동선과 대기에 따라 교체",
           "url": "https://www.google.com/maps/search/?api=1&query=Kichijoji+Petit+Mura",
-          "reserved": false
+          "reserved": false,
+          "candidateGroups": [
+            "kichijoji-break"
+          ]
         },
         {
           "id": "2026-11-29-1500-35f59be6",
@@ -422,10 +446,14 @@ globalThis.TOKYO_TRIP_DATA = {
           "end": "17:30",
           "kind": "분기 선택",
           "name": "선택한 한 코스에서 구경·휴식",
-          "detail": "신주쿠: 세카이도/키디랜드 또는 몽벨. 나카노: 브로드웨이",
+          "detail": "기치조지에 머물러도 괜찮아요. 다른 지역으로 이동한다면 아래 두 구역 중 한 곳만 골라요.",
           "adjust": "잔류 시 잡화·카페·선로드·공원 중 선택. 개별 점포 마감 확인",
           "url": "",
-          "reserved": false
+          "reserved": false,
+          "candidateGroups": [
+            "shinjuku",
+            "nakano"
+          ]
         },
         {
           "id": "2026-11-29-1730-90a2648d",
@@ -564,7 +592,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "도착일 후보",
       "note": "도착 후 이케부쿠로 도보권에서 관심 매장 선택. 파르코·선샤인 쇼핑은 파크 방문일에도 가능하므로 중복 방문을 줄임. 캐릭터 매장은 원하는 상품이 있으면 한 곳만으로도 충분.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "displayName": "에반게리온 스토어",
+      "tone": "character",
+      "description": "에반게리온 관련 상품을 보고 싶을 때의 후보. 저장된 위치는 이케부쿠로 PARCO 본관 6층으로, 파르코를 들를 때 함께 확인하기 좋아요."
     },
     {
       "id": "place-7",
@@ -578,7 +609,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "도착일 후보",
       "note": "도착 후 이케부쿠로 도보권에서 관심 매장 선택. 파르코·선샤인 쇼핑은 파크 방문일에도 가능하므로 중복 방문을 줄임. 캐릭터 매장은 원하는 상품이 있으면 한 곳만으로도 충분.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "displayName": "유니클로",
+      "tone": "outdoor",
+      "description": "히가시이케부쿠로 1-21-4에 저장한 지점. 여행 중 필요한 옷을 살 때만 선택하고, 이미 준비가 됐다면 생략해도 돼요."
     },
     {
       "id": "place-47",
@@ -592,7 +626,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "도착일 후보",
       "note": "도착 후 이케부쿠로 도보권에서 관심 매장 선택. 파르코·선샤인 쇼핑은 파크 방문일에도 가능하므로 중복 방문을 줄임. 캐릭터 매장은 원하는 상품이 있으면 한 곳만으로도 충분.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "displayName": "KIDDY LAND",
+      "tone": "character",
+      "description": "선샤인시티 알파 2층에 저장한 캐릭터 상품 매장. 파르코 쪽과는 다른 권역이니 원하는 상품이 있는 쪽을 골라요. 치이카와 관련 입장 공지는 별도 확인이 필요해요."
     },
     {
       "id": "place-49",
@@ -606,7 +643,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "도착일 후보",
       "note": "도착 후 이케부쿠로 도보권에서 관심 매장 선택. 파르코·선샤인 쇼핑은 파크 방문일에도 가능하므로 중복 방문을 줄임. 캐릭터 매장은 원하는 상품이 있으면 한 곳만으로도 충분.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "displayName": "이케부쿠로 PARCO",
+      "tone": "character",
+      "description": "역 동쪽의 파르코 쇼핑 후보. 에반게리온 스토어와 같은 건물로 저장돼 있어 묶기 좋아요. 특정 캐릭터 매장의 현재 층·입장 방식은 방문 전 확인해요."
     },
     {
       "id": "place-54",
@@ -648,7 +688,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "기본 코스 후보",
       "note": "파크 후 긴자·교바시. 5곳 완주가 아니라 취향에 따라 2~3곳 선택. Feiler는 장소명·좌표 기준 긴자 분류, 메모로 다른 매장으로 바꾸지 않음.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "displayName": "몽벨 교바시",
+      "tone": "outdoor",
+      "description": "아웃도어 의류·용품을 살펴볼 후보. 저장된 위치는 교바시 도쿄 스퀘어가든 1·2층이에요. 긴자 중심 매장들보다 북동쪽이므로 관심 있을 때 동선을 늘려요."
     },
     {
       "id": "place-33",
@@ -662,7 +705,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "기본 코스 후보",
       "note": "파크 후 긴자·교바시. 5곳 완주가 아니라 취향에 따라 2~3곳 선택. Feiler는 장소명·좌표 기준 긴자 분류, 메모로 다른 매장으로 바꾸지 않음.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "displayName": "긴자 로프트",
+      "tone": "paper",
+      "description": "문구·생활 잡화 구경 후보. 긴자 2-4-6에 저장돼 있어 이토야·무인양품과 같은 긴자 쇼핑 구간으로 묶을 수 있어요."
     },
     {
       "id": "place-34",
@@ -676,7 +722,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "기본 코스 후보",
       "note": "파크 후 긴자·교바시. 5곳 완주가 아니라 취향에 따라 2~3곳 선택. Feiler는 장소명·좌표 기준 긴자 분류, 메모로 다른 매장으로 바꾸지 않음.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "displayName": "무인양품 긴자",
+      "tone": "browse",
+      "description": "생활용품·의류·문구를 한 번에 살펴볼 후보. 저장된 위치는 긴자 3-3-5예요. 살 것이 많다면 이후 매장을 줄이고 짐을 숙소에 가져가도 좋아요."
     },
     {
       "id": "place-35",
@@ -690,7 +739,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "기본 코스 후보",
       "note": "파크 후 긴자·교바시. 5곳 완주가 아니라 취향에 따라 2~3곳 선택. Feiler는 장소명·좌표 기준 긴자 분류, 메모로 다른 매장으로 바꾸지 않음.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "displayName": "긴자 이토야",
+      "tone": "paper",
+      "description": "문구·종이 제품을 보고 싶을 때 우선 살펴볼 후보. 긴자 2-7-15에 저장돼 있어 긴자 로프트와 같은 구역에서 비교해보기 좋아요."
     },
     {
       "id": "place-39",
@@ -704,7 +756,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "기본 코스 후보",
       "note": "파크 후 긴자·교바시. 5곳 완주가 아니라 취향에 따라 2~3곳 선택. Feiler는 장소명·좌표 기준 긴자 분류, 메모로 다른 매장으로 바꾸지 않음.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "displayName": "Feiler Ginza",
+      "tone": "browse",
+      "description": "손수건·패브릭 소품을 살펴볼 긴자 후보. 이름과 좌표가 긴자이므로 이곳에 배치했어요. 기존 오모테산도 관련 메모와는 구분해요."
     },
     {
       "id": "place-6",
@@ -732,7 +787,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "추가 치이카와 매장 선택",
       "note": "치이카와 랜드 전 지점 방문 불필요. 이케부쿠로에서 원하는 쇼핑을 했으면 생략. 도쿄역은 긴자와 조합할 때만, 스카이트리는 동쪽 코스를 바꿀 만큼 가고 싶을 때만 고려. 방문 지점 수를 목표로 삼지 않음.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "displayName": "치이카와 랜드 도쿄역",
+      "tone": "character",
+      "description": "도쿄역 안에 저장한 치이카와 상품 매장. 캐릭터스트리트와 같은 구역이므로 추가 쇼핑이 필요할 때만 선택해요. 예약·정리권 여부는 해당 날짜의 공식 공지를 확인해야 해요."
     },
     {
       "id": "place-52",
@@ -746,7 +804,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "추가 치이카와 매장 선택",
       "note": "치이카와 랜드 전 지점 방문 불필요. 이케부쿠로에서 원하는 쇼핑을 했으면 생략. 도쿄역은 긴자와 조합할 때만, 스카이트리는 동쪽 코스를 바꿀 만큼 가고 싶을 때만 고려. 방문 지점 수를 목표로 삼지 않음.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "displayName": "도쿄 캐릭터스트리트",
+      "tone": "character",
+      "description": "도쿄역 이치방가이 지하 1층에 저장한 캐릭터 쇼핑 구역. 개별 매장 하나가 아니라 여러 매장을 구경하는 후보예요. 치이카와 랜드와 중복 왕복하지 않아도 돼요."
     },
     {
       "id": "place-24",
@@ -774,7 +835,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "비즈·부자재 우선일 때",
       "note": "JR 아사쿠사바시역 주변 도보권 3곳. 닛포리 또는 갓파바시 중 한 구역을 줄이거나 빼고 대체. 세 구역을 모두 오래 쇼핑하는 일정은 피함.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "displayName": "West Five",
+      "tone": "craft",
+      "description": "목록에 체인·마감 장식 등 부자재 관심 장소로 저장한 곳. 아사쿠사바시 1-23-1에 있어 역 주변 부자재 쇼핑 코스로 묶어요."
     },
     {
       "id": "place-22",
@@ -788,7 +852,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "비즈·부자재 우선일 때",
       "note": "JR 아사쿠사바시역 주변 도보권 3곳. 닛포리 또는 갓파바시 중 한 구역을 줄이거나 빼고 대체. 세 구역을 모두 오래 쇼핑하는 일정은 피함.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "displayName": "기와제작소 본점",
+      "tone": "craft",
+      "description": "비즈·펜던트를 살펴볼 후보. 저장된 위치는 아사쿠사바시 2-1-10, 기와제작소 본점 건물이에요. Parts Club과 함께 비교할 곳으로 골라볼 수 있어요."
     },
     {
       "id": "place-23",
@@ -802,7 +869,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "비즈·부자재 우선일 때",
       "note": "JR 아사쿠사바시역 주변 도보권 3곳. 닛포리 또는 갓파바시 중 한 구역을 줄이거나 빼고 대체. 세 구역을 모두 오래 쇼핑하는 일정은 피함.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "displayName": "PARTS CLUB 본점",
+      "tone": "craft",
+      "description": "비즈·펜던트 쇼핑 후보. 야나기바시 1-20-1에 저장돼 있어 아사쿠사바시 부자재 구역에서 함께 살펴보기 좋아요."
     },
     {
       "id": "place-50",
@@ -844,7 +914,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "기본 코스 후보",
       "note": "이케부쿠로 → JR 야마노테선 닛포리 → 원단거리 도보. 거리 구경과 TOMATO 한 건물 중심으로 묶음. 층별 두 항목은 별도 지역 방문으로 세지 않음. 영업 확인 필요.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "displayName": "TOMATO Select-kan",
+      "tone": "craft",
+      "description": "원단거리 쇼핑 중 선택할 저장 항목. 히가시닛포리 5-33-8의 2층으로 저장돼 있어 아래 Notions-kan과 같은 건물의 층별 후보로 묶어요. 현재 취급품목은 현장에서 확인해요."
     },
     {
       "id": "place-37",
@@ -858,7 +931,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "기본 코스 후보",
       "note": "이케부쿠로 → JR 야마노테선 닛포리 → 원단거리 도보. 거리 구경과 TOMATO 한 건물 중심으로 묶음. 층별 두 항목은 별도 지역 방문으로 세지 않음. 영업 확인 필요.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "displayName": "닛포리 원단거리",
+      "tone": "craft",
+      "description": "원단·부자재 가게들을 둘러보는 거리 단위 후보. TOMATO 한 건물에만 머물거나 주변 가게를 더 볼지 구매 목적과 짐의 양에 맞춰 정해요."
     },
     {
       "id": "place-38",
@@ -872,7 +948,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "기본 코스 후보",
       "note": "이케부쿠로 → JR 야마노테선 닛포리 → 원단거리 도보. 거리 구경과 TOMATO 한 건물 중심으로 묶음. 층별 두 항목은 별도 지역 방문으로 세지 않음. 영업 확인 필요.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "displayName": "TOMATO Notions-kan",
+      "tone": "craft",
+      "description": "히가시닛포리 5-33-8의 1층으로 저장한 항목. Select-kan과 별도 지역으로 이동하는 일정이 아니라 같은 건물 안에서 비교할 후보예요."
     },
     {
       "id": "place-4",
@@ -886,7 +965,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "기본 코스 후보",
       "note": "닛포리 → 우에노 경유 → 갓파바시. 5곳 완주 대신 관심 매장 2~3곳과 골목 산책. 당일 영업·마감 우선 확인.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "displayName": "Seven Uniform",
+      "tone": "craft",
+      "description": "앞치마를 보고 싶어 저장한 후보. 니시아사쿠사 1-5-17의 1층 위치로, 갓파바시 그릇·유리 가게 구경과 함께 들를 수 있어요."
     },
     {
       "id": "place-16",
@@ -900,7 +982,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "기본 코스 후보",
       "note": "닛포리 → 우에노 경유 → 갓파바시. 5곳 완주 대신 관심 매장 2~3곳과 골목 산책. 당일 영업·마감 우선 확인.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "displayName": "Takenokodo",
+      "tone": "browse",
+      "description": "목록에 앤티크숍 관심 장소로 저장한 곳. 마쓰가야 3-17-13에 있고, 이름 없는 그릇가게 핀 바로 근처라 같은 골목으로 묶어 구경해요."
     },
     {
       "id": "place-17",
@@ -914,7 +999,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "기본 코스 후보",
       "note": "닛포리 → 우에노 경유 → 갓파바시. 5곳 완주 대신 관심 매장 2~3곳과 골목 산책. 당일 영업·마감 우선 확인.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "displayName": "Takahashi Sōhonten",
+      "tone": "craft",
+      "description": "유리공예에 관심 있어 저장한 후보. 마쓰가야 1-9-13에 있어 이 후보 목록의 남쪽부터 구경할 때 먼저 확인하기 좋아요."
     },
     {
       "id": "place-18",
@@ -928,7 +1016,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "기본 코스 후보",
       "note": "닛포리 → 우에노 경유 → 갓파바시. 5곳 완주 대신 관심 매장 2~3곳과 골목 산책. 당일 영업·마감 우선 확인.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "displayName": "TSUCHI-YA",
+      "tone": "craft",
+      "description": "유리 그릇·공예에 관심 있을 때 살펴볼 후보. 저장된 위치는 니시아사쿠사 2-5-4예요. 다른 그릇가게와 취향을 비교하며 2~3곳만 골라도 충분해요."
     },
     {
       "id": "place-19",
@@ -942,7 +1033,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "갓파바시 골목에 통합",
       "note": "좌표가 Takenokodo 주변. 정식 주소·상호가 없는 별도 필수 목적지로 두지 않고 그 골목 그릇·세일 매대 구경에 포함.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "displayName": "그릇가게 주변",
+      "tone": "walk",
+      "description": "정식 상호와 주소가 없는 저장 핀이에요. Takenokodo 근처 좌표를 기준으로 골목의 그릇·유리 매대를 둘러보는 후보로 묶었어요. 특정 매장이나 세일을 보장하는 표시는 아니에요."
     },
     {
       "id": "place-20",
@@ -956,7 +1050,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "기본 코스 후보",
       "note": "닛포리 → 우에노 경유 → 갓파바시. 5곳 완주 대신 관심 매장 2~3곳과 골목 산책. 당일 영업·마감 우선 확인.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "displayName": "갓파바시 그릇 골목",
+      "tone": "walk",
+      "description": "마쓰가야 3-18-2에 저장한 그릇쇼핑 지점. 한 가게 입장을 확정하기보다 북쪽 골목을 더 둘러볼 때의 기준점으로 활용해요."
     },
     {
       "id": "place-1",
@@ -1026,7 +1123,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "기치조지 보존, 별도 선택",
       "note": "기치조지는 대체하지 않음. 원한다면 신주쿠 또는 긴자 구간을 줄여 하라주쿠·오모테산도를 선택. 소우소우를 위한 아오야마 연장은 제외.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "displayName": "Cosmo Space",
+      "tone": "craft",
+      "description": "목록에 원석 관심 장소로 저장한 매장. 진구마에 3-22-11에 있어 하라주쿠·오모테산도 코스를 선택했을 때 후보로 확인해요."
     },
     {
       "id": "place-9",
@@ -1054,7 +1154,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "기치조지 보존, 별도 선택",
       "note": "기치조지는 대체하지 않음. 원한다면 신주쿠 또는 긴자 구간을 줄여 하라주쿠·오모테산도를 선택. 소우소우를 위한 아오야마 연장은 제외.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "displayName": "Boris Zakkaten",
+      "tone": "browse",
+      "description": "히구치 유코 관련 잡화를 보고 싶을 때의 후보. 저장된 진구마에 좌표를 기준으로 배치했어요. 최신 영업·입장 조건은 방문 전 확인해요."
     },
     {
       "id": "place-45",
@@ -1068,7 +1171,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "기치조지 보존, 별도 선택",
       "note": "기치조지는 대체하지 않음. 원한다면 신주쿠 또는 긴자 구간을 줄여 하라주쿠·오모테산도를 선택. 소우소우를 위한 아오야마 연장은 제외.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "displayName": "키디랜드 하라주쿠",
+      "tone": "character",
+      "description": "진구마에 6-1-9에 저장한 캐릭터 상품 매장. 이케부쿠로에서 쇼핑을 마쳤다면 생략하고 Boris·Cosmo Space에 시간을 써도 좋아요."
     },
     {
       "id": "place-12",
@@ -1082,7 +1188,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "필수 지역 안의 선택 매장",
       "note": "기치조지 필수 방문은 유지. 북쪽 잡화 골목에서 취향에 맞는 곳 선택. 공원 산책은 필수가 아니며 쇼핑·카페·공원 중 현장에서 조합. 다른 지역으로 이동하려면 오후 잔여시간 확인.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "displayName": "36 사브로",
+      "tone": "paper",
+      "description": "기치조지에서 문구·종이 제품을 구경할 후보. 혼초 2-4-16 건물 2층으로 저장돼 있어 북쪽 잡화 골목 코스에 넣었어요."
     },
     {
       "id": "place-13",
@@ -1096,7 +1205,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "필수 지역 안의 선택 매장",
       "note": "기치조지 필수 방문은 유지. 북쪽 잡화 골목에서 취향에 맞는 곳 선택. 공원 산책은 필수가 아니며 쇼핑·카페·공원 중 현장에서 조합. 다른 지역으로 이동하려면 오후 잔여시간 확인.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "displayName": "페이퍼메세지",
+      "tone": "paper",
+      "description": "종이용품을 보고 싶을 때 살펴볼 후보. 혼초 4-1-3에 저장돼 있고 프티트 무라·서쪽 잡화 골목과 연결해 구경하기 좋아요."
     },
     {
       "id": "place-14",
@@ -1110,7 +1222,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "필수 지역 안의 선택 매장",
       "note": "기치조지 필수 방문은 유지. 북쪽 잡화 골목에서 취향에 맞는 곳 선택. 공원 산책은 필수가 아니며 쇼핑·카페·공원 중 현장에서 조합. 다른 지역으로 이동하려면 오후 잔여시간 확인.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "displayName": "シープメドウ",
+      "tone": "craft",
+      "description": "실·뜨개 쇼핑 후보로 묶어둔 곳. 저장된 위치는 혼초 2-27-8로, 북서쪽 다른 저장 매장들과 함께 선택해요. 품목·재고·영업은 방문 전 확인해요."
     },
     {
       "id": "place-15",
@@ -1124,7 +1239,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "필수 지역 안의 선택 매장",
       "note": "기치조지 필수 방문은 유지. 북쪽 잡화 골목에서 취향에 맞는 곳 선택. 공원 산책은 필수가 아니며 쇼핑·카페·공원 중 현장에서 조합. 다른 지역으로 이동하려면 오후 잔여시간 확인.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "displayName": "Temari no Ouchi",
+      "tone": "cafe",
+      "description": "저장해둔 고양이 카페 후보. 혼초 2-13-14 건물 3층에 저장돼 있어 쇼핑 중 실내에서 쉬고 싶을 때 검토해요. 프티트 무라의 다른 고양이 카페와는 구분하고 이용 조건을 확인해요."
     },
     {
       "id": "place-29",
@@ -1138,7 +1256,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "필수 지역 안의 선택 매장",
       "note": "기치조지 필수 방문은 유지. 북쪽 잡화 골목에서 취향에 맞는 곳 선택. 공원 산책은 필수가 아니며 쇼핑·카페·공원 중 현장에서 조합. 다른 지역으로 이동하려면 오후 잔여시간 확인.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "displayName": "Avril Kichijōji",
+      "tone": "craft",
+      "description": "실·뜨개 쇼핑을 우선할 때의 후보. 혼초 3-10-3에 저장돼 있어 북서쪽 매장 중에서도 서쪽으로 더 걸어가는 위치예요. 운영·취급품목은 방문 전 확인해요."
     },
     {
       "id": "place-30",
@@ -1152,7 +1273,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "필수 지역 안의 선택 매장",
       "note": "기치조지 필수 방문은 유지. 북쪽 잡화 골목에서 취향에 맞는 곳 선택. 공원 산책은 필수가 아니며 쇼핑·카페·공원 중 현장에서 조합. 다른 지역으로 이동하려면 오후 잔여시간 확인.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "displayName": "L-musee",
+      "tone": "browse",
+      "description": "기치조지 북쪽 골목에 저장한 매장. 원본 목록에 주소가 없어 좌표를 기준으로 묶었어요. 정식 상호·취급품목을 확인하면서 주변 골목과 함께 구경하는 후보예요."
     },
     {
       "id": "place-31",
@@ -1166,7 +1290,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "필수 지역 안의 선택 매장",
       "note": "기치조지 필수 방문은 유지. 북쪽 잡화 골목에서 취향에 맞는 곳 선택. 공원 산책은 필수가 아니며 쇼핑·카페·공원 중 현장에서 조합. 다른 지역으로 이동하려면 오후 잔여시간 확인.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "displayName": "VENETIAN BAZAAR",
+      "tone": "browse",
+      "description": "혼초 4-1-1에 저장한 매장으로, 페이퍼메세지와 가까운 같은 골목의 후보예요. 취급품목·영업은 미확인이므로 주변을 구경할 때 함께 확인해요."
     },
     {
       "id": "place-10",
@@ -1180,7 +1307,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "기치조지 후 여유 있을 때",
       "note": "기치조지 후 신주쿠에서 약 1.5~2.5시간을 쓸 수 있을 때 관심 매장 1~2곳. 남쪽 몽벨과 동쪽 세카이도·키디랜드 중 원하는 권역 선택. 기치조지에서 오래 머물면 생략. 하나조노 신사 시장 개최는 미확인.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "displayName": "몽벨 신주쿠 남쪽출구",
+      "tone": "outdoor",
+      "description": "아웃도어 의류·용품 쇼핑 후보. 요요기 2-4-9의 역 남쪽 위치예요. 동쪽 세카이도·키디랜드와 방향이 달라 관심 있는 권역만 선택해요."
     },
     {
       "id": "place-26",
@@ -1194,7 +1324,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "기치조지 후 여유 있을 때",
       "note": "기치조지 후 신주쿠에서 약 1.5~2.5시간을 쓸 수 있을 때 관심 매장 1~2곳. 남쪽 몽벨과 동쪽 세카이도·키디랜드 중 원하는 권역 선택. 기치조지에서 오래 머물면 생략. 하나조노 신사 시장 개최는 미확인.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "displayName": "세카이도 신주쿠 본점",
+      "tone": "paper",
+      "description": "문구·미술재료에 관심 있을 때의 후보. 신주쿠 3-1-1에 저장돼 있어 신주쿠 동쪽 코스로 묶어요. 남은 시간에 1곳만 골라도 좋아요."
     },
     {
       "id": "place-40",
@@ -1208,7 +1341,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "기치조지 후 여유 있을 때",
       "note": "기치조지 후 신주쿠에서 약 1.5~2.5시간을 쓸 수 있을 때 관심 매장 1~2곳. 남쪽 몽벨과 동쪽 세카이도·키디랜드 중 원하는 권역 선택. 기치조지에서 오래 머물면 생략. 하나조노 신사 시장 개최는 미확인.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "displayName": "하나조노 신사",
+      "tone": "walk",
+      "description": "신주쿠 5초메 쪽 신사 산책 후보. 골동품 시장은 해당 날짜 개최가 확인된 경우에만 함께 구경하고, 시장이 없어도 신사 방문 자체는 별개로 생각해요."
     },
     {
       "id": "place-44",
@@ -1222,7 +1358,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "status": "기치조지 후 여유 있을 때",
       "note": "기치조지 후 신주쿠에서 약 1.5~2.5시간을 쓸 수 있을 때 관심 매장 1~2곳. 남쪽 몽벨과 동쪽 세카이도·키디랜드 중 원하는 권역 선택. 기치조지에서 오래 머물면 생략. 하나조노 신사 시장 개최는 미확인.",
       "excluded": false,
-      "lowPriority": false
+      "lowPriority": false,
+      "displayName": "키디랜드 신주쿠",
+      "tone": "character",
+      "description": "신주쿠 3-23-17에 저장한 캐릭터 상품 매장. 기치조지에서 돌아오는 길에 추가 쇼핑을 원할 때만 선택하고, 다른 지점을 모두 순회할 필요는 없어요."
     },
     {
       "id": "place-28",
@@ -1332,7 +1471,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "duration": "1~2시간",
       "travel": "역 북쪽~서쪽 잡화 골목. 가까운 다른 저장 매장과 조합.",
       "url": "",
-      "note": "목록 장소명·주소·좌표 확인, 최신 영업 미확인"
+      "note": "목록 장소명·주소·좌표 확인, 최신 영업 미확인",
+      "candidateGroups": [
+        "kichijoji-paper"
+      ]
     },
     {
       "id": "kichijoji-1",
@@ -1342,7 +1484,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "duration": "1~2시간",
       "travel": "북서쪽에 흩어진 매장들을 지도상 위치로 묶음. 한 골목의 같은 건물은 아님.",
       "url": "",
-      "note": "취급 품목·재고·영업은 방문 전 확인. 미확인 매장의 품목을 단정하지 않음."
+      "note": "취급 품목·재고·영업은 방문 전 확인. 미확인 매장의 품목을 단정하지 않음.",
+      "candidateGroups": [
+        "kichijoji-yarn"
+      ]
     },
     {
       "id": "kichijoji-2",
@@ -1412,7 +1557,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "duration": "2~3시간",
       "travel": "주오선 신주쿠 방면 귀환 경로. 역간 대략 15~25분+도보. 나카노를 골랐다면 신주쿠 쇼핑은 덧붙이지 않기.",
       "url": "https://www.google.com/maps/search/?api=1&query=%E4%B8%AD%E9%87%8E%E3%83%96%E3%83%AD%E3%83%BC%E3%83%89%E3%82%A6%E3%82%A7%E3%82%A4",
-      "note": "Maps 쇼핑몰·만화/애니 관련 매장 소개 확인. 점포별 마감은 다름."
+      "note": "Maps 쇼핑몰·만화/애니 관련 매장 소개 확인. 점포별 마감은 다름.",
+      "candidateGroups": [
+        "nakano"
+      ]
     },
     {
       "id": "extra-1",
@@ -1422,7 +1570,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "duration": "1.5~2.5시간",
       "travel": "주오선으로 신주쿠, 이후 야마노테선 이케부쿠로. 역간 대략 20~30분+도보. 동쪽 매장과 남쪽 몽벨을 모두 넣지 않아도 됨.",
       "url": "",
-      "note": "교통 시간은 가안, 실시간·여행일 시간표 미조회."
+      "note": "교통 시간은 가안, 실시간·여행일 시간표 미조회.",
+      "candidateGroups": [
+        "shinjuku"
+      ]
     },
     {
       "id": "extra-2",
@@ -1432,7 +1583,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "duration": "3~4시간",
       "travel": "신주쿠 경유 하라주쿠 등으로 이동. 문전 이동 약 45~65분 여유. 소우소우 때문에 아오야마까지 연장하지 않음.",
       "url": "",
-      "note": "개별 매장 마감 전 도착 가능할 때 선택. 귀환·저녁 시간 별도 확보."
+      "note": "개별 매장 마감 전 도착 가능할 때 선택. 귀환·저녁 시간 별도 확보.",
+      "candidateGroups": [
+        "harajuku"
+      ]
     },
     {
       "id": "extra-3",
@@ -1442,7 +1596,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "duration": "1~2시간",
       "travel": "숙소권이어서 추가 장거리 이동 최소화. 이미 만족한 캐릭터 매장은 반복 방문 불필요.",
       "url": "",
-      "note": "그날 매장 마감과 구매한 짐 양에 맞춰 조절."
+      "note": "그날 매장 마감과 구매한 짐 양에 맞춰 조절.",
+      "candidateGroups": [
+        "ikebukuro"
+      ]
     },
     {
       "id": "extra-4",
@@ -1452,7 +1609,10 @@ globalThis.TOKYO_TRIP_DATA = {
       "duration": "1.5~2.5시간",
       "travel": "부자재 쇼핑이 우선일 때. 점포가 닫기 전 시간을 확보해야 하므로 저녁에 남는 시간용으로 무조건 미루지 않음.",
       "url": "",
-      "note": "토요일 영업·마감 미확인. 필요하면 기존 두 지역 중 하나와 교체."
+      "note": "토요일 영업·마감 미확인. 필요하면 기존 두 지역 중 하나와 교체.",
+      "candidateGroups": [
+        "asakusabashi"
+      ]
     },
     {
       "id": "extra-5",
@@ -1462,8 +1622,266 @@ globalThis.TOKYO_TRIP_DATA = {
       "duration": "1~1.5시간",
       "travel": "긴자·교바시에서 가까운 편. 치이카와 추가 쇼핑을 원할 때만 선택. 포켓몬센터 방문 없음.",
       "url": "",
-      "note": "치이카와 전 지점 방문 목표 없음. 개별 매장 마감 확인."
+      "note": "치이카와 전 지점 방문 목표 없음. 개별 매장 마감 확인.",
+      "candidateGroups": [
+        "tokyo-station"
+      ]
     }
-  ]
+  ],
+  "extraVenues": [
+    {
+      "id": "extra-harmonica",
+      "name": "Harmonica Yokocho",
+      "displayName": "하모니카 요코초",
+      "tone": "walk",
+      "description": "역 북쪽의 좁은 골목을 구경하거나 식사할 때의 후보. 개별 점포마다 영업이 다르므로 열려 있는 가게를 보며 골라요.",
+      "address": "1 Chome-1-3 Kichijoji Honcho, Musashino, Tokyo 180-0004, Japan",
+      "lat": 35.7035959,
+      "lng": 139.5790815,
+      "url": "https://www.google.com/maps/search/?api=1&query=35.7035959,139.5790815",
+      "excluded": false,
+      "lowPriority": false
+    },
+    {
+      "id": "extra-sunroad",
+      "name": "Kichijoji SUNROAD shopping district",
+      "displayName": "선로드 상점가",
+      "tone": "browse",
+      "description": "역 북쪽의 지붕 있는 상점가. 비가 오거나 간식·생활 쇼핑을 가볍게 더 하고 싶을 때의 후보예요. 개별 가게의 영업은 따로 확인해요.",
+      "address": "1 Chome-15-1 Kichijoji Honcho, Musashino, Tokyo 180-0004, Japan",
+      "lat": 35.7038362,
+      "lng": 139.5798441,
+      "url": "https://www.google.com/maps/search/?api=1&query=35.7038362,139.5798441",
+      "excluded": false,
+      "lowPriority": false
+    },
+    {
+      "id": "extra-petitmura",
+      "name": "Kichijōji Petit Mura",
+      "displayName": "기치조지 프티트 무라",
+      "tone": "cafe",
+      "description": "동화풍 건물과 작은 가게·카페를 구경할 후보. 혼초 2-33-2에 있어 페이퍼메세지와 서쪽 잡화 골목을 볼 때 함께 연결하기 좋아요.",
+      "address": "Japan, 〒180-0004 Tokyo, Musashino, Kichijoji Honcho, 2 Chome−33−2 吉祥寺プティット村",
+      "lat": 35.7045998,
+      "lng": 139.5746884,
+      "url": "https://www.google.com/maps/search/?api=1&query=35.7045998,139.5746884",
+      "excluded": false,
+      "lowPriority": false
+    },
+    {
+      "id": "extra-kichcafe",
+      "name": "Hattifnatt",
+      "displayName": "HATTIFNATT",
+      "tone": "cafe",
+      "description": "기치조지 미나미초 2-22-1에 저장된 카페 후보. 역 동쪽으로 이동해야 하므로 북서쪽 쇼핑 골목 바로 옆으로 생각하지 말고 여유가 있을 때 선택해요.",
+      "address": "2 Chome-22-1 Kichijoji Minamicho, Musashino, Tokyo 180-0003, Japan",
+      "lat": 35.7032186,
+      "lng": 139.5852559,
+      "url": "https://www.google.com/maps/search/?api=1&query=35.7032186,139.5852559",
+      "excluded": false,
+      "lowPriority": false
+    },
+    {
+      "id": "extra-nakano",
+      "name": "Nakano Broadway",
+      "displayName": "나카노 브로드웨이",
+      "tone": "character",
+      "description": "중고 캐릭터·만화·수집품 가게 구경 후보. 나카노역 북쪽의 쇼핑몰로, 기치조지에서 주오선으로 이동하는 교체 코스예요. 신주쿠 쇼핑까지 모두 덧붙이지 않아도 돼요.",
+      "address": "5 Chome-52-15 Nakano, Nakano City, Tokyo 164-0001, Japan",
+      "lat": 35.7092475,
+      "lng": 139.6656524,
+      "url": "https://www.google.com/maps/search/?api=1&query=35.7092475,139.6656524",
+      "excluded": false,
+      "lowPriority": false
+    }
+  ],
+  "venueGroups": {
+    "ikebukuro": {
+      "label": "이케부쿠로 역·선샤인시티",
+      "anchor": {
+        "lat": 35.7308568,
+        "lng": 139.7123844
+      },
+      "placeIds": [
+        "place-49",
+        "place-3",
+        "place-7",
+        "place-47"
+      ]
+    },
+    "ikebukuro-clothes": {
+      "label": "히가시이케부쿠로",
+      "anchor": {
+        "lat": 35.7300281,
+        "lng": 139.7154827
+      },
+      "placeIds": [
+        "place-7"
+      ]
+    },
+    "ginza": {
+      "label": "긴자·교바시",
+      "anchor": {
+        "lat": 35.6731273,
+        "lng": 139.7672138
+      },
+      "placeIds": [
+        "place-35",
+        "place-33",
+        "place-34",
+        "place-39",
+        "place-11"
+      ]
+    },
+    "nippori": {
+      "label": "닛포리 원단거리",
+      "anchor": {
+        "lat": 35.7284489,
+        "lng": 139.7733819
+      },
+      "placeIds": [
+        "place-37",
+        "place-38",
+        "place-27"
+      ]
+    },
+    "kappabashi": {
+      "label": "갓파바시 도구거리",
+      "anchor": {
+        "lat": 35.7125937,
+        "lng": 139.7886804
+      },
+      "placeIds": [
+        "place-17",
+        "place-4",
+        "place-18",
+        "place-19",
+        "place-16",
+        "place-20"
+      ]
+    },
+    "kichijoji-shops": {
+      "label": "기치조지 북쪽·서쪽 골목",
+      "anchor": {
+        "lat": 35.705693,
+        "lng": 139.5784638
+      },
+      "placeIds": [
+        "place-12",
+        "place-13",
+        "place-14",
+        "place-29",
+        "place-30",
+        "place-31"
+      ]
+    },
+    "kichijoji-paper": {
+      "label": "기치조지 문구·종이",
+      "anchor": {
+        "lat": 35.705693,
+        "lng": 139.5784638
+      },
+      "placeIds": [
+        "place-12",
+        "place-13"
+      ]
+    },
+    "kichijoji-yarn": {
+      "label": "기치조지 실·뜨개",
+      "anchor": {
+        "lat": 35.7062028,
+        "lng": 139.5759337
+      },
+      "placeIds": [
+        "place-14",
+        "place-29",
+        "place-30",
+        "place-31"
+      ]
+    },
+    "kichijoji-break": {
+      "label": "기치조지 골목·카페",
+      "anchor": {
+        "lat": 35.704961,
+        "lng": 139.5770375
+      },
+      "placeIds": [
+        "extra-petitmura",
+        "place-15",
+        "extra-harmonica",
+        "extra-sunroad",
+        "extra-kichcafe"
+      ]
+    },
+    "kichijoji-lunch": {
+      "label": "기치조지 역 북쪽",
+      "anchor": {
+        "lat": 35.7035959,
+        "lng": 139.5790815
+      },
+      "placeIds": [
+        "extra-harmonica",
+        "extra-sunroad"
+      ]
+    },
+    "shinjuku": {
+      "label": "신주쿠 역 주변",
+      "anchor": {
+        "lat": 35.690921,
+        "lng": 139.700258
+      },
+      "placeIds": [
+        "place-26",
+        "place-44",
+        "place-10",
+        "place-40"
+      ]
+    },
+    "nakano": {
+      "label": "나카노 역 북쪽",
+      "anchor": {
+        "lat": 35.705765,
+        "lng": 139.665837
+      },
+      "placeIds": [
+        "extra-nakano"
+      ]
+    },
+    "harajuku": {
+      "label": "하라주쿠·오모테산도",
+      "anchor": {
+        "lat": 35.6688739,
+        "lng": 139.7113136
+      },
+      "placeIds": [
+        "place-42",
+        "place-8",
+        "place-45"
+      ]
+    },
+    "asakusabashi": {
+      "label": "아사쿠사바시 역 주변",
+      "anchor": {
+        "lat": 35.6975,
+        "lng": 139.7858
+      },
+      "placeIds": [
+        "place-22",
+        "place-23",
+        "place-21"
+      ]
+    },
+    "tokyo-station": {
+      "label": "도쿄역 캐릭터스트리트",
+      "anchor": {
+        "lat": 35.6820335,
+        "lng": 139.7686549
+      },
+      "placeIds": [
+        "place-52",
+        "place-51"
+      ]
+    }
+  }
 };
 if (typeof module !== "undefined") module.exports = globalThis.TOKYO_TRIP_DATA;

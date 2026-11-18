@@ -12,6 +12,7 @@ def csv_summary(days,updated=False):
   for kr,key in [('오전','morning'),('오후','afternoon'),('마무리','evening'),('조정','adjust')]:w.writerow([kr,'새로 확인한 오후 일정' if updated and d['id']=='2026-11-29' and key=='afternoon' else d['summary'][key]])
   w.writerow([])
  return out.getvalue()
+BASE=os.environ.get('TRIP_TEST_URL','http://127.0.0.1:8765/')
 OUT=Path(os.environ.get('TRIP_TEST_OUTPUT','/workspace/site-work/previews'));OUT.mkdir(parents=True,exist_ok=True)
 with sync_playwright() as p:
  b=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox'])
@@ -23,7 +24,7 @@ with sync_playwright() as p:
  context.route('https://docs.google.com/**',source)
  context.add_init_script("""if(!localStorage.getItem('smoke-seeded')){localStorage.setItem('tokyo-memo-0','기존 메모');localStorage.setItem('tokyo-done',JSON.stringify({'1-2':true}));localStorage.setItem('tokyo-shops',JSON.stringify([{name:'기존 장소',url:'javascript:alert(1)',day:0}]));localStorage.setItem('smoke-seeded','yes')}""")
  page=context.new_page();errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
- page.goto('http://127.0.0.1:8765/',wait_until='domcontentloaded')
+ page.goto(BASE,wait_until='domcontentloaded')
  page.get_by_text('시트 요약 확인됨',exact=True).wait_for()
  assert page.locator('#days button').count()==5
  for i,count in enumerate([7,9,8,10,6]):
@@ -76,7 +77,7 @@ with sync_playwright() as p:
  # Corrupt or unavailable storage must not stop the itinerary from rendering.
  bad=b.new_context();bad.route('https://docs.google.com/**',lambda r:r.abort())
  bad.add_init_script("Object.defineProperty(window,'localStorage',{get(){throw new Error('blocked')}})")
- bp=bad.new_page();bp.goto('http://127.0.0.1:8765/',wait_until='domcontentloaded');assert bp.locator('.schedule-card').count()==7
+ bp=bad.new_page();bp.goto(BASE,wait_until='domcontentloaded');assert bp.locator('.schedule-card').count()==7
  assert '저장할 수 없어요' in bp.locator('#save-status').inner_text()
  b.close()
  print('PASS: five days / 40 cards, single booking, legacy + new notes/checks, shops, 55-place filters, 14 choices, live-summary success/failure, blocked storage; no overflow at 320–1280px; no JS errors.')
