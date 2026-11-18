@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const data = window.TOKYO_TRIP_DATA;
-  const { safeURL, parseSummary, filterPlaces } = window.TokyoTrip;
+  const { safeURL, parseSummary, filterPlaces, resolveCandidateGroups } = window.TokyoTrip;
   const $ = selector => document.querySelector(selector);
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const mapURL = q => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q);
@@ -62,6 +62,14 @@
   function progress() {
     $('#progress').textContent = day().stops.filter(isDone).length + ' / ' + day().stops.length + ' 완료';
   }
+  function renderCandidates(ids) {
+    const groups = resolveCandidateGroups(data, ids);
+    return groups.map(group => `<section class="candidate-group" data-candidate-group="${esc(group.id)}"><div class="candidate-group-heading"><h4>${esc(group.label)}</h4><span>${group.candidates.length}곳 중 선택</span></div><p class="candidate-hint">매장 이름은 개별 지도 · 도보 경로는 이 구역의 기준점에서 출발</p><ul class="candidate-list">${group.candidates.map(place => {
+      const tone = ['craft', 'paper', 'character', 'outdoor', 'browse', 'cafe', 'walk'].includes(place.tone) ? place.tone : 'browse';
+      const distance = place.distanceMeters < 30 ? '구역 기준점 부근' : place.distanceMeters >= 1000 ? `기준점에서 직선 약 ${(place.distanceMeters / 1000).toFixed(1)}km` : `기준점에서 직선 약 ${Math.max(25, Math.round(place.distanceMeters / 25) * 25)}m`;
+      return `<li class="candidate-row" data-venue="${esc(place.id)}"><a class="candidate-name tone-${tone}" href="${esc(safeURL(place.url))}" target="_blank" rel="noopener" aria-label="${esc(place.name)} 개별 지도 열기"><span>${esc(place.displayName || place.name)}</span></a><div class="candidate-description"><p>${esc(place.description)}</p><span class="candidate-distance">${esc(distance)}</span><div class="candidate-links">${link(place.url, '매장 지도 ↗')}${link(place.walkingURL, '도보 경로 ↗')}</div></div></li>`;
+    }).join('')}</ul></section>`).join('');
+  }
   function renderDay() {
     const d = day();
     $('#daynum').textContent = `DAY ${selected + 1} · ${d.date} ${d.dow}요일`;
@@ -71,7 +79,7 @@
     $('#day-adjust').textContent = d.summary.adjust;
     $('#timeline').innerHTML = d.stops.map((s, i) => {
       const previous = d.stops.slice(0, i).reverse().find(p => query(p));
-      return `<article class="schedule-card ${s.reserved ? 'reserved' : ''} ${isDone(s) ? 'completed' : ''}" data-card="${esc(s.id)}"><div class="card-top"><time>${esc(s.start)}<span>–${esc(s.end)}</span></time><span class="tag">${esc(s.kind)}</span></div><h3>${esc(s.name)}</h3><p class="card-detail">${esc(s.detail)}</p><details class="adjust-detail" ${s.reserved ? 'open' : ''}><summary>조정·확인</summary><p>${esc(s.adjust)}</p></details><div class="card-actions">${link(s.url, '지도 열기 ↗')}${previous && query(s) ? link(transitURL(query(previous), query(s)), '이전 장소에서 대중교통 ↗') : ''}${s.url ? `<button class="preview-map" type="button" data-preview="${i}">지도 미리보기</button>` : ''}<label class="done-label"><input type="checkbox" data-done="${esc(s.id)}" ${isDone(s) ? 'checked' : ''}> 완료</label></div></article>`;
+      return `<article class="schedule-card ${s.reserved ? 'reserved' : ''} ${isDone(s) ? 'completed' : ''}" data-card="${esc(s.id)}"><div class="card-top"><time>${esc(s.start)}<span>–${esc(s.end)}</span></time><span class="tag">${esc(s.kind)}</span></div><h3>${esc(s.name)}</h3><p class="card-detail">${esc(s.detail)}</p>${renderCandidates(s.candidateGroups)}<details class="adjust-detail" ${s.reserved ? 'open' : ''}><summary>조정·확인</summary><p>${esc(s.adjust)}</p></details><div class="card-actions">${link(s.url, '지도 열기 ↗')}${previous && query(s) ? link(transitURL(query(previous), query(s)), '이전 장소에서 대중교통 ↗') : ''}${s.url ? `<button class="preview-map" type="button" data-preview="${i}">지도 미리보기</button>` : ''}<label class="done-label"><input type="checkbox" data-done="${esc(s.id)}" ${isDone(s) ? 'checked' : ''}> 완료</label></div></article>`;
     }).join('');
     document.querySelectorAll('[data-done]').forEach(input => input.onchange = () => {
       done[input.dataset.done] = input.checked;
@@ -94,7 +102,7 @@
     $('#all-options').setAttribute('aria-pressed', String(allOptions));
     $('#all-options').textContent = allOptions ? '선택한 날만 보기' : '전체 선택지 보기';
     const options = data.options.filter(o => allOptions || o.day === day().id || o.day === 'all');
-    $('#option-cards').innerHTML = options.map(o => `<article class="option-card"><span class="option-duration">${esc(o.duration)}</span><h3>${esc(o.name)}</h3><p>${esc(o.detail)}</p><div class="option-travel"><b>이동</b> ${esc(o.travel)}</div><details><summary>방문 전 확인</summary><p>${esc(o.note)}</p></details>${link(o.url, '지도 열기 ↗', 'option-map')}</article>`).join('');
+    $('#option-cards').innerHTML = options.map(o => `<article class="option-card"><span class="option-duration">${esc(o.duration)}</span><h3>${esc(o.name)}</h3><p>${esc(o.detail)}</p><div class="option-travel"><b>이동</b> ${esc(o.travel)}</div>${renderCandidates(o.candidateGroups)}<details><summary>방문 전 확인</summary><p>${esc(o.note)}</p></details>${link(o.url, '지도 열기 ↗', 'option-map')}</article>`).join('');
   }
   function renderPlaces() {
     const places = filterPlaces(data.places, { query: $('#place-search').value, area: $('#place-area').value, includeExcluded: $('#include-excluded').checked });

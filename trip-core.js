@@ -50,7 +50,37 @@
     const term = query.trim().toLocaleLowerCase();
     return places.filter(p => (includeExcluded || (!p.excluded && !p.lowPriority)) && (!area || p.area === area) && (!term || [p.name, p.area, p.address].some(value => value.toLocaleLowerCase().includes(term))));
   }
-  const api = { safeURL, csvRows, parseSummary, filterPlaces };
+  function validCoordinate(point) {
+    return point && Number.isFinite(point.lat) && Math.abs(point.lat) <= 90 && Number.isFinite(point.lng) && Math.abs(point.lng) <= 180;
+  }
+  function distanceMeters(from, to) {
+    if (!validCoordinate(from) || !validCoordinate(to)) return null;
+    const radians = value => value * Math.PI / 180;
+    const a = Math.sin(radians(to.lat - from.lat) / 2) ** 2 + Math.cos(radians(from.lat)) * Math.cos(radians(to.lat)) * Math.sin(radians(to.lng - from.lng) / 2) ** 2;
+    return 6371000 * 2 * Math.asin(Math.sqrt(Math.min(1, a)));
+  }
+  function walkingURL(from, to) {
+    if (!validCoordinate(from) || !validCoordinate(to)) return '';
+    const url = new URL('https://www.google.com/maps/dir/');
+    url.search = new URLSearchParams({ api: '1', origin: from.lat + ',' + from.lng, destination: to.lat + ',' + to.lng, travelmode: 'walking' }).toString();
+    return url.href;
+  }
+  function resolveCandidateGroups(data, ids = []) {
+    const venues = new Map([...(data.places || []), ...(data.extraVenues || [])].map(place => [place.id, place]));
+    return ids.flatMap(id => {
+      const group = data.venueGroups?.[id];
+      if (!group || !validCoordinate(group.anchor)) return [];
+      const seen = new Set();
+      const candidates = group.placeIds.flatMap(placeId => {
+        const venue = venues.get(placeId);
+        if (seen.has(placeId) || !venue || venue.excluded || venue.lowPriority || !validCoordinate(venue)) return [];
+        seen.add(placeId);
+        return [{ ...venue, distanceMeters: distanceMeters(group.anchor, venue), walkingURL: walkingURL(group.anchor, venue) }];
+      });
+      return candidates.length ? [{ ...group, id, candidates }] : [];
+    });
+  }
+  const api = { safeURL, csvRows, parseSummary, filterPlaces, distanceMeters, walkingURL, resolveCandidateGroups };
   root.TokyoTrip = api;
   if (typeof module !== 'undefined') module.exports = api;
 })(globalThis);
