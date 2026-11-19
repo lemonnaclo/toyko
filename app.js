@@ -5,7 +5,7 @@
   const $ = selector => document.querySelector(selector);
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const mapURL = q => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q);
-  const transitURL = (a, b) => 'https://www.google.com/maps/dir/?api=1&origin=' + encodeURIComponent(a) + '&destination=' + encodeURIComponent(b) + '&travelmode=transit';
+  const transitURL = (a, b, mode = 'transit') => 'https://www.google.com/maps/dir/?api=1&origin=' + encodeURIComponent(a) + '&destination=' + encodeURIComponent(b) + '&travelmode=' + (mode === 'walking' ? 'walking' : 'transit');
   const link = (url, text, css = '') => safeURL(url) ? `<a class="${css}" href="${esc(safeURL(url))}" target="_blank" rel="noopener">${esc(text)}</a>` : '';
   let storageAvailable = true;
   function raw(key) { try { return localStorage.getItem(key); } catch { storageAvailable = false; return null; } }
@@ -84,7 +84,7 @@
     $('#day-fact').textContent = d.alert || '';
     $('#timeline').innerHTML = d.stops.map((s, i) => {
       const previous = d.stops.slice(0, i).reverse().find(p => query(p));
-      return `<article class="schedule-card ${s.reserved ? 'reserved' : ''} ${s.required ? 'required-stop' : ''} ${isDone(s) ? 'completed' : ''}" data-card="${esc(s.id)}"><div class="card-top"><time>${esc(s.start)}<span>–${esc(s.end)}</span></time><span class="tag">${esc(s.kind)}</span></div><h3>${esc(s.name)}</h3><p class="card-detail">${esc(s.detail)}</p>${renderCandidates(s.candidateGroups)}<details class="adjust-detail" ${s.reserved ? 'open' : ''}><summary>조정·확인</summary><p>${esc(s.adjust)}</p></details><div class="card-actions">${link(s.url, '지도 열기 ↗')}${link(s.officialURL, '공식 안내 ↗')}${link(s.ticketURL, '공식 티켓 ↗')}${previous && query(s) ? link(transitURL(query(previous), query(s)), '이전 장소에서 대중교통 ↗') : ''}${s.url ? `<button class="preview-map" type="button" data-preview="${i}">지도 미리보기</button>` : ''}<label class="done-label"><input type="checkbox" data-done="${esc(s.id)}" ${isDone(s) ? 'checked' : ''}> 완료</label></div></article>`;
+      return `<article class="schedule-card ${s.reserved ? 'reserved' : ''} ${s.required ? 'required-stop' : ''} ${isDone(s) ? 'completed' : ''}" data-card="${esc(s.id)}"><div class="card-top"><time>${esc(s.start)}<span>–${esc(s.end)}</span></time><span class="tag">${esc(s.kind)}</span></div><h3>${esc(s.name)}</h3><p class="card-detail">${esc(s.detail)}</p>${renderCandidates(s.candidateGroups)}<details class="adjust-detail" ${s.reserved ? 'open' : ''}><summary>조정·확인</summary><p>${esc(s.adjust)}</p></details><div class="card-actions">${link(s.url, '지도 열기 ↗')}${link(s.officialURL, '공식 안내 ↗')}${link(s.ticketURL, '공식 티켓 ↗')}${link(s.stockURL, '재고 확인 안내 ↗')}${previous && query(s) ? link(transitURL(query(previous), query(s), s.travelMode), s.travelMode === 'walking' ? '이전 장소에서 도보 ↗' : '이전 장소에서 대중교통 ↗') : ''}${s.url ? `<button class="preview-map" type="button" data-preview="${i}">지도 미리보기</button>` : ''}<label class="done-label"><input type="checkbox" data-done="${esc(s.id)}" ${isDone(s) ? 'checked' : ''}> 완료</label></div></article>`;
     }).join('');
     document.querySelectorAll('[data-done]').forEach(input => input.onchange = () => {
       done[input.dataset.done] = input.checked;
@@ -178,7 +178,7 @@
       $('#daydesc').textContent = day().region + ' · ' + day().summary.afternoon;
       $('#day-adjust').textContent = day().summary.adjust;
       $('#sync-status').textContent = '시트 요약 확인됨';
-    } catch { $('#sync-status').textContent = '시트 연결 지연 · 11/18 정리본 유지'; }
+    } catch { $('#sync-status').textContent = '시트 연결 지연 · 저장된 일정 유지'; }
     finally { syncing = false; $('#refresh-summary').disabled = false; }
   }
   $('#refresh-summary').onclick = refreshSummary;

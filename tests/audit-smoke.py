@@ -15,7 +15,7 @@ with sync_playwright() as p:
  assert '토요일 정기휴무' in page.locator('#day-fact').inner_text()
  assert '이날 방문 제외' in page.locator('.visit-warning').inner_text()
  page.locator('#refresh-summary').click()
- page.get_by_text('시트 연결 지연 · 11/18 정리본 유지',exact=True).wait_for()
+ page.get_by_text('시트 연결 지연 · 저장된 일정 유지',exact=True).wait_for()
  assert '토요일 정기휴무' in page.locator('#day-fact').inner_text()
  page.locator('#days [data-day="4"]').click()
  assert '수하물 위탁·보안검색 전에' in page.locator('#day-fact').inner_text()

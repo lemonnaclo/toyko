@@ -1,6 +1,6 @@
 {
-  "checked": "2026-11-18",
-  "method": "55개 원본 지도 CID 재조회 + 공식 운영사·공공기관 자료 대조. 기존 5개 추가 후보는 11/17 지도 결과와 11/18 공식 자료 대조. 확인 범위 이외의 운영·예약은 검증 완료로 간주하지 않음. 니나가와 미카전은 작가·갤러리·미술관 자료를 대조했고 좌표는 미술관 공식 접근 지도 기준점입니다.",
+  "checked": "2026-11-19",
+  "method": "원본 지도 55개·기존 추가 후보 5곳의 11/18 확인 기록을 유지합니다. 11/19 사용자 요청으로 전시를 삭제하고 DAISO 공식 매장 상세·검색 결과·앱 안내에서 대형점·주소·영업시간·재고 검색 방법을 확인했습니다. 상품·현장 재고는 확인 완료로 표시하지 않습니다.",
   "places": [
     {
       "id": "place-3",
@@ -1240,42 +1240,30 @@
       }
     },
     {
-      "id": "extra-ninagawa",
-      "name": "니나가와 미카전 · 가와구치 시립미술관",
-      "area": "가와구치·사이타마",
-      "lat": 35.800920001919515,
-      "lng": 139.7158746173883,
-      "mapURL": "https://www.google.com/maps?cid=2173577227246203552",
-      "address": "〒332-0015 埼玉県川口市川口3-1-2",
+      "id": "extra-daiso-ginza",
+      "name": "다이소 마로니에 게이트 긴자점 (DAISO)",
+      "area": "긴자·교바시·유라쿠초",
+      "lat": 35.6736,
+      "lng": 139.7651429,
+      "mapURL": "https://www.google.com/maps/search/?api=1&query=DAISO%20%E3%83%9E%E3%83%AD%E3%83%8B%E3%82%A8%E3%82%B2%E3%83%BC%E3%83%88%E9%8A%80%E5%BA%A7%E5%BA%97%20%E9%8A%80%E5%BA%A73-2-1",
+      "address": "東京都中央区銀座3-2-1 マロニエゲート銀座2 6F",
       "verification": {
-        "checked": "2026-11-18",
-        "level": "교차 확인",
-        "scope": "작가·소속 갤러리·미술관이 전시명·가와구치 개최·2026/9/12–11/29를 안내. 미술관 공식 안내: 川口3-1-2·JR川口역 서쪽 출구 도보2분, 11/27 10–20시(입장 마감은 폐관30분 전), 일반 온라인1,800엔/현장2,000엔. 18시 담당 학예사 설명회는 당일 관람권 소지자 15명 선착순·사전신청 불필요.",
-        "remaining": "관람권 미구매. 16–18시는 방문 계획이며 예약 시각 아님. 해설의 종료시각은 미확인으로 이후 시간은 가안. 좌표는 미술관 공식 접근 지도에 표시된 지도 중심 기준점이며 출입구 실측이 아님. 굿즈 품목·재고는 확인 부족.",
+        "checked": "2026-11-19",
+        "level": "공식 매장 확인",
+        "scope": "DAISO 공식 매장 검색 결과와 상세 페이지 모두 マロニエゲート銀座店을 大型店으로 분류하고 銀座3-2-1 マロニエゲート銀座2 6階·11:00–21:00를 안내. 좌표 35.6736000,139.7651429는 공식 매장 지도·경로 링크와 일치. 공식 앱은 매장·상품명으로 재고 검색 기능을 안내.",
+        "remaining": "요청한 닌텐도 가방의 정확한 제품명·모델은 확인 대기. 해당 가방 판매·현장 재고 미확인. 큰 매장이라는 사실이 특정 상품 재고를 보장하지 않음. 쇼핑몰 공식 사이트는 이번 접속에서 읽지 못해 교차 근거로 쓰지 않음.",
         "sources": [
           {
-            "label": "작가 공식 전시 안내",
-            "url": "https://mikaninagawa.com/museums/kawaguchi/"
+            "label": "DAISO 공식 매장 상세",
+            "url": "https://www.daiso-sangyo.co.jp/shop/detail/009168"
           },
           {
-            "label": "소속 갤러리 전시 안내",
-            "url": "https://www.tomiokoyamagallery.com/exhibitions/ninagawa_kawaguchi_2026/"
+            "label": "DAISO 공식 검색 결과",
+            "url": "https://www.daiso-sangyo.co.jp/shop/result?keyword=%E3%83%9E%E3%83%AD%E3%83%8B%E3%82%A8"
           },
           {
-            "label": "미술관 전시·요금 안내",
-            "url": "https://kawaguchi-moa.jp/exhibitions/1202/"
-          },
-          {
-            "label": "11/27 야간 개관 공지",
-            "url": "https://kawaguchi-moa.jp/news/1370/"
-          },
-          {
-            "label": "공식 접근 지도",
-            "url": "https://kawaguchi-moa.jp/visit/visitor/"
-          },
-          {
-            "label": "학예사 설명회 안내",
-            "url": "https://kawaguchi-moa.jp/news/1516/"
+            "label": "공식 재고 검색 앱 안내",
+            "url": "https://www.daiso-sangyo.co.jp/app"
           }
         ]
       }
