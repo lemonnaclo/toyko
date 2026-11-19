@@ -32,12 +32,16 @@ with sync_playwright() as p:
   assert page.locator('.reserved').count()==(1 if i==1 else 0)
   if i==1:assert page.locator('.reserved input').is_checked()
  page.locator('#days [data-day="1"]').click()
- exhibition=page.locator('[data-card="2026-11-27-1600-ninagawa"]')
- assert '니나가와' in page.locator('#daydesc').inner_text()
- assert exhibition.locator('.tag').inner_text()=='꼭 방문'
- assert 'reserved' not in exhibition.get_attribute('class')
- assert exhibition.get_by_role('link',name='공식 티켓 ↗').get_attribute('href').startswith('https://kawaguchi-moa.axess.shop/')
- assert '관람권 미구매' in exhibition.inner_text()
+ daiso=page.locator('[data-card="2026-11-27-1730-daiso"]')
+ assert '긴자' in page.locator('#daydesc').inner_text()
+ assert '다이소' in page.locator('#overview-cards').text_content()
+ assert daiso.locator('.tag').inner_text()=='구매·확인'
+ assert 'reserved' not in daiso.get_attribute('class')
+ assert daiso.get_by_role('link',name='재고 확인 안내 ↗').get_attribute('href')=='https://www.daiso-sangyo.co.jp/app'
+ assert '판매·재고 미확인' in daiso.inner_text()
+ assert 'travelmode=walking' in daiso.get_by_role('link',name='이전 장소에서 도보 ↗').get_attribute('href')
+ assert page.locator('#schedule-view [data-candidate-group="ginza"] .candidate-row').count()==5
+ assert '니나가와' not in page.locator('#timeline').inner_text()
  page.locator('#days [data-day="0"]').click()
  page.locator('[data-view="notes"]').click()
  assert page.locator('#memo').input_value()=='기존 메모'
@@ -57,7 +61,7 @@ with sync_playwright() as p:
  page.locator('[data-view="places"]').click();assert page.locator('.place-card').count()==53
  page.locator('#place-search').fill('Pokémon');assert page.locator('.place-card').count()==0
  page.locator('#include-excluded').check();assert page.locator('.place-card').count()==1
- page.locator('#place-search').fill('니나가와');assert page.locator('.place-card').count()==1
+ page.locator('#place-search').fill('다이소');assert page.locator('.place-card').count()==1
  page.locator('#place-search').fill('');assert page.locator('.place-card').count()==56
  page.locator('#place-area').select_option('기치조지');assert page.locator('.place-card').count()==7
  page.locator('#days [data-day="3"]').click();page.locator('[data-view="options"]').click()
@@ -79,7 +83,7 @@ with sync_playwright() as p:
  assert '보리스 잡화점' in page.locator('#daydesc').inner_text()
  page.wait_for_function("window.TOKYO_TRIP_DATA.days[0].summary.afternoon === '새로 확인한 오후 일정'")
  assert '새로 확인한 오후 일정' in page.locator('#overview-cards').text_content()
- response_state['fail']=True;page.locator('#refresh-summary').click();page.get_by_text('시트 연결 지연 · 11/18 정리본 유지',exact=True).wait_for()
+ response_state['fail']=True;page.locator('#refresh-summary').click();page.get_by_text('시트 연결 지연 · 저장된 일정 유지',exact=True).wait_for()
  assert '보리스 잡화점' in page.locator('#daydesc').inner_text()
  page.wait_for_function("window.TOKYO_TRIP_DATA.days[0].summary.afternoon === '새로 확인한 오후 일정'")
  assert '새로 확인한 오후 일정' in page.locator('#overview-cards').text_content()
@@ -92,9 +96,9 @@ with sync_playwright() as p:
    assert page.locator('[role="tabpanel"]:visible').count()==1
    assert page.evaluate('document.documentElement.scrollWidth <= innerWidth'),(width,view)
   page.locator('#days [data-day="1"]').click();page.locator('[data-view="schedule"]').click()
-  assert page.evaluate('document.documentElement.scrollWidth <= innerWidth'),(width,'exhibition')
+  assert page.evaluate('document.documentElement.scrollWidth <= innerWidth'),(width,'daiso')
   if width==390:
-   exhibition.scroll_into_view_if_needed();page.screenshot(path=str(OUT/'mobile-exhibition.png'))
+   daiso.scroll_into_view_if_needed();page.screenshot(path=str(OUT/'mobile-daiso.png'))
   page.locator('#days [data-day="3"]').click()
   if width==390:
    page.locator('[data-view="schedule"]').click();page.locator('#content').scroll_into_view_if_needed();page.screenshot(path=str(OUT/'mobile-schedule.png'))

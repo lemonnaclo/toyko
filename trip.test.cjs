@@ -135,18 +135,20 @@ test('Boris is a required Sunday visit after Kichijoji, separate from a booked t
 });
 
 
-test('the Ninagawa exhibition replaces Ginza on Friday without claiming a purchased ticket', () => {
+test('Friday restores Ginza and adds the large Daiso without asserting bag stock', () => {
   const friday = data.days.find(d => d.id === '2026-11-27');
-  const visit = friday.stops.find(s => s.id === '2026-11-27-1600-ninagawa');
-  const venue = data.extraVenues.find(p => p.id === 'extra-ninagawa');
-  assert.equal(visit.start, '16:00'); assert.equal(visit.end, '18:00');
-  assert.equal(visit.required, true); assert.equal(visit.reserved, false);
-  assert.match(visit.adjust, /관람권 미구매/);
-  assert.equal(new URL(visit.ticketURL).hostname, 'kawaguchi-moa.axess.shop');
-  assert.equal(venue.savedByUser, true); assert.equal(visit.url, venue.url);
-  assert.match(venue.verification.scope, /11\/27 10–20시/);
-  assert.match(friday.summaryOverride.afternoon, /니나가와/);
-  assert.ok(!friday.stops.some(s => s.candidateGroups?.includes('ginza')));
-  assert.ok(data.options.some(o => o.candidateGroups?.includes('ginza')));
+  const venue = data.extraVenues.find(p => p.id === 'extra-daiso-ginza');
+  const stop = friday.stops.find(s => s.id === '2026-11-27-1730-daiso');
+  assert.equal(stop.start, '17:30'); assert.equal(stop.end, '18:15');
+  assert.equal(stop.reserved, false); assert.equal(venue.savedByUser, true);
+  assert.match(venue.description, /대형점/);
+  assert.match(venue.verification.scope, /11:00–21:00/);
+  assert.match(stop.detail, /판매·재고 미확인/);
+  assert.equal(stop.stockURL, 'https://www.daiso-sangyo.co.jp/app');
+  const shopping = friday.stops.find(s => s.candidateGroups?.includes('ginza'));
+  assert.equal(shopping.start, '16:00'); assert.equal(shopping.end, '17:30');
+  assert.match(friday.summaryOverride.evening, /다이소/);
+  assert.ok(!JSON.stringify(data).includes('ninagawa'));
+  assert.ok(!JSON.stringify(data).includes('니나가와'));
   assert.ok(data.days[3].stops.some(s => s.id === '2026-11-29-1545-boris' && s.required));
 });

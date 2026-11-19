@@ -1,5 +1,5 @@
 globalThis.TOKYO_TRIP_DATA = {
-  "updated": "2026-11-18 · 니나가와 미카전 일정 반영",
+  "updated": "2026-11-19 · 긴자 복원·대형 다이소 추가",
   "sheetURL": "https://docs.google.com/spreadsheets/d/1S_EChUSGHmsXd0v90_FIPwIPon9KxXUxQNMkaunEnfA/edit#gid=1828076283",
   "summaryCSV": "https://docs.google.com/spreadsheets/d/1S_EChUSGHmsXd0v90_FIPwIPon9KxXUxQNMkaunEnfA/export?format=csv&gid=1828076283",
   "days": [
@@ -110,19 +110,19 @@ globalThis.TOKYO_TRIP_DATA = {
       "id": "2026-11-27",
       "date": "11.27",
       "dow": "금",
-      "region": "파크·니나가와 미카전",
-      "title": "치이카와 파크, 그리고 니나가와 미카전",
+      "region": "파크·긴자·대형 다이소",
+      "title": "치이카와 파크, 긴자 쇼핑과 다이소",
       "summary": {
         "morning": "11:40–12:00 파크 입장 예약",
-        "afternoon": "파크·점심 → 가와구치 16:00–18:00 니나가와 미카전",
-        "evening": "18시 학예사 해설(선택) → 저녁 → 숙소",
-        "adjust": "긴자 쇼핑 대신 전시. 파크 지연 시 전시 도착을 늦추고 선택 해설을 생략. 전시 관람권 미구매"
+        "afternoon": "파크·점심 → 긴자 이토야·무인양품·로프트 중 2곳",
+        "evening": "17:30–18:15 대형 다이소 → 저녁 → 숙소",
+        "adjust": "긴자 우선. 전시 삭제. 파크가 늦어지면 선택 매장 수를 줄이고 다이소는 제품·재고 확인 후 방문"
       },
       "route": [
         "이케부쿠로",
         "치이카와 파크",
-        "가와구치 미술관",
-        "저녁",
+        "긴자 쇼핑",
+        "다이소 긴자 대형점",
         "숙소"
       ],
       "stops": [
@@ -183,76 +183,79 @@ globalThis.TOKYO_TRIP_DATA = {
           "reserved": false
         },
         {
-          "id": "2026-11-27-1500-to-ninagawa",
+          "id": "2026-11-27-1500-449c4134",
           "start": "15:00",
           "end": "16:00",
           "kind": "이동",
-          "name": "이케부쿠로 → 가와구치 시립미술관",
-          "detail": "JR 사이쿄선 등으로 아카바네 → 게이힌토호쿠선 가와구치역 → 서쪽 출구 도보2분 후보. 선샤인시티에서 역 이동·환승을 포함해 1시간 확보.",
-          "adjust": "실제 열차 시각은 당일 조회. 파크가 늦어지면 도착을 뒤로 조정. 공식 11/27 개관은 20시까지, 입장은 폐관30분 전 마감.",
-          "url": "https://www.google.com/maps?cid=2173577227246203552",
+          "name": "이케부쿠로 → 긴자",
+          "detail": "마루노우치선 긴자 직통 후보 + 도보",
+          "adjust": "열차·도보 약 40~55분 가안. 지치면 이케부쿠로 잔류",
+          "url": "https://www.google.com/maps/search/?api=1&query=Ginza+Station",
           "reserved": false
         },
         {
-          "id": "2026-11-27-1600-ninagawa",
+          "id": "2026-11-27-1600-b36184a4",
           "start": "16:00",
-          "end": "18:00",
-          "kind": "꼭 방문",
-          "name": "니나가와 미카전 「시작의 빛」",
-          "detail": "가와구치 시립미술관에서 사진·자화상·가족과 기억을 다룬 전시 관람. 2시간 확보, 일반 온라인1,800엔/현장2,000엔. 관람권 미구매이며 방문 시각은 가안.",
-          "adjust": "사용자 요청으로 일정에 추가. 관람권 미구매, 예약 시각이 아닌 방문 계획. 공식 티켓에서 구매 조건·잔여분 확인. 굿즈 품목과 재고는 미확인.",
-          "url": "https://www.google.com/maps?cid=2173577227246203552",
+          "end": "17:30",
+          "kind": "선택",
+          "name": "긴자 이토야·무인양품·로프트 중 2곳",
+          "detail": "아래 매장 중 2곳 정도를 골라요. 교바시까지 갈 때는 긴자 안의 매장을 줄여요.",
+          "adjust": "몽벨 교바시·Feiler를 고르면 다른 매장과 교체",
+          "url": "https://www.google.com/maps/search/?api=1&query=Ginza+Itoya",
+          "reserved": false,
+          "candidateGroups": [
+            "ginza"
+          ]
+        },
+        {
+          "id": "2026-11-27-1730-daiso",
+          "start": "17:30",
+          "end": "18:15",
+          "kind": "구매·확인",
+          "name": "다이소 긴자 대형점 · 닌텐도 가방 확인",
+          "detail": "마로니에 게이트 긴자2 6층의 공식 대형점. 긴자 쇼핑 매장에서 도보로 이동하고 건물 6층으로 올라가요. 45분 확보. 닌텐도 가방은 정확한 제품·모델 확인 대기이며 판매·재고 미확인.",
+          "adjust": "공식 영업 11:00–21:00. 공식 앱에서 해당 매장·상품명으로 재고 확인 후 방문. 재고가 없으면 헛걸음하지 않도록 구매 계획을 바꾸고, 가방 규격·호환 모델은 현물로 확인.",
+          "url": "https://www.google.com/maps/search/?api=1&query=DAISO%20%E3%83%9E%E3%83%AD%E3%83%8B%E3%82%A8%E3%82%B2%E3%83%BC%E3%83%88%E9%8A%80%E5%BA%A7%E5%BA%97%20%E9%8A%80%E5%BA%A73-2-1",
+          "officialURL": "https://www.daiso-sangyo.co.jp/shop/detail/009168",
+          "stockURL": "https://www.daiso-sangyo.co.jp/app",
           "reserved": false,
           "required": true,
           "candidateGroups": [
-            "ninagawa"
+            "daiso-ginza"
           ],
-          "officialURL": "https://kawaguchi-moa.jp/exhibitions/1202/",
-          "ticketURL": "https://kawaguchi-moa.axess.shop/ja/Products/Tickets/"
+          "travelMode": "walking"
         },
         {
-          "id": "2026-11-27-1800-curator",
-          "start": "18:00",
-          "end": "18:45",
-          "kind": "선택",
-          "name": "학예사 해설 또는 관람 연장·휴식",
-          "detail": "18:00 담당 학예사 해설은 당일 관람권 소지자 15명 선착순, 사전신청 불필요. 참여하려면 2층 아트리움에서 현장 안내 확인.",
-          "adjust": "18:45 종료는 일정상 가안이며 공식 종료시각은 미확인. 작가 본인 참석 행사가 아닌 담당 학예사 해설. 만석·불참이면 관람을 더 하거나 먼저 식사하고, 길어지면 저녁·귀환을 늦추기.",
-          "url": "https://www.google.com/maps?cid=2173577227246203552",
-          "reserved": false,
-          "officialURL": "https://kawaguchi-moa.jp/news/1516/"
-        },
-        {
-          "id": "2026-11-27-1845-kawaguchi-dinner",
-          "start": "18:45",
-          "end": "19:30",
+          "id": "2026-11-27-1730-d960d099",
+          "start": "18:15",
+          "end": "19:15",
           "kind": "식사",
-          "name": "가와구치역 주변 저녁",
-          "detail": "관람을 마친 뒤 역 주변에서 영업 중인 식당 선택. 특정 식당 예약 없음.",
-          "adjust": "해설이 길어지면 식사·귀환을 뒤로 조정. 피곤하면 이케부쿠로 귀환 후 숙소 근처에서 식사.",
-          "url": "https://www.google.com/maps/search/?api=1&query=Kawaguchi+Station",
+          "name": "긴자 카페·저녁",
+          "detail": "쇼핑한 권역에서 선택",
+          "adjust": "다이소 쇼핑 뒤 같은 긴자 권역에서 저녁. 도쿄역 추가 쇼핑은 남은 체력·시간이 충분할 때 이 구간과 교체.",
+          "url": "https://www.google.com/maps/search/?api=1&query=Ginza+Tokyo",
           "reserved": false
         },
         {
-          "id": "2026-11-27-1930-return-ikebukuro",
-          "start": "19:30",
+          "id": "2026-11-27-1830-e9dbdc9d",
+          "start": "19:15",
           "end": "20:15",
           "kind": "이동",
-          "name": "가와구치 → 이케부쿠로 숙소",
-          "detail": "게이힌토호쿠선 아카바네 환승 → 사이쿄선 이케부쿠로 등. 역·숙소 도보 포함 45분 가안.",
-          "adjust": "실제 열차·숙소 거리 확인. 미술관 추가 관람이나 식사가 길어지면 이 시간도 함께 늦추기.",
+          "name": "숙소 복귀",
+          "detail": "마루노우치선 이케부쿠로 방향 + 도보",
+          "adjust": "짐이 많으면 다른 지역 추가 방문 생략",
           "url": "https://www.google.com/maps/search/?api=1&query=Ikebukuro+Station",
           "reserved": false
         }
       ],
-      "alert": "파크 예약은 그대로. 15:00 전후 가와구치로 이동 → 16:00–18:00 니나가와 미카전. 11/27은 20시까지 개관. 관람권은 아직 미구매이며 긴자 쇼핑은 기본안에서 뺐어요.",
-      "regionOverride": "파크·니나가와 미카전",
+      "regionOverride": "파크·긴자·대형 다이소",
       "summaryOverride": {
         "morning": "11:40–12:00 파크 입장 예약",
-        "afternoon": "파크·점심 → 가와구치 16:00–18:00 니나가와 미카전",
-        "evening": "18시 학예사 해설(선택) → 저녁 → 숙소",
-        "adjust": "긴자 쇼핑 대신 전시. 파크 지연 시 전시 도착을 늦추고 선택 해설을 생략. 전시 관람권 미구매"
-      }
+        "afternoon": "파크·점심 → 긴자 이토야·무인양품·로프트 중 2곳",
+        "evening": "17:30–18:15 대형 다이소 → 저녁 → 숙소",
+        "adjust": "긴자 우선. 전시 삭제. 파크가 늦어지면 선택 매장 수를 줄이고 다이소는 제품·재고 확인 후 방문"
+      },
+      "alert": "11/27은 파크 → 긴자 쇼핑으로 복원. 긴자 16:00–17:30, 다이소 대형점 17:30–18:15. 닌텐도 가방은 제품명·모델 확인 후 재고 조회가 필요해요."
     },
     {
       "id": "2026-11-28",
@@ -802,9 +805,9 @@ globalThis.TOKYO_TRIP_DATA = {
       "url": "https://www.google.com/maps?cid=18111296058751286170",
       "lat": 35.6756552,
       "lng": 139.7690568,
-      "when": "기본안 제외 · 다른 구간과 교체해 별도 재조정",
-      "status": "긴자 별도 재조정 후보",
-      "note": "11/27 오후는 사용자 요청으로 니나가와 미카전으로 변경했습니다. 긴자 매장은 저장 후보로 유지하되 같은 날 기본 일정에 더하지 않습니다.",
+      "when": "11/27 금 오후",
+      "status": "기본 코스 후보",
+      "note": "파크 후 긴자·교바시. 5곳 완주가 아니라 취향에 따라 2~3곳 선택. Feiler는 장소명·좌표 기준 긴자 분류, 메모로 다른 매장으로 바꾸지 않음.",
       "excluded": false,
       "lowPriority": false,
       "displayName": "몽벨 교바시",
@@ -831,9 +834,9 @@ globalThis.TOKYO_TRIP_DATA = {
       "url": "https://www.google.com/maps?cid=3620508382511668300",
       "lat": 35.6741115,
       "lng": 139.766261,
-      "when": "기본안 제외 · 다른 구간과 교체해 별도 재조정",
-      "status": "긴자 별도 재조정 후보",
-      "note": "11/27 오후는 사용자 요청으로 니나가와 미카전으로 변경했습니다. 긴자 매장은 저장 후보로 유지하되 같은 날 기본 일정에 더하지 않습니다.",
+      "when": "11/27 금 오후",
+      "status": "기본 코스 후보",
+      "note": "파크 후 긴자·교바시. 5곳 완주가 아니라 취향에 따라 2~3곳 선택. Feiler는 장소명·좌표 기준 긴자 분류, 메모로 다른 매장으로 바꾸지 않음.",
       "excluded": false,
       "lowPriority": false,
       "displayName": "긴자 로프트",
@@ -860,9 +863,9 @@ globalThis.TOKYO_TRIP_DATA = {
       "url": "https://www.google.com/maps?cid=771702428473144825",
       "lat": 35.673214,
       "lng": 139.7653677,
-      "when": "기본안 제외 · 다른 구간과 교체해 별도 재조정",
-      "status": "긴자 별도 재조정 후보",
-      "note": "11/27 오후는 사용자 요청으로 니나가와 미카전으로 변경했습니다. 긴자 매장은 저장 후보로 유지하되 같은 날 기본 일정에 더하지 않습니다.",
+      "when": "11/27 금 오후",
+      "status": "기본 코스 후보",
+      "note": "파크 후 긴자·교바시. 5곳 완주가 아니라 취향에 따라 2~3곳 선택. Feiler는 장소명·좌표 기준 긴자 분류, 메모로 다른 매장으로 바꾸지 않음.",
       "excluded": false,
       "lowPriority": false,
       "displayName": "무인양품 긴자",
@@ -884,9 +887,9 @@ globalThis.TOKYO_TRIP_DATA = {
       "url": "https://www.google.com/maps?cid=9979308774657714368",
       "lat": 35.6731273,
       "lng": 139.7672138,
-      "when": "기본안 제외 · 다른 구간과 교체해 별도 재조정",
-      "status": "긴자 별도 재조정 후보",
-      "note": "11/27 오후는 사용자 요청으로 니나가와 미카전으로 변경했습니다. 긴자 매장은 저장 후보로 유지하되 같은 날 기본 일정에 더하지 않습니다.",
+      "when": "11/27 금 오후",
+      "status": "기본 코스 후보",
+      "note": "파크 후 긴자·교바시. 5곳 완주가 아니라 취향에 따라 2~3곳 선택. Feiler는 장소명·좌표 기준 긴자 분류, 메모로 다른 매장으로 바꾸지 않음.",
       "excluded": false,
       "lowPriority": false,
       "displayName": "긴자 이토야",
@@ -913,9 +916,9 @@ globalThis.TOKYO_TRIP_DATA = {
       "url": "https://www.google.com/maps?cid=9295772223182406052",
       "lat": 35.6724604,
       "lng": 139.7651295,
-      "when": "기본안 제외 · 다른 구간과 교체해 별도 재조정",
-      "status": "긴자 별도 재조정 후보",
-      "note": "11/27 오후는 사용자 요청으로 니나가와 미카전으로 변경했습니다. 긴자 매장은 저장 후보로 유지하되 같은 날 기본 일정에 더하지 않습니다.",
+      "when": "11/27 금 오후",
+      "status": "기본 코스 후보",
+      "note": "파크 후 긴자·교바시. 5곳 완주가 아니라 취향에 따라 2~3곳 선택. Feiler는 장소명·좌표 기준 긴자 분류, 메모로 다른 매장으로 바꾸지 않음.",
       "excluded": false,
       "lowPriority": false,
       "displayName": "FEILER 긴자본점",
@@ -2300,14 +2303,13 @@ globalThis.TOKYO_TRIP_DATA = {
     {
       "id": "extra-5",
       "day": "2026-11-27",
-      "name": "긴자·도쿄역 쇼핑 · 별도 재조정 후보",
-      "detail": "11/27 기본안은 파크 + 니나가와 미카전입니다. 이전 긴자·도쿄역 매장 후보는 기록으로 유지하며 같은 날 더하지 않아요.",
-      "duration": "재조정 때 검토",
-      "travel": "가와구치 미술관과 다른 방향의 도심 쇼핑 구역. 관람 뒤 긴자·도쿄역까지 추가하지 않음.",
+      "name": "도쿄역 캐릭터스트리트·치이카와 랜드",
+      "detail": "11/27 긴자를 일찍 마쳤을 때",
+      "duration": "1~1.5시간",
+      "travel": "긴자·교바시에서 가까운 편. 치이카와 추가 쇼핑을 원할 때만 선택. 포켓몬센터 방문 없음.",
       "url": "",
-      "note": "전시 방문을 유지하려면 별도 날짜·구간을 조정해야 합니다. 랜드 입장 조건은 해당 지점의 공식 공지 확인. 포켓몬 방문 없음.",
+      "note": "치이카와 전 지점 방문 목표 없음. 개별 매장 마감 확인.",
       "candidateGroups": [
-        "ginza",
         "tokyo-station"
       ]
     }
@@ -2444,56 +2446,44 @@ globalThis.TOKYO_TRIP_DATA = {
       }
     },
     {
-      "id": "extra-ninagawa",
-      "name": "니나가와 미카전 · 가와구치 시립미술관",
-      "displayName": "니나가와 미카전",
-      "area": "가와구치·사이타마",
-      "address": "〒332-0015 埼玉県川口市川口3-1-2",
-      "lat": 35.800920001919515,
-      "lng": 139.7158746173883,
-      "url": "https://www.google.com/maps?cid=2173577227246203552",
+      "id": "extra-daiso-ginza",
+      "name": "다이소 마로니에 게이트 긴자점 (DAISO)",
+      "displayName": "다이소 긴자 대형점",
+      "area": "긴자·교바시·유라쿠초",
+      "address": "東京都中央区銀座3-2-1 マロニエゲート銀座2 6F",
+      "lat": 35.6736,
+      "lng": 139.7651429,
+      "url": "https://www.google.com/maps/search/?api=1&query=DAISO%20%E3%83%9E%E3%83%AD%E3%83%8B%E3%82%A8%E3%82%B2%E3%83%BC%E3%83%88%E9%8A%80%E5%BA%A7%E5%BA%97%20%E9%8A%80%E5%BA%A73-2-1",
       "tone": "browse",
       "required": true,
-      "description": "「はじまりの光(시작의 빛)」, 2026/9/12–11/29. 11/27은 10:00–20:00 야간 개관. 사진·자화상·가족과 기억 중심의 전시입니다. 일반 온라인 1,800엔·현장 2,000엔. 관람권은 아직 구매하지 않았어요.",
-      "coordinateSource": "https://kawaguchi-moa.jp/visit/visitor/",
+      "savedByUser": true,
+      "excluded": false,
+      "lowPriority": false,
+      "status": "대형점 · 가방 제품·재고 확인 목적",
+      "when": "11/27 금 17:30–18:15",
+      "note": "긴자 원래 쇼핑 90분은 유지하고 뒤에 45분 추가. 닌텐도 가방의 정확한 제품은 사용자 확인 대기, 해당 제품 판매·현장 재고는 미확인.",
+      "description": "공식적으로 ‘대형점’인 다이소. 마로니에 게이트 긴자2 6층, 11:00–21:00. 무인양품·로프트와 가까운 긴자 쇼핑 구역에 묶었어요. 닌텐도 가방은 제품명·모델 확인 후 재고를 조회하고, 매장에 반드시 있다는 뜻은 아니에요.",
+      "coordinateSource": "https://www.daiso-sangyo.co.jp/shop/detail/009168",
       "verification": {
-        "checked": "2026-11-18",
-        "level": "교차 확인",
-        "scope": "작가·소속 갤러리·미술관이 전시명·가와구치 개최·2026/9/12–11/29를 안내. 미술관 공식 안내: 川口3-1-2·JR川口역 서쪽 출구 도보2분, 11/27 10–20시(입장 마감은 폐관30분 전), 일반 온라인1,800엔/현장2,000엔. 18시 담당 학예사 설명회는 당일 관람권 소지자 15명 선착순·사전신청 불필요.",
-        "remaining": "관람권 미구매. 16–18시는 방문 계획이며 예약 시각 아님. 해설의 종료시각은 미확인으로 이후 시간은 가안. 좌표는 미술관 공식 접근 지도에 표시된 지도 중심 기준점이며 출입구 실측이 아님. 굿즈 품목·재고는 확인 부족.",
+        "checked": "2026-11-19",
+        "level": "공식 매장 확인",
+        "scope": "DAISO 공식 매장 검색 결과와 상세 페이지 모두 マロニエゲート銀座店을 大型店으로 분류하고 銀座3-2-1 マロニエゲート銀座2 6階·11:00–21:00를 안내. 좌표 35.6736000,139.7651429는 공식 매장 지도·경로 링크와 일치. 공식 앱은 매장·상품명으로 재고 검색 기능을 안내.",
+        "remaining": "요청한 닌텐도 가방의 정확한 제품명·모델은 확인 대기. 해당 가방 판매·현장 재고 미확인. 큰 매장이라는 사실이 특정 상품 재고를 보장하지 않음. 쇼핑몰 공식 사이트는 이번 접속에서 읽지 못해 교차 근거로 쓰지 않음.",
         "sources": [
           {
-            "label": "작가 공식 전시 안내",
-            "url": "https://mikaninagawa.com/museums/kawaguchi/"
+            "label": "DAISO 공식 매장 상세",
+            "url": "https://www.daiso-sangyo.co.jp/shop/detail/009168"
           },
           {
-            "label": "소속 갤러리 전시 안내",
-            "url": "https://www.tomiokoyamagallery.com/exhibitions/ninagawa_kawaguchi_2026/"
+            "label": "DAISO 공식 검색 결과",
+            "url": "https://www.daiso-sangyo.co.jp/shop/result?keyword=%E3%83%9E%E3%83%AD%E3%83%8B%E3%82%A8"
           },
           {
-            "label": "미술관 전시·요금 안내",
-            "url": "https://kawaguchi-moa.jp/exhibitions/1202/"
-          },
-          {
-            "label": "11/27 야간 개관 공지",
-            "url": "https://kawaguchi-moa.jp/news/1370/"
-          },
-          {
-            "label": "공식 접근 지도",
-            "url": "https://kawaguchi-moa.jp/visit/visitor/"
-          },
-          {
-            "label": "학예사 설명회 안내",
-            "url": "https://kawaguchi-moa.jp/news/1516/"
+            "label": "공식 재고 검색 앱 안내",
+            "url": "https://www.daiso-sangyo.co.jp/app"
           }
         ]
-      },
-      "savedByUser": true,
-      "status": "사용자 지정 전시 방문 · 관람권 미구매",
-      "when": "11/27 금 16:00–18:00 관람 계획",
-      "note": "치이카와 파크 후 긴자 쇼핑 대신 방문. 11/27 20시까지 개관, 18시 학예사 해설은 선택. 굿즈 품목과 재고는 미확인.",
-      "excluded": false,
-      "lowPriority": false
+      }
     }
   ],
   "venueGroups": {
@@ -2691,14 +2681,14 @@ globalThis.TOKYO_TRIP_DATA = {
       ],
       "required": true
     },
-    "ninagawa": {
-      "label": "가와구치 시립미술관 · 꼭 방문",
+    "daiso-ginza": {
+      "label": "다이소 긴자 대형점 · 구매 목적",
       "anchor": {
-        "lat": 35.800920001919515,
-        "lng": 139.7158746173883
+        "lat": 35.6736,
+        "lng": 139.7651429
       },
       "placeIds": [
-        "extra-ninagawa"
+        "extra-daiso-ginza"
       ],
       "required": true
     }
