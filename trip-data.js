@@ -1,5 +1,5 @@
 globalThis.TOKYO_TRIP_DATA = {
-  "updated": "2026-11-19 · 긴자 복원·대형 다이소 추가",
+  "updated": "2026-11-21 · 11/29 포켓몬센터 시부야 추가",
   "sheetURL": "https://docs.google.com/spreadsheets/d/1S_EChUSGHmsXd0v90_FIPwIPon9KxXUxQNMkaunEnfA/edit#gid=1828076283",
   "summaryCSV": "https://docs.google.com/spreadsheets/d/1S_EChUSGHmsXd0v90_FIPwIPon9KxXUxQNMkaunEnfA/export?format=csv&gid=1828076283",
   "days": [
@@ -377,19 +377,19 @@ globalThis.TOKYO_TRIP_DATA = {
       "id": "2026-11-29",
       "date": "11.29",
       "dow": "일",
-      "region": "기치조지·보리스 잡화점",
-      "title": "기치조지에서 보리스 잡화점까지",
+      "region": "기치조지·보리스·시부야 PARCO",
+      "title": "기치조지에서 보리스와 포켓몬센터까지",
       "summary": {
         "morning": "11시 페이퍼메세지·서쪽 골목 → 12시 이후 사브로",
         "afternoon": "14:30 기치조지 출발 → 15:45–16:45 보리스 잡화점 (꼭 방문)",
-        "evening": "주변 선택 쇼핑 → 이케부쿠로 귀환·짐 정리",
-        "adjust": "보리스 방문 우선. 지연 시 기치조지 추가 카페·하라주쿠 선택 매장을 줄이기"
+        "evening": "보리스 → 17:25–18:25 시부야 PARCO 포켓몬센터 → 귀환",
+        "adjust": "보리스·포켓몬센터 우선. 지연되면 기치조지의 추가 카페·선택 쇼핑만 줄이기"
       },
       "route": [
         "이케부쿠로",
         "기치조지",
         "보리스 잡화점",
-        "주변 선택 쇼핑",
+        "시부야 PARCO · 포켓몬센터",
         "숙소"
       ],
       "stops": [
@@ -484,34 +484,45 @@ globalThis.TOKYO_TRIP_DATA = {
           ]
         },
         {
-          "id": "2026-11-29-1645-harajuku-extra",
+          "id": "2026-11-29-1645-to-shibuya-parco",
           "start": "16:45",
-          "end": "17:30",
-          "kind": "선택",
-          "name": "보리스 관람 연장 또는 근처 매장 한 곳",
-          "detail": "관람이 더 필요하면 보리스에 머물러요. 일찍 마치면 Cosmo Space·키디랜드 중 한 곳만 선택.",
-          "adjust": "추가 쇼핑은 필수가 아님. 신주쿠·나카노까지 더하지 않고 17:30 전후 숙소 방향으로 출발.",
-          "url": "",
+          "end": "17:25",
+          "kind": "이동",
+          "name": "보리스 잡화점 → 시부야 PARCO",
+          "detail": "오모테산도·하라주쿠 권역에서 시부야 PARCO까지 도보 이동 후보. 40분 여유 확보.",
+          "adjust": "걷기 힘들거나 늦어지면 대중교통으로 변경. 실제 경로와 혼잡은 당일 지도에서 확인.",
+          "url": "https://www.google.com/maps/search/?api=1&query=Shibuya+PARCO",
           "reserved": false,
-          "candidateGroups": [
-            "harajuku"
-          ]
+          "travelMode": "walking"
+        },
+        {
+          "id": "2026-11-29-pokemon-shibuya",
+          "start": "17:25",
+          "end": "18:25",
+          "kind": "꼭 방문",
+          "name": "포켓몬센터 시부야 · 시부야 PARCO 6층",
+          "detail": "포켓몬 굿즈 쇼핑 1시간. 도쿄도 시부야구 우다가와초 15-1, 시부야 PARCO 6층. 공식 영업시간 10:00–21:00.",
+          "adjust": "신주쿠 PARCO가 아닌 시부야 PARCO입니다. 주말 혼잡·입장 방식·특정 상품 판매 조건은 방문 전 공식 안내 확인.",
+          "url": "https://www.google.com/maps/search/?api=1&query=Pokemon+Center+Shibuya+PARCO",
+          "officialURL": "https://shop.pokemon.co.jp/ja/shop/pokemoncenter-shibuya/",
+          "reserved": false,
+          "required": true
         },
         {
           "id": "2026-11-29-1730-90a2648d",
-          "start": "17:30",
-          "end": "18:30",
+          "start": "18:25",
+          "end": "19:20",
           "kind": "이동",
-          "name": "이케부쿠로 숙소 귀환",
-          "detail": "기치조지·나카노 → 신주쿠 경유 JR 등",
-          "adjust": "출발 지역에 따라 경로·시간 재조회",
+          "name": "시부야 → 이케부쿠로 숙소 귀환",
+          "detail": "시부야역 → JR 야마노테선 이케부쿠로 방향 + 숙소 도보 후보",
+          "adjust": "시부야 PARCO에서 역까지 도보·역내 이동 포함한 가안. 열차 시각 당일 확인",
           "url": "https://www.google.com/maps/search/?api=1&query=Ikebukuro+Station",
           "reserved": false
         },
         {
           "id": "2026-11-29-1830-5be957ed",
-          "start": "18:30",
-          "end": "19:30",
+          "start": "19:20",
+          "end": "20:00",
           "kind": "식사",
           "name": "마지막 저녁",
           "detail": "숙소권에서 편하게 식사",
@@ -521,8 +532,8 @@ globalThis.TOKYO_TRIP_DATA = {
         },
         {
           "id": "2026-11-29-1930-9233cd1b",
-          "start": "19:30",
-          "end": "20:30",
+          "start": "20:00",
+          "end": "21:00",
           "kind": "준비",
           "name": "짐 정리·공항 열차 확인",
           "detail": "여권·항공권·수하물·터미널 점검",
@@ -531,13 +542,13 @@ globalThis.TOKYO_TRIP_DATA = {
           "reserved": false
         }
       ],
-      "alert": "기치조지 + 보리스 잡화점은 꼭 방문. 14:30 기치조지 출발 → 15:45 보리스 목표. 사브로는 12시 이후. 신주쿠·나카노 추가는 생략합니다.",
-      "regionOverride": "기치조지·보리스 잡화점",
+      "alert": "11/29 기치조지 + 보리스 잡화점 + 포켓몬센터 시부야는 꼭 방문. 14:30 기치조지 출발 → 15:45 보리스 → 17:25 시부야 PARCO 6층. 지연 시 선택 쇼핑만 줄입니다.",
+      "regionOverride": "기치조지·보리스·시부야 PARCO",
       "summaryOverride": {
         "morning": "11시 페이퍼메세지·서쪽 골목 → 12시 이후 사브로",
         "afternoon": "14:30 기치조지 출발 → 15:45–16:45 보리스 잡화점 (꼭 방문)",
-        "evening": "주변 선택 쇼핑 → 이케부쿠로 귀환·짐 정리",
-        "adjust": "보리스 방문 우선. 지연 시 기치조지 추가 카페·하라주쿠 선택 매장을 줄이기"
+        "evening": "보리스 → 17:25–18:25 시부야 PARCO 포켓몬센터 → 귀환",
+        "adjust": "보리스·포켓몬센터 우선. 지연되면 기치조지의 추가 카페·선택 쇼핑만 줄이기"
       }
     },
     {
