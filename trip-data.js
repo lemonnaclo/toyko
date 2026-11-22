@@ -1,5 +1,5 @@
 globalThis.TOKYO_TRIP_DATA = {
-  "updated": "2026-11-21 · 11/29 포켓몬센터 시부야 추가",
+  "updated": "2026-11-22 · 11/29 SCRAP 본사 외관 경유 추가",
   "sheetURL": "https://docs.google.com/spreadsheets/d/1S_EChUSGHmsXd0v90_FIPwIPon9KxXUxQNMkaunEnfA/edit#gid=1828076283",
   "summaryCSV": "https://docs.google.com/spreadsheets/d/1S_EChUSGHmsXd0v90_FIPwIPon9KxXUxQNMkaunEnfA/export?format=csv&gid=1828076283",
   "days": [
@@ -377,17 +377,18 @@ globalThis.TOKYO_TRIP_DATA = {
       "id": "2026-11-29",
       "date": "11.29",
       "dow": "일",
-      "region": "기치조지·보리스·시부야 PARCO",
+      "region": "기치조지·SCRAP·보리스·시부야",
       "title": "기치조지에서 보리스와 포켓몬센터까지",
       "summary": {
         "morning": "11시 페이퍼메세지·서쪽 골목 → 12시 이후 사브로",
-        "afternoon": "14:30 기치조지 출발 → 15:45–16:45 보리스 잡화점 (꼭 방문)",
+        "afternoon": "14:00 기치조지 출발 → 15:00 SCRAP 본사 외관 10분 → 15:45–16:45 보리스 잡화점",
         "evening": "보리스 → 17:25–18:25 시부야 PARCO 포켓몬센터 → 귀환",
-        "adjust": "보리스·포켓몬센터 우선. 지연되면 기치조지의 추가 카페·선택 쇼핑만 줄이기"
+        "adjust": "SCRAP은 외관만 5~10분. 이동이 지연되면 SCRAP을 생략하고 보리스·포켓몬센터 우선"
       },
       "route": [
         "이케부쿠로",
         "기치조지",
+        "SCRAP 본사 외관",
         "보리스 잡화점",
         "시부야 PARCO · 포켓몬센터",
         "숙소"
@@ -446,11 +447,11 @@ globalThis.TOKYO_TRIP_DATA = {
         {
           "id": "2026-11-29-1330-a781b635",
           "start": "13:30",
-          "end": "14:30",
+          "end": "14:00",
           "kind": "선택",
           "name": "추가 잡화 쇼핑 또는 카페",
           "detail": "잡화 골목을 더 보거나 카페에서 쉬는 코스로 바꿔도 좋아요.",
-          "adjust": "14:30 보리스로 출발. 쇼핑이 길어지면 추가 카페를 줄이고, 사브로는 12시 이후에 방문.",
+          "adjust": "SCRAP 본사 외관 방문을 위해 14:00에 기치조지 출발. 추가 카페는 줄이기.",
           "url": "https://www.google.com/maps/search/?api=1&query=Kichijoji+Petit+Mura",
           "reserved": false,
           "candidateGroups": [
@@ -459,13 +460,36 @@ globalThis.TOKYO_TRIP_DATA = {
         },
         {
           "id": "2026-11-29-1430-to-boris",
-          "start": "14:30",
+          "start": "14:00",
+          "end": "15:00",
+          "kind": "이동",
+          "name": "기치조지 → SCRAP 본사",
+          "detail": "기치조지에서 센다가야·기타산도 권역으로 이동. JR 주오·소부선 및 도보 후보.",
+          "adjust": "이동 60분은 여유를 둔 가안이며, 당일 열차·도보 경로 확인. 방문은 외관만.",
+          "url": "https://www.google.com/maps/search/?api=1&query=SCRAP+%E5%8D%83%E9%A7%84%E3%83%B6%E8%B0%B75-8-2",
+          "reserved": false
+        },
+        {
+          "id": "2026-11-29-scrap-hq-exterior",
+          "start": "15:00",
+          "end": "15:10",
+          "kind": "외관 방문",
+          "name": "SCRAP 도쿄 본사 · 건물 외관",
+          "detail": "리얼 탈출 게임 제작사 SCRAP 본사 건물 외관만 5~10분 구경. 주소: 東京都渋谷区千駄ヶ谷5-8-2 イワオアネックス北館1階.",
+          "adjust": "일반 견학·내부 입장 일정 아님. 업무용 사무실이므로 직원·출입자에게 방해되지 않도록 외부에서만 확인.",
+          "url": "https://www.google.com/maps/search/?api=1&query=%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BESCRAP+%E5%8D%83%E9%A7%84%E3%83%B6%E8%B0%B75-8-2",
+          "officialURL": "https://www.scrapmagazine.com/about/company-profile/",
+          "reserved": false
+        },
+        {
+          "id": "2026-11-29-scrap-to-boris",
+          "start": "15:10",
           "end": "15:45",
           "kind": "이동",
-          "name": "기치조지 → 보리스 잡화점",
-          "detail": "JR 주오선 신주쿠 환승 → 야마노테선 하라주쿠 → 매장까지 도보 후보. 역·환승·도보를 포함해 75분 확보.",
-          "adjust": "실제 열차 시각·보행 경로는 당일 지도 조회. 15:45 도착 목표로 기치조지에서 14:30 출발.",
-          "url": "https://www.google.com/maps?cid=10783324310941095014",
+          "name": "SCRAP 본사 → 보리스 잡화점",
+          "detail": "센다가야에서 진구마에 보리스 잡화점으로 이동. 도보·대중교통 경로 당일 확인.",
+          "adjust": "35분은 예상 이동 여유. 지연될 경우 본사 외관 관람을 생략하고 보리스 필수 일정 우선.",
+          "url": "https://www.google.com/maps/search/?api=1&query=%E3%83%9C%E3%83%AA%E3%82%B9%E9%9B%91%E8%B2%A8%E5%BA%97",
           "reserved": false
         },
         {
@@ -542,13 +566,13 @@ globalThis.TOKYO_TRIP_DATA = {
           "reserved": false
         }
       ],
-      "alert": "11/29 기치조지 + 보리스 잡화점 + 포켓몬센터 시부야는 꼭 방문. 14:30 기치조지 출발 → 15:45 보리스 → 17:25 시부야 PARCO 6층. 지연 시 선택 쇼핑만 줄입니다.",
-      "regionOverride": "기치조지·보리스·시부야 PARCO",
+      "alert": "11/29 기치조지 → SCRAP 본사 외관(15:00, 10분) → 보리스 잡화점(15:45) → 시부야 포켓몬센터(17:25). 본사 내부 입장 없음. 보리스·포켓몬센터 필수.",
+      "regionOverride": "기치조지·SCRAP·보리스·시부야",
       "summaryOverride": {
         "morning": "11시 페이퍼메세지·서쪽 골목 → 12시 이후 사브로",
-        "afternoon": "14:30 기치조지 출발 → 15:45–16:45 보리스 잡화점 (꼭 방문)",
+        "afternoon": "14:00 기치조지 출발 → 15:00 SCRAP 본사 외관 10분 → 15:45–16:45 보리스 잡화점",
         "evening": "보리스 → 17:25–18:25 시부야 PARCO 포켓몬센터 → 귀환",
-        "adjust": "보리스·포켓몬센터 우선. 지연되면 기치조지의 추가 카페·선택 쇼핑만 줄이기"
+        "adjust": "SCRAP은 외관만 5~10분. 이동이 지연되면 SCRAP을 생략하고 보리스·포켓몬센터 우선"
       }
     },
     {
