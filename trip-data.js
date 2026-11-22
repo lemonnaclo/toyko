@@ -1,5 +1,5 @@
 globalThis.TOKYO_TRIP_DATA = {
-  "updated": "2026-11-22 · 11/29 SCRAP 본사 외관 경유 추가",
+  "updated": "2026-11-22 · 11/26 치이카와 랜드 이케부쿠로 PARCO점 추가",
   "sheetURL": "https://docs.google.com/spreadsheets/d/1S_EChUSGHmsXd0v90_FIPwIPon9KxXUxQNMkaunEnfA/edit#gid=1828076283",
   "summaryCSV": "https://docs.google.com/spreadsheets/d/1S_EChUSGHmsXd0v90_FIPwIPon9KxXUxQNMkaunEnfA/export?format=csv&gid=1828076283",
   "days": [
@@ -11,14 +11,14 @@ globalThis.TOKYO_TRIP_DATA = {
       "title": "도착한 날은 가볍게",
       "summary": {
         "morning": "12:15 나리타 도착(기존 항공정보)",
-        "afternoon": "입국 → 숙소 짐 보관 → 근처 한 권역",
+        "afternoon": "입국 → 숙소 짐 보관 → 이케부쿠로 PARCO 치이카와 랜드",
         "evening": "저녁·휴식",
-        "adjust": "입국 지연 시 쇼핑 생략"
+        "adjust": "치이카와 랜드 우선. 입국 지연·입장 제한 시 유동 조정"
       },
       "route": [
         "나리타",
         "이케부쿠로 숙소",
-        "주변 쇼핑"
+        "이케부쿠로 PARCO 치이카와 랜드"
       ],
       "stops": [
         {
@@ -55,13 +55,25 @@ globalThis.TOKYO_TRIP_DATA = {
           "reserved": false
         },
         {
-          "id": "2026-11-26-1600-c3475998",
+          "id": "2026-11-26-1600-chiikawaland-parco",
           "start": "16:00",
+          "end": "17:00",
+          "kind": "방문 예정 · 입장 확인",
+          "name": "치이카와 랜드 이케부쿠로 PARCO점",
+          "detail": "첫날 우선 방문. 11/27부터 추첨제 전환 예정이며 추첨 결과는 아직 미발표(사용자 제공 정보). 11/26 입장 조건도 방문 전 공식 공지 확인.",
+          "adjust": "입장 확정 아님. 현장 대기·입장 제한 시 무리하지 말고 주변 쇼핑으로 대체.",
+          "url": "https://www.google.com/maps/search/?api=1&query=Chiikawa+Land+Ikebukuro+PARCO",
+          "reserved": false,
+          "required": true
+        },
+        {
+          "id": "2026-11-26-1700-ikebukuro-flex",
+          "start": "17:00",
           "end": "17:30",
           "kind": "선택",
-          "name": "이케부쿠로 주변 쇼핑 한 권역",
-          "detail": "역 주변과 선샤인시티 중 관심 있는 권역을 골라요.",
-          "adjust": "두 권역 완주 불필요. 치이카와 매장 추가 방문은 선택",
+          "name": "PARCO 주변 짧은 쇼핑",
+          "detail": "치이카와 랜드 방문 후 남는 시간에만 역 주변을 둘러봐요.",
+          "adjust": "랜드 입장·쇼핑이 길어지면 생략",
           "url": "https://www.google.com/maps/search/?api=1&query=Ikebukuro+PARCO",
           "reserved": false,
           "candidateGroups": [
