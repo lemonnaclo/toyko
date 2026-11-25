@@ -1,5 +1,5 @@
 globalThis.TOKYO_TRIP_DATA = {
-  "updated": "2026-11-22 · 11/26 치이카와 랜드 이케부쿠로 PARCO점 추가",
+  "updated": "2026-11-25 · 11/29 19:30 치이카와 클리닉 당첨 일정 추가",
   "sheetURL": "https://docs.google.com/spreadsheets/d/1S_EChUSGHmsXd0v90_FIPwIPon9KxXUxQNMkaunEnfA/edit#gid=1828076283",
   "summaryCSV": "https://docs.google.com/spreadsheets/d/1S_EChUSGHmsXd0v90_FIPwIPon9KxXUxQNMkaunEnfA/export?format=csv&gid=1828076283",
   "days": [
@@ -60,11 +60,11 @@ globalThis.TOKYO_TRIP_DATA = {
           "end": "17:00",
           "kind": "방문 예정 · 입장 확인",
           "name": "치이카와 랜드 이케부쿠로 PARCO점",
-          "detail": "첫날 우선 방문. 11/27부터 추첨제 전환 예정이며 추첨 결과는 아직 미발표(사용자 제공 정보). 11/26 입장 조건도 방문 전 공식 공지 확인.",
-          "adjust": "입장 확정 아님. 현장 대기·입장 제한 시 무리하지 말고 주변 쇼핑으로 대체.",
+          "detail": "첫날 일반 매장 우선 방문 후보. 11/29 19:30 치이카와 클리닉 판매 구역 추첨 당첨 확정. 11/26 입장 조건은 별도 확인.",
+          "adjust": "첫날 입장이 어렵다면 생략 가능. 11/29 예약은 반드시 지키기.",
           "url": "https://www.google.com/maps/search/?api=1&query=Chiikawa+Land+Ikebukuro+PARCO",
           "reserved": false,
-          "required": true
+          "required": false
         },
         {
           "id": "2026-11-26-1700-ikebukuro-flex",
@@ -390,12 +390,12 @@ globalThis.TOKYO_TRIP_DATA = {
       "date": "11.29",
       "dow": "일",
       "region": "기치조지·SCRAP·보리스·시부야",
-      "title": "기치조지에서 보리스와 포켓몬센터까지",
+      "title": "기치조지·보리스·포켓몬센터·치이카와 클리닉",
       "summary": {
         "morning": "11시 페이퍼메세지·서쪽 골목 → 12시 이후 사브로",
         "afternoon": "14:00 기치조지 출발 → 15:00 SCRAP 본사 외관 10분 → 15:45–16:45 보리스 잡화점",
-        "evening": "보리스 → 17:25–18:25 시부야 PARCO 포켓몬센터 → 귀환",
-        "adjust": "SCRAP은 외관만 5~10분. 이동이 지연되면 SCRAP을 생략하고 보리스·포켓몬센터 우선"
+        "evening": "17:25–18:15 시부야 포켓몬센터 → 19:15 이케부쿠로 PARCO 도착 → 19:30 치이카와 클리닉 예약 → 저녁",
+        "adjust": "19:30 치이카와 클리닉 예약 최우선. 지연 시 SCRAP 외관·쇼핑 시간을 줄이기."
       },
       "route": [
         "이케부쿠로",
@@ -403,6 +403,7 @@ globalThis.TOKYO_TRIP_DATA = {
         "SCRAP 본사 외관",
         "보리스 잡화점",
         "시부야 PARCO · 포켓몬센터",
+        "이케부쿠로 PARCO · 치이카와 클리닉",
         "숙소"
       ],
       "stops": [
@@ -534,10 +535,10 @@ globalThis.TOKYO_TRIP_DATA = {
         {
           "id": "2026-11-29-pokemon-shibuya",
           "start": "17:25",
-          "end": "18:25",
+          "end": "18:15",
           "kind": "꼭 방문",
           "name": "포켓몬센터 시부야 · 시부야 PARCO 6층",
-          "detail": "포켓몬 굿즈 쇼핑 1시간. 도쿄도 시부야구 우다가와초 15-1, 시부야 PARCO 6층. 공식 영업시간 10:00–21:00.",
+          "detail": "포켓몬 굿즈 쇼핑 50분. 도쿄도 시부야구 우다가와초 15-1, 시부야 PARCO 6층. 공식 영업시간 10:00–21:00.",
           "adjust": "신주쿠 PARCO가 아닌 시부야 PARCO입니다. 주말 혼잡·입장 방식·특정 상품 판매 조건은 방문 전 공식 안내 확인.",
           "url": "https://www.google.com/maps/search/?api=1&query=Pokemon+Center+Shibuya+PARCO",
           "officialURL": "https://shop.pokemon.co.jp/ja/shop/pokemoncenter-shibuya/",
@@ -546,19 +547,42 @@ globalThis.TOKYO_TRIP_DATA = {
         },
         {
           "id": "2026-11-29-1730-90a2648d",
-          "start": "18:25",
-          "end": "19:20",
+          "start": "18:15",
+          "end": "19:15",
           "kind": "이동",
-          "name": "시부야 → 이케부쿠로 숙소 귀환",
-          "detail": "시부야역 → JR 야마노테선 이케부쿠로 방향 + 숙소 도보 후보",
-          "adjust": "시부야 PARCO에서 역까지 도보·역내 이동 포함한 가안. 열차 시각 당일 확인",
-          "url": "https://www.google.com/maps/search/?api=1&query=Ikebukuro+Station",
+          "name": "시부야 → 이케부쿠로 PARCO",
+          "detail": "JR 야마노테선 등으로 이케부쿠로 PARCO 직행. 숙소 경유하지 않기.",
+          "adjust": "19:15 도착 목표. 지연 시 포켓몬센터 쇼핑 단축.",
+          "url": "https://www.google.com/maps/search/?api=1&query=Chiikawa+Land+Ikebukuro+PARCO",
           "reserved": false
         },
         {
-          "id": "2026-11-29-1830-5be957ed",
-          "start": "19:20",
+          "id": "2026-11-29-1915-chiikawa-wait",
+          "start": "19:15",
+          "end": "19:30",
+          "kind": "입장 준비",
+          "name": "치이카와 클리닉 입장 대기",
+          "detail": "원본 티켓 페이지 열기. 안내 직전에 QR코드 표시, 직원 호출에 따라 입장.",
+          "adjust": "19:15는 권장 도착 시각이며 공식 입장 시각은 19:30.",
+          "url": "https://www.google.com/maps/search/?api=1&query=Chiikawa+Land+Ikebukuro+PARCO",
+          "reserved": false
+        },
+        {
+          "id": "2026-11-29-1930-chiikawa-clinic",
+          "start": "19:30",
           "end": "20:00",
+          "kind": "예약 확정",
+          "name": "치이카와 랜드 이케부쿠로 PARCO · 치이카와 클리닉",
+          "detail": "사용자 제공 당첨 티켓 확인. 치이카와 클리닉 판매 구역 입장 19:30.",
+          "adjust": "종료 20:00은 일정 편성용 예상이며 공식 종료 시각 아님. 원본 티켓과 직원 안내 우선.",
+          "url": "https://www.google.com/maps/search/?api=1&query=Chiikawa+Land+Ikebukuro+PARCO",
+          "reserved": true,
+          "required": true
+        },
+        {
+          "id": "2026-11-29-1830-5be957ed",
+          "start": "20:00",
+          "end": "20:45",
           "kind": "식사",
           "name": "마지막 저녁",
           "detail": "숙소권에서 편하게 식사",
@@ -568,8 +592,8 @@ globalThis.TOKYO_TRIP_DATA = {
         },
         {
           "id": "2026-11-29-1930-9233cd1b",
-          "start": "20:00",
-          "end": "21:00",
+          "start": "20:45",
+          "end": "21:45",
           "kind": "준비",
           "name": "짐 정리·공항 열차 확인",
           "detail": "여권·항공권·수하물·터미널 점검",
@@ -578,13 +602,13 @@ globalThis.TOKYO_TRIP_DATA = {
           "reserved": false
         }
       ],
-      "alert": "11/29 기치조지 → SCRAP 본사 외관(15:00, 10분) → 보리스 잡화점(15:45) → 시부야 포켓몬센터(17:25). 본사 내부 입장 없음. 보리스·포켓몬센터 필수.",
+      "alert": "19:30 치이카와 클리닉 판매 구역 당첨 확정. 19:15 도착 목표. SCRAP은 외관만, 보리스·포켓몬센터 방문 유지.",
       "regionOverride": "기치조지·SCRAP·보리스·시부야",
       "summaryOverride": {
         "morning": "11시 페이퍼메세지·서쪽 골목 → 12시 이후 사브로",
         "afternoon": "14:00 기치조지 출발 → 15:00 SCRAP 본사 외관 10분 → 15:45–16:45 보리스 잡화점",
-        "evening": "보리스 → 17:25–18:25 시부야 PARCO 포켓몬센터 → 귀환",
-        "adjust": "SCRAP은 외관만 5~10분. 이동이 지연되면 SCRAP을 생략하고 보리스·포켓몬센터 우선"
+        "evening": "17:25–18:15 시부야 포켓몬센터 → 19:15 이케부쿠로 PARCO 도착 → 19:30 치이카와 클리닉 예약 → 저녁",
+        "adjust": "19:30 치이카와 클리닉 예약 최우선. 지연 시 SCRAP 외관·쇼핑 시간을 줄이기."
       }
     },
     {
